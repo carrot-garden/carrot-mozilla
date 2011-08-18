@@ -1,0 +1,381 @@
+<?xml version="1.0"?>
+<project xmlns:j="jelly:core"
+         xmlns:l="license"
+         xmlns:m="maven"
+         xmlns:u="jelly:util">
+
+
+  <!--==================================================================-->
+  <!-- Default goal : Builds a xpi distribution                                 -->
+  <!--==================================================================-->
+
+   <goal name="xpi" description="Build a distribution" prereqs="xpi:src">
+		<copy todir="${maven.xpi.build.dir}/xpi-plugin-dist">
+			<fileset dir="${maven.xpi.build.dir}/xpi-plugin-xpi"/>
+			<fileset dir="${maven.xpi.build.dir}/xpi-plugin-src-zip"/>
+			<fileset dir="${maven.xpi.build.dir}/xpi-plugin-src-tar"/>
+		</copy>
+   </goal>
+
+
+  <!--==================================================================-->
+  <!-- Initializations                                                  -->
+  <!--==================================================================-->
+
+    <goal name="xpi:init" description="Initialize the file system">
+
+      <echo>Building XPI ${pom.artifactId}-${pom.currentVersion}</echo>
+
+	    <mkdir dir="${maven.src.dir}" />
+	    <mkdir dir="${maven.build.dir}" />
+	    <mkdir dir="${maven.build.dir}/xpi-plugin" />
+	    <mkdir dir="${maven.build.dir}/xpi-plugin-xpi" />
+	    <mkdir dir="${maven.build.dir}/xpi-plugin-jar" />
+	    <mkdir dir="${maven.build.dir}/xpi-plugin-src-zip" />
+	    <mkdir dir="${maven.build.dir}/xpi-plugin-src-tar" />
+	    <mkdir dir="${maven.build.dir}/xpi-plugin-dist" />
+
+   </goal>
+
+
+
+  <!--==================================================================-->
+  <!-- Build a new Application Directory Layout                         -->
+  <!--==================================================================-->
+
+   <goal name="xpi:new" description="Build a xpi src directory structure for a new plugin">
+
+      <echo>Building XPI directory structure for new plugin ${pom.artifactId}</echo>
+
+		<u:loadText file="${basedir}/LICENSE.txt" var="license.txt"/>
+
+		<u:tokenize var="locales" delim="," trim="true">${maven.xpi.locales}</u:tokenize>
+
+	    <mkdir dir="${maven.xpi.src}" />
+
+	    <mkdir dir="${maven.xpi.src}/${pom.artifactId}" />
+
+	    <mkdir dir="${maven.xpi.src}/${pom.artifactId}/content/${pom.artifactId}" />
+
+	    <mkdir dir="${maven.xpi.src}/${pom.artifactId}/locale" />
+
+	    <mkdir dir="${maven.xpi.src}/${pom.artifactId}/skin" />
+
+	    <mkdir dir="${maven.xpi.src}/install" />
+
+	<j:file
+		name="${basedir}/installed-chrome.txt"
+		trim="false"
+		escapeText="false"
+		prettyPrint="false"
+		omitXmlDeclaration="true"
+		xmlns="dummy">
+
+skin,install,url,resource:/chrome/${pom.artifactId}/skin/
+content,install,url,resource:/chrome/${pom.artifactId}/content/${pom.artifactId}
+
+<j:forEach items="${locales}" var="locale" indexVar="localeName">
+locale,install,url,resource:/chrome/${pom.artifactId}/locale/${locale}/${pom.artifactId}
+</j:forEach>
+
+	</j:file>
+
+
+<j:forEach items="${locales}" var="locale" indexVar="localeName">
+
+	<mkdir dir="${maven.xpi.src}/${pom.artifactId}/locale/${locale}/${pom.artifactId}" />
+
+	<j:file
+		name="${maven.xpi.src}/${pom.artifactId}/locale/${locale}/${pom.artifactId}/${pom.artifactId}.properties"
+		trim="false"
+		escapeText="false"
+		prettyPrint="false"
+		omitXmlDeclaration="true"
+		xmlns="dummy">
+/*
+${license.txt}
+*/
+
+//your JavaScript properties here
+//varYourName=${pom.artifactId} - ${locale}
+	</j:file>
+
+
+	<j:file
+		name="${maven.xpi.src}/${pom.artifactId}/locale/${locale}/${pom.artifactId}/${pom.artifactId}.dtd"
+		trim="false"
+		escapeText="false"
+		prettyPrint="false"
+		omitXmlDeclaration="true"
+		xmlns="dummy">
+${license.txt}
+
+
+	</j:file>
+
+
+
+	<j:file
+		name="${maven.xpi.src}/${pom.artifactId}/locale/${locale}/${pom.artifactId}/content.rdf"
+		trim="false"
+		escapeText="false"
+		prettyPrint="false"
+		omitXmlDeclaration="false"
+		xmlns="dummy">
+
+
+${license.txt}
+
+<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+            xmlns:chrome="http://www.mozilla.org/rdf/chrome#">
+
+  <RDF:Seq about="urn:mozilla:locale:root">
+    <RDF:li resource="urn:mozilla:locale:${locale}"/>
+  </RDF:Seq>
+
+  <RDF:Description about="urn:mozilla:locale:${locale}">
+    <chrome:packages>
+      <RDF:Seq about="urn:mozilla:locale:${locale}:packages">
+        <RDF:li resource="urn:mozilla:locale:${locale}:${pom.artifactId}"/>
+      </RDF:Seq>
+    </chrome:packages>
+  </RDF:Description>
+
+</RDF:RDF>
+
+	</j:file>
+
+</j:forEach>
+
+
+	<j:file
+		name="${maven.xpi.src}/${pom.artifactId}/content/${pom.artifactId}/content.rdf"
+		trim="false"
+		escapeText="false"
+		prettyPrint="false"
+		omitXmlDeclaration="false"
+		xmlns="dummy">
+
+
+${license.txt}
+
+
+<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		 xmlns:chrome="http://www.mozilla.org/rdf/chrome#">
+
+	<RDF:Seq about="urn:mozilla:package:root">
+		<RDF:li resource="urn:mozilla:package:${pom.artifactId}"/>
+	</RDF:Seq>
+
+	<RDF:Description about="urn:mozilla:package:${pom.artifactId}"
+			chrome:displayName="${pom.artifactId}"
+			chrome:author="your name goes here"
+			chrome:name="${pom.artifactId}"
+			chrome:extension="true"
+			chrome:description="your description goes here">
+	</RDF:Description>
+
+
+	<RDF:Seq about="urn:mozilla:overlays">
+	</RDF:Seq>
+
+	<RDF:Seq about="chrome://communicator/content/pref/preftree.xul">
+	</RDF:Seq>
+
+	<RDF:Seq about="chrome://navigator/content/navigatorOverlay.xul">
+	</RDF:Seq>
+
+	<RDF:Seq about="chrome://browser/content/browser.xul">
+	</RDF:Seq>
+
+	<RDF:Seq about="chrome://browser/content/pref/pref.xul">
+	</RDF:Seq>
+
+
+</RDF:RDF>
+
+	</j:file>
+
+
+	<j:file
+		name="${maven.xpi.src}/${pom.artifactId}/content/${pom.artifactId}/${pom.artifactId}.xul"
+		trim="false"
+		escapeText="false"
+		prettyPrint="false"
+		omitXmlDeclaration="false"
+		xmlns="dummy">
+
+${license.txt}
+
+	</j:file>
+
+	<j:file
+		name="${maven.xpi.src}/${pom.artifactId}/content/${pom.artifactId}/${pom.artifactId}.js"
+		trim="false"
+		escapeText="false"
+		prettyPrint="false"
+		omitXmlDeclaration="true"
+		xmlns="dummy">
+
+// JavaScrippt for 	${pom.artifactId}
+
+	</j:file>
+
+	<j:file
+		name="${maven.xpi.src}/${pom.artifactId}/skin/${pom.artifactId}.css"
+		trim="false"
+		escapeText="false"
+		prettyPrint="false"
+		omitXmlDeclaration="true"
+		xmlns="dummy">
+
+
+
+	</j:file>
+
+	<j:file
+		name="${maven.xpi.src}/${pom.artifactId}/skin/content.rdf"
+		trim="false"
+		escapeText="false"
+		prettyPrint="false"
+		omitXmlDeclaration="false"
+		xmlns="dummy">
+
+
+${license.txt}
+
+
+<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		 xmlns:chrome="http://www.mozilla.org/rdf/chrome#">
+  <RDF:Seq about="urn:mozilla:skin:root">
+	<RDF:li resource="urn:mozilla:skin:classic/1.0" />
+  </RDF:Seq>
+  <RDF:Description about="urn:mozilla:skin:classic/1.0">
+	<chrome:packages>
+	  <RDF:Seq about="urn:mozilla:skin:classic/1.0:packages">
+		<RDF:li resource="urn:mozilla:skin:classic/1.0:${pom.artifactId}"/>
+	  </RDF:Seq>
+	</chrome:packages>
+  </RDF:Description>
+</RDF:RDF>
+
+		</j:file>
+
+	<j:file
+		name="${maven.xpi.src}/install/install.js"
+		trim="false"
+		escapeText="false"
+		prettyPrint="false"
+		omitXmlDeclaration="true"
+		xmlns="dummy">
+
+/*
+${license.txt}
+*/
+
+const X_MSG = 	   "Install ${pom.artifactId} ${pom.currentVersion}";
+const X_NAME =     "/${pom.artifactId}";
+const X_VER  =     "${pom.currentVersion}";
+const X_JAR_FILE = "${pom.artifactId}.jar";
+
+const X_CHROME =   "chrome";
+const X_CONTENT =  "content/${pom.artifactId}/";
+const X_SKIN = 	   "skin/";
+
+<j:forEach items="${locales}" var="locale" indexVar="localeName">
+	const X_LOCALE_${localeName} =  "locale/${locale}/${pom.artifactId}/";
+</j:forEach>
+
+
+var err = initInstall(X_MSG, X_NAME, X_VER);
+logComment("initInstall: " + err);
+logComment("Installation started...");
+
+resetError();
+addFile(X_NAME, X_JAR_FILE, getFolder(X_CHROME), "");
+err = getLastError();
+if (err == SUCCESS || err == REBOOT_NEEDED) {
+  registerChrome(DELAYED_CHROME | CONTENT, getFolder(X_CHROME, X_JAR_FILE), X_CONTENT);
+  registerChrome(DELAYED_CHROME | SKIN, getFolder(X_CHROME, X_JAR_FILE), X_SKIN);
+
+
+<j:forEach items="${locales}" var="locale" indexVar="localeName">
+  registerChrome(DELAYED_CHROME | LOCALE, getFolder(X_CHROME, X_JAR_FILE), X_LOCALE_${localeName});
+</j:forEach>
+
+
+
+}
+err = getLastError();
+if (err == SUCCESS || err == REBOOT_NEEDED) {
+  performInstall();
+  err = getLastError();
+  if (err == SUCCESS || err == REBOOT_NEEDED) {
+    alert("Please restart mozilla");
+  } else {
+    // Nothing to do, Mozilla will display an error message himself
+  }
+} else {
+  cancelInstall();
+  if (err == -202) {
+    alert("You need to have write permissions to the chrome directory:\n" +
+          getFolder(X_CHROME));
+  } else if (err == -210) {
+    alert("Installation cancelled by user");
+  }else {
+    alert("An unknown error occured.  Error code: " + err + "\n" +
+          "Look at the following URL for a description of the error code:\n" +
+          "http://devedge.netscape.com/library/manuals/2001/xpinstall/1.0/err.html");
+  }
+}
+
+	</j:file>
+
+
+
+   </goal>
+
+
+     <goal name="xpi:xpi" description="Build a xpi file" prereqs="xpi:init">
+
+
+		<copy todir="${maven.xpi.build.dir}/xpi-plugin">
+			<fileset dir="${maven.xpi.src}"/>
+		</copy>
+
+		<zip
+			zipfile="${maven.xpi.build.dir}/xpi-plugin-jar/${pom.artifactId}.jar"
+			basedir="${maven.xpi.build.dir}/xpi-plugin/${pom.artifactId}"/>
+
+		<copy todir="${maven.xpi.build.dir}/xpi-plugin-jar">
+			<fileset dir="${maven.xpi.src}/install"/>
+		</copy>
+
+		<zip
+			zipfile="${maven.xpi.build.dir}/xpi-plugin-xpi/${maven.xpi.final.name}"
+			basedir="${maven.xpi.build.dir}/xpi-plugin-jar"/>
+
+  </goal>
+
+     <goal name="xpi:src" description="Build a src zip, tar, tar.gz file" prereqs="xpi:src:tar,xpi:src:zip"/>
+
+     <goal name="xpi:src:tar" description="Build a src tar and tar.gz file" prereqs="xpi:xpi">
+		<tar
+			tarfile="${maven.xpi.build.dir}/xpi-plugin-src-tar/${maven.xpi.src.tar.final.name}"
+			basedir="${maven.xpi.build.dir}/xpi-plugin"/>
+
+		<gzip
+			src="${maven.xpi.build.dir}/xpi-plugin-src-tar/${maven.xpi.src.tar.final.name}"
+			zipfile="${maven.xpi.build.dir}/xpi-plugin-src-tar/${maven.xpi.src.gzip.final.name}"/>
+
+  </goal>
+
+
+ <goal name="xpi:src:zip" description="Build a src zip file" prereqs="xpi:xpi">
+		<zip
+			zipfile="${maven.xpi.build.dir}/xpi-plugin-src-zip/${maven.xpi.src.zip.final.name}"
+			basedir="${maven.xpi.build.dir}/xpi-plugin"/>
+
+  </goal>
+
+</project>
