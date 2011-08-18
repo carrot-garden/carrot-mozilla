@@ -1,0 +1,17 @@
+treechildren::-moz-tree-checkbox
+{
+  /* unchecked checkbox treecells */
+   list-style-image: url("chrome://carrot_garden/skin/checkbox/checkbox-active.png");
+}
+
+treechildren::-moz-tree-checkbox(checked)
+{
+  /* checked checkbox treecells*/
+   list-style-image: url("chrome://carrot_garden/skin/checkbox/checkbox-checked.png");
+}
+
+treechildren::-moz-tree-checkbox(disabled)
+{
+  /* disabled checkbox treecells */
+   list-style-image: url("chrome://carrot_garden/skin/checkbox/checkbox.png");
+}

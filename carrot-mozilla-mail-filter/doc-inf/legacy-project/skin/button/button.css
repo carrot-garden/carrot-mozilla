@@ -1,0 +1,33 @@
+/*  */
+
+#button-carrot_garden {
+  list-style-image: url("chrome://carrot_garden/skin/button/carrot_garden_main_button_24x72.png");
+  -moz-image-region: rect(0px 24px 24px 0px);
+}
+
+#button-carrot_garden:hover {
+  -moz-image-region: rect(24px 24px 48px 0px);
+}
+
+#button-carrot_garden[disabled] {
+  -moz-image-region: rect(48px 24px 72px 0px);
+}
+
+toolbar[iconsize="small"] #button-carrot_garden {
+  list-style-image: url("chrome://carrot_garden/skin/button/carrot_garden_main_button_16x48.png");
+  -moz-image-region: rect(0px 16px 16px 0px);
+}
+
+toolbar[iconsize="small"] #button-carrot_garden:hover {
+  -moz-image-region: rect(16px 16px 32px 0px);
+}
+
+toolbar[iconsize="small"] #button-carrot_garden[disabled] {
+  -moz-image-region: rect(32px 16px 48px 0px);
+}
+
+.carrot_garden-icon {
+  list-style-image: url("chrome://carrot_garden/skin/button/carrot_garden_main_button_16x48.png");
+  -moz-image-region: rect(16px 16px 32px 0px);
+}
+

@@ -1,0 +1,67 @@
+<?xml version="1.0"?> 
+
+<overlay 
+	id="carrot_garden.thisEmailPupup.xul" 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+
+        <menupopup >
+
+			<menuitem 
+				label="Copy Name" 
+				accesskey="" 
+				oncommand="carrotMail.copyPopup('name');" />
+
+			<menuitem 
+				label="Copy Email" 
+				accesskey="" 
+				oncommand="carrotMail.copyPopup('email');" />
+
+			<menuitem 
+				label="Copy Name and Email" 
+				accesskey="" 
+				oncommand="carrotMail.copyPopup('all');" />
+
+			<menuseparator />
+
+        	<menuitem 
+				label="Open Web Site" 
+				accesskey=""
+        	    oncommand="carrotMail.openWebSiteFromEmail();" />
+
+			<menuseparator />
+
+        	<menuitem 
+				label="Add Account Folder" 
+				accesskey="A"
+        	    oncommand="carrotMail.makeCustomerFolder();" />
+
+        	<menuitem 
+				label="Add Account Member SF" 
+				accesskey="M"
+				oncommand="cmdNewAccountMember();" />
+
+			<menuseparator />
+	
+			<menuitem 
+				label="Add Manager" 
+				accesskey="" 
+				oncommand="cmdManagerCreate();" />
+	
+			<menuseparator/>
+	
+			<menuitem 
+				label="Add Mail List" 
+				accesskey="" 
+				oncommand="cmdMailListCreate();" />
+		
+			<menuseparator/>
+	
+			<menuitem 
+				label="TEST" 
+				accesskey="" 
+				oncommand="carrotMail.testEmailPopup();" />
+        	
+        </menupopup>
+
+</overlay>

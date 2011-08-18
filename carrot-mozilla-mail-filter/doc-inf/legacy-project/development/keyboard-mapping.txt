@@ -1,0 +1,234 @@
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 1/117 id=key_installExtension key=X keycode= modifiers=alt command=cmd_installExtension oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 2/117 id=key_installTheme key=M keycode= modifiers=alt command=cmd_installTheme oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 3/117 id=key_installToolsExtensions key=E keycode= modifiers=accel shift command=cmd_ExtensionManager oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 4/117 id=key_installToolsThemes key=T keycode= modifiers=accel shift command= oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 5/117 id=key_installToolsOptions key=O keycode= modifiers=alt command= oncommand=Local_Install.openPreferences();
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 6/117 id=key_AboutConfig key=C keycode= modifiers=alt command=cmd_about_config oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 7/117 id=key_AboutPlugins key=P keycode= modifiers=alt command=cmd_about_plugins oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 8/117 id=key_restart key=R keycode= modifiers=accel alt command=cmd_restart oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 9/117 id=key_newMessage key=M keycode= modifiers=accel command=cmd_newMessage oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 10/117 id=key_newMessage2 key=N keycode= modifiers=accel command=cmd_newMessage oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 11/117 id=carrot_garden.key_thread_pane_open_msg_folder key=O keycode= modifiers=accel,shift command= oncommand=carrotMail.openMsgFolderNewWindow();
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 12/117 id=carrot_garden.key_status_bar_search_folders_select key= keycode=VK_F9 modifiers= command= oncommand=carrotFolderAction.setCommand( 'Select Folder  ', 'cmdSelectFolder' );
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 13/117 id=carrot_garden.key_status_bar_search_folders_copy key= keycode=VK_F9 modifiers=alt command= oncommand=carrotFolderAction.setCommand( 'Copy to Folder ', 'cmdCopyToFolder' );
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 14/117 id=carrot_garden.key_status_bar_search_folders_move key= keycode=VK_F9 modifiers=shift command= oncommand=carrotFolderAction.setCommand( 'Move to Folder ', 'cmdMoveToFolder' );
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 15/117 id=space key=  keycode= modifiers= command= oncommand=SpaceHit(event)
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 16/117 id=key_close key=W keycode= modifiers=accel command=cmd_close oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 17/117 id=key_renameFolder key= keycode=VK_F2 modifiers= command= oncommand=goDoCommand('cmd_renameFolder')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 18/117 id=key_quit key=Q keycode= modifiers=accel command=cmd_quit oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 19/117 id=key_undo key=Z keycode= modifiers=accel command= oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 20/117 id=key_redo key=Y keycode= modifiers=accel command= oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 21/117 id=key_cut key=X keycode= modifiers=accel command= oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 22/117 id=key_copy key=C keycode= modifiers=accel command= oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 23/117 id=key_paste key=V keycode= modifiers=accel command= oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 24/117 id=key_delete key= keycode=VK_DELETE modifiers= command=cmd_delete oncommand=goDoCommand('cmd_delete');
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 25/117 id=cmd_shiftDelete key= keycode=VK_DELETE modifiers=shift command= oncommand=goDoCommand('cmd_shiftDelete');
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 26/117 id=key_selectAll key=A keycode= modifiers=alt command= oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 27/117 id=key_selectThread key=a keycode= modifiers=accel, shift command= oncommand=goDoCommand('cmd_selectThread');
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 28/117 id=key_toggleRead key=m keycode= modifiers= command= oncommand=goDoCommand('cmd_markAsRead');
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 29/117 id=key_toggleFlagged key=S keycode= modifiers= command= oncommand=goDoCommand('cmd_markAsFlagged');
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 30/117 id=key_markJunk key=j keycode= modifiers= command= oncommand=goDoCommand('cmd_markAsJunk');
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 31/117 id=key_markNotJunk key=j keycode= modifiers=shift command= oncommand=goDoCommand('cmd_markAsNotJunk');
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 32/117 id=key_groupBySort key=G keycode= modifiers= command= oncommand=MsgGroupBySort();
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 33/117 id=key_markAllRead key=c keycode= modifiers=shift command= oncommand=goDoCommand('cmd_markAllRead');
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 34/117 id=key_markThreadAsRead key=r keycode= modifiers= command= oncommand=goDoCommand('cmd_markThreadAsRead')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 35/117 id=key_markReadByDate key=c keycode= modifiers= command= oncommand=goDoCommand('cmd_markReadByDate')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 36/117 id=key_nextMsg key=f keycode= modifiers= command= oncommand=goDoCommand('cmd_nextMsg')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 37/117 id=key_nextUnreadMsg key=n keycode= modifiers= command= oncommand=goDoCommand('cmd_nextUnreadMsg')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 38/117 id=key_expandAllThreads key=* keycode= modifiers= command= oncommand=goDoCommand('cmd_expandAllThreads')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 39/117 id= key=* keycode= modifiers=shift command= oncommand=goDoCommand('cmd_expandAllThreads')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 40/117 id=key_collapseAllThreads key=\ keycode= modifiers= command= oncommand=goDoCommand('cmd_collapseAllThreads')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 41/117 id= key=\ keycode= modifiers=shift command= oncommand=goDoCommand('cmd_collapseAllThreads')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 42/117 id=key_nextUnreadThread key=t keycode= modifiers= command= oncommand=goDoCommand('cmd_nextUnreadThread')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 43/117 id=key_previousMsg key=b keycode= modifiers= command= oncommand=goDoCommand('cmd_previousMsg')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 44/117 id=key_previousUnreadMsg key=p keycode= modifiers= command= oncommand=goDoCommand('cmd_previousUnreadMsg')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 45/117 id=key_goForward key=] keycode= modifiers= command= oncommand=goDoCommand('cmd_goForward')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 46/117 id=key_goBack key=[ keycode= modifiers= command= oncommand=goDoCommand('cmd_goBack')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 47/117 id=key_reply key=r keycode= modifiers=accel command= oncommand=goDoCommand('cmd_reply')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 48/117 id=key_replyall key=r keycode= modifiers=accel, shift command= oncommand=goDoCommand('cmd_replyall')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 49/117 id=key_forward key=l keycode= modifiers=accel command= oncommand=enigMsgForward('key_forward', null);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 50/117 id=key_editAsNew key=e keycode= modifiers=accel command= oncommand=goDoCommand('cmd_editAsNew')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 51/117 id=key_watchThread key=w keycode= modifiers= command= oncommand=goDoCommand('cmd_watchThread')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 52/117 id=key_killThread key=k keycode= modifiers= command= oncommand=goDoCommand('cmd_killThread')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 53/117 id=key_openMessage key=o keycode= modifiers=accel command= oncommand=goDoCommand('cmd_openMessage')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 54/117 id=key_moveToFolderAgain key=m keycode= modifiers=accel, shift command= oncommand=goDoCommand('cmd_moveToFolderAgain')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 55/117 id=key_print key=p keycode= modifiers=accel command= oncommand=enigMsgPrint('key_print');
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 56/117 id=key_saveAsFile key=s keycode= modifiers=accel command= oncommand=goDoCommand('cmd_saveAsFile')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 57/117 id=key_viewPageSource key=u keycode= modifiers=accel command= oncommand=goDoCommand('cmd_viewPageSource')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 58/117 id=key_getNewMessages key=t keycode= modifiers=accel command= oncommand=goDoCommand('cmd_getNewMessages')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 59/117 id=key_getNewMessages2 key= keycode=VK_F9 modifiers= command= oncommand=goDoCommand('cmd_getNewMessages')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 60/117 id=key_getAllNewMessages key=t keycode= modifiers=accel, shift command= oncommand=goDoCommand('cmd_getMsgsForAuthAccounts');
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 61/117 id=key_find key=f keycode= modifiers=accel command= oncommand=goDoCommand('cmd_find')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 62/117 id=key_findAgain key=g keycode= modifiers=accel command= oncommand=goDoCommand('cmd_findAgain')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 63/117 id=key_findPrev key=g keycode= modifiers=accel, shift command= oncommand=goDoCommand('cmd_findPrevious')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 64/117 id= key= keycode=VK_F3 modifiers= command= oncommand=goDoCommand('cmd_findAgain')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 65/117 id= key= keycode=VK_F3 modifiers=shift command= oncommand=goDoCommand('cmd_findPrevious')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 66/117 id=key_quickSearchFocus key=k keycode= modifiers=accel command= oncommand=QuickSearchFocus()
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 67/117 id=key_stop key= keycode=VK_ESCAPE modifiers= command=cmd_stop oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 68/117 id=key_textZoomReduce key=- keycode= modifiers=accel command=cmd_textZoomReduce oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 69/117 id= key=- keycode= modifiers=accel shift command=cmd_textZoomReduce oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 70/117 id=key_textZoomEnlarge key=+ keycode= modifiers=accel command=cmd_textZoomEnlarge oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 71/117 id= key=+ keycode= modifiers=accel shift command=cmd_textZoomEnlarge oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 72/117 id= key== keycode= modifiers=accel command=cmd_textZoomEnlarge oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 73/117 id= key== keycode= modifiers=accel shift command=cmd_textZoomEnlarge oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 74/117 id=key_textZoomReset key=0 keycode= modifiers=accel command=cmd_textZoomReset oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 75/117 id= key= keycode=VK_TAB modifiers=control,shift command= oncommand=SwitchPaneFocus(event);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 76/117 id= key= keycode=VK_TAB modifiers=control command= oncommand=SwitchPaneFocus(event);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 77/117 id= key= keycode=VK_F6 modifiers=control,shift command= oncommand=SwitchPaneFocus(event);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 78/117 id= key= keycode=VK_F6 modifiers=control command= oncommand=SwitchPaneFocus(event);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 79/117 id= key= keycode=VK_F6 modifiers=shift command= oncommand=SwitchPaneFocus(event);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 80/117 id= key= keycode=VK_F6 modifiers= command= oncommand=SwitchPaneFocus(event);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 81/117 id=key_toggleMessagePane key= keycode=VK_F8 modifiers= command= oncommand=MsgToggleMessagePane();
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 82/117 id=key_tag0 key=0 keycode= modifiers= command= oncommand=RemoveAllMessageTags();
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 83/117 id=key_tag1 key=1 keycode= modifiers= command= oncommand=ToggleMessageTagKey(1);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 84/117 id=key_tag2 key=2 keycode= modifiers= command= oncommand=ToggleMessageTagKey(2);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 85/117 id=key_tag3 key=3 keycode= modifiers= command= oncommand=ToggleMessageTagKey(3);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 86/117 id=key_tag4 key=4 keycode= modifiers= command= oncommand=ToggleMessageTagKey(4);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 87/117 id=key_tag5 key=5 keycode= modifiers= command= oncommand=ToggleMessageTagKey(5);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 88/117 id=key_tag6 key=6 keycode= modifiers= command= oncommand=ToggleMessageTagKey(6);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 89/117 id=key_tag7 key=7 keycode= modifiers= command= oncommand=ToggleMessageTagKey(7);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 90/117 id=key_tag8 key=8 keycode= modifiers= command= oncommand=ToggleMessageTagKey(8);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 91/117 id=key_tag9 key=9 keycode= modifiers= command= oncommand=ToggleMessageTagKey(9);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 92/117 id=key_searchMail key=f keycode= modifiers=shift command= oncommand=goDoCommand('cmd_search')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 93/117 id=key_mail key=1 keycode= modifiers=accel command= oncommand=toMessengerWindow();
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 94/117 id=key_addressbook key=2 keycode= modifiers=accel command= oncommand=toAddressBook();
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 95/117 id=carrot_garden.key_folder_view_switch_all key= keycode=VK_F1 modifiers=accel command= oncommand=loadFolderView(0);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 96/117 id=carrot_garden.key_folder_view_switch_unread key= keycode=VK_F2 modifiers=accel command= oncommand=loadFolderView(1);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 97/117 id=carrot_garden.key_folder_view_switch_favorite key= keycode=VK_F3 modifiers=accel command= oncommand=loadFolderView(2);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 98/117 id=carrot_garden.key_folder_view_switch_recent key= keycode=VK_F4 modifiers=accel command= oncommand=loadFolderView(3);
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 99/117 id=carrot_garden.key_search_bar_switch_view_all_unread key=A keycode= modifiers= command= oncommand=carrotViewSearchBar.doSwitch();
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 100/117 id=carrot_garden.key_search_bar_switch_focus key=H keycode= modifiers=accel command= oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 101/117 id=carrot_garden.key_search_bar_clear_search key=H keycode= modifiers=accel,shift command= oncommand=carrotViewSearchBar.doClear();
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 102/117 id=openLightningKey key=3 keycode= modifiers=accel command= oncommand=ltnSwitch2Calendar()
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 103/117 id=openTasksKey key=4 keycode= modifiers=accel command=switch2task oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 104/117 id=todaypanekey key= keycode=VK_F11 modifiers= command=calendar_toggle_todaypane_command oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 105/117 id=calendar-new-event-key key=I keycode= modifiers=accel command=calendar_new_event_command oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 106/117 id=calendar-new-todo-key key=D keycode= modifiers=accel command=calendar_new_todo_command oncommand=
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 107/117 id=calendar-day-view-key key=1 keycode= modifiers=shift alt command= oncommand=showCalendarView('day')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 108/117 id=calendar-week-view-key key=2 keycode= modifiers=shift alt command= oncommand=showCalendarView('week')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 109/117 id=calendar-multiweek-view-key key=3 keycode= modifiers=shift alt command= oncommand=showCalendarView('multiweek')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 110/117 id=calendar-month-view-key key=4 keycode= modifiers=shift alt command= oncommand=showCalendarView('month')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 111/117 id=calendar-day-view-key key=1 keycode= modifiers=alt command= oncommand=showCalendarView('day')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 112/117 id=calendar-week-view-key key=2 keycode= modifiers=alt command= oncommand=showCalendarView('week')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 113/117 id=calendar-multiweek-view-key key=3 keycode= modifiers=alt command= oncommand=showCalendarView('multiweek')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 114/117 id=calendar-month-view-key key=4 keycode= modifiers=alt command= oncommand=showCalendarView('month')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 115/117 id=calendar-go-to-today-key key= keycode=VK_DOWN modifiers=accel command= oncommand=goToDate(now())
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 116/117 id=calendar-delete-item-key key= keycode=VK_DELETE modifiers= command= oncommand=goDoCommand('calendar_delete_event_command')
+ ----------
+[carrot_garden:report :reportAllWindowKeys] 117/117 id=calendar-delete-todo-key key= keycode=VK_DELETE modifiers= command= oncommand=goDoCommand('calendar_delete_todo_command')

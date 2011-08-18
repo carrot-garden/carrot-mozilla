@@ -1,0 +1,33 @@
+<?xml version="1.0"?> 
+
+<overlay 
+	id="carrot_garden.EdSpellCheck.xul" 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	>
+
+	<script type="application/x-javascript"><![CDATA[
+
+		function carrot_garden_listener(){
+			try {
+			    if ( ! gMisspelledWord )  {
+	    			var MisspelledWord = document.getElementById('MisspelledWord');
+		    		MisspelledWord.style.backgroundColor = "#bbffbb";	//	green
+					window.setTimeout( onClose, 500 );
+			    }
+		    } catch( ex ) {
+		    }
+		}
+				
+		window.addEventListener( "load", carrot_garden_listener, false );
+      
+	]]></script>
+
+<!-- 
+    <textbox id="ReplaceWordInput" onchange="dump2('qqq')"/>
+    <textbox id="MisspelledWord" onchange="dump2('aaa');"/>
+    <label id="MisspelledWordLabel" class="italic" />
+    <label id="MisspelledWord" class="italic" />
+ -->
+  	
+</overlay>
+

@@ -1,0 +1,241 @@
+<?xml version="1.0"?> 
+
+
+<overlay 
+	id="carrot_garden.thisMessengerMenu.xul" 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<!-- 
+//############################
+//	MENU BAR
+//############################
+-->
+
+<menubar id="mail-menubar">
+
+    <toolbarseparator/>
+
+    <menu id="carrot_garden.menu"
+		class="carrot_garden-icon menu-iconic menuitem-iconic" 
+		disabled="true"			
+		label="Carrot"
+		accesskey="A"
+		insertafter="helpMenu">
+
+      <menupopup id="carrot_garden.menu-popup" onpopupshowing="">
+             
+		<menu label="Accounts" accesskey="A" id="carrot_garden.menu-accounts">
+			<menupopup>
+
+		        <menuitem id="carrot_garden.menu-accounts-response-create"
+        		     label="Add 'My Response' SF"
+		             accesskey="1"
+		             oncommand="cmdAccounts.responseCreate();" />
+
+		        <menuitem id="carrot_garden.menu-accounts-response-delete"
+        		     label="Remove 'My Response' SF"
+		             accesskey="2"
+		             oncommand="cmdAccounts.responseDelete();" />
+
+		        <menuseparator/>
+
+		        <menuitem id="carrot_garden.accounts-generics-create"
+        		     label="Add Generic SFs"
+		             accesskey="3"
+		             oncommand="cmdAccounts.genericsCreate();" />
+
+		        <menuitem id="carrot_garden.accounts-generics-delete"
+        		     label="Remove Generic SFs"
+		             accesskey="4"
+		             oncommand="cmdAccounts.genericsDelete();" />
+
+		        <menuseparator/>
+
+		        <menuitem id="carrot_garden.accounts-members-create"
+        		     label="Add Member SFs"
+		             accesskey="5"
+		             oncommand="cmdAccounts.membersCreate();" />
+
+		        <menuitem id="carrot_garden.accounts-members-delete"
+        		     label="Remove Member SFs"
+		             accesskey="6"
+		             oncommand="cmdAccounts.membersDelete();" />
+
+			</menupopup>
+		</menu>
+
+
+		<menu label="Managers" accesskey="M" id="carrot_garden.menu-managers">
+			<menupopup>
+
+		        <menuitem id="carrot_garden.menu-managers-response-add"
+		             label="Add My Responce SF"
+		             accesskey="1"
+		             oncommand="cmdManagersResponseCreate();" />
+
+
+		        <menuitem id="carrot_garden.menu-managers-response-delete"
+		             label="Remove My Responce SF"
+		             accesskey="2"
+		             oncommand="cmdManagersResponseDelete();" />
+
+			</menupopup>
+		</menu>
+
+		<menu label="Vendors" accesskey="V" id="carrot_garden.menu-vendors">
+			<menupopup>
+
+		        <menuitem id="carrot_garden.menu-vendors-response-add"
+		             label="Add My Responce SF"
+		             accesskey="1"
+		             oncommand="cmdVendorsResponseCreate();" />
+
+
+		        <menuitem id="carrot_garden.menu-vendors-response-delete"
+		             label="Remove My Responce SF"
+		             accesskey="2"
+		             oncommand="cmdVendorsResponseDelete();" />
+
+			</menupopup>
+		</menu>
+
+        <menuseparator/>
+
+
+        <menuitem id="carrot_garden.TEST"
+             label="TEST"
+             accesskey="T"
+             oncommand="carrotMail.testMain();" />
+
+
+        <menuitem id="carrot_garden.pref"
+             label="Preferences"
+             accesskey="P"
+             oncommand="carrotPrefWindow('', '', '');" />
+
+		<menu label="Utilities" accesskey="U" id="carrot_garden.menu-utilities">
+			<menupopup>
+
+		        <menuitem id="carrot_garden.menu-utilities-backup-filters"
+		             label="Backup Filters"
+		             accesskey=""
+		             oncommand="carrotMail.backupFiltersFile();" />
+
+
+		        <menuitem id="carrot_garden.menu-utilities-backup-virtuals"
+		             label="Backup Search Folders"
+		             accesskey=""
+		             oncommand="carrotMail.backupVirtualFoldersFile();" />
+
+		        <menuseparator/>
+
+		        <menuitem id="carrot_garden.menu-utilities-reset-preferences"
+		             label="Reset Preferences"
+		             accesskey=""
+		             oncommand="carrotMail.resetPreferences();" />
+
+		        <menuseparator/>
+
+		        <menuitem id="carrot_garden.menu-utilities-rebuild-my-response"
+		             label="Rebuild All My Response SF"
+		             accesskey=""
+		             oncommand="carrotMail.rebuildMyRespose();" />
+
+		        <menuitem id="carrot_garden.menu-utilities-rebuild-conversations"
+		             label="Rebuild All Conversations SF"
+		             accesskey=""
+		             oncommand="carrotMail.rebuildConversations();" />
+
+		        <menuseparator/>
+
+		        <menuitem id="carrot_garden.menu-utilities-show-all-keys"
+		             label="Show All Keys"
+		             accesskey=""
+		             oncommand="carrotMail.showAllKeys();" />
+
+		        <menuseparator/>
+
+		        <menuitem id="carrot_garden.menu-utilities-open-temp-folder"
+		             label="Open Temp Folder"
+		             accesskey=""
+		             oncommand="carrotMail.openFileSysFolder('temporary');" />
+
+		        <menuitem id="carrot_garden.menu-utilities-open-backup-folder"
+		             label="Open Backup Folder"
+		             accesskey=""
+		             oncommand="carrotMail.openFileSysFolder('backup');" />
+
+		        <menuitem id="carrot_garden.menu-utilities-open-backup-folder"
+		             label="Open Profile Folder"
+		             accesskey=""
+		             oncommand="carrotMail.openFileSysFolder('profile');" />
+
+		        <menuseparator/>
+
+		        <menuitem id="carrot_garden.menu-utilities-repair-msf-files"
+		             label="Repair Bad *.msf Files"
+		             accesskey=""
+		             oncommand="carrotMail.repairMsfFiles();" />
+
+		        <menuitem id="carrot_garden.menu-utilities-update-msf-files"
+		             label="Update All *.msf Files"
+		             accesskey=""
+		             oncommand="carrotMail.updateMsfFiles();" />
+
+		        <menuitem id="carrot_garden.menu-utilities-make-uuid-put-in-clipboard"
+		             label="Put new UUID in clipboard"
+		             accesskey=""
+		             oncommand="carrotMail.makeUUID();" />
+
+			</menupopup>
+		</menu>
+
+
+      </menupopup>
+
+    </menu>
+
+
+    <toolbarbutton id="carrot_garden.menu-inbox"
+	     label="Inbox"
+         accesskey=""
+         oncommand="carrotMail.selectFolder('inbox');" />
+
+    <toolbarbutton id="carrot_garden.menu-accounts"
+	     label="Accounts"
+         accesskey=""
+         oncommand="carrotMail.selectFolder('accounts');" />
+
+    <toolbarbutton id="carrot_garden.menu-conversations"
+	     label="Conversations"
+         accesskey=""
+         oncommand="carrotMail.selectFolder('conversations');" />
+
+    <toolbarbutton id="carrot_garden.menu-managers"
+	     label="Managers"
+         accesskey=""
+         oncommand="carrotMail.selectFolder('managers');" />
+
+    <toolbarbutton id="carrot_garden.menu-vendors"
+	     label="Vendors"
+         accesskey=""
+         oncommand="carrotMail.selectFolder('vendors');" />
+
+    <toolbarseparator/>
+
+    <toolbarbutton id="carrot_garden.menu-filters"
+	     label="Filters"
+         accesskey=""
+         oncommand="cmdFiltersConfig();" />
+
+    <toolbarbutton id="carrot_garden.menu-run"
+	     label="Run"
+         accesskey=""
+         oncommand="cmdFiltersRun();" />
+
+    <toolbarseparator/>
+
+  </menubar>
+
+
+</overlay>

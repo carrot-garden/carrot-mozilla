@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+
+<?xul-overlay href="chrome://carrot_garden/content/overlay/thisEmailPopup.xul"?>
+
+<overlay id="carrot_garden.mailWindowOverlay.xul"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<!-- 
+		//############################
+		//	FOLDER VIEW
+		//############################
+	-->
+
+	<keyset id="mailKeys">
+
+		<keyset id="carrot_garden.folder_view_switch">
+			<!-- uses: msgMail3PaneWindow.js::loadFolderView(idx); -->
+
+			<key id="carrot_garden.key_folder_view_switch_all" key="A"
+				modifiers="accel,alt,shift" oncommand="loadFolderView(0);" />
+
+			<key id="carrot_garden.key_folder_view_switch_unread"
+				key="A" modifiers="accel,alt,shift" oncommand="loadFolderView(1);" />
+
+			<key id="carrot_garden.key_folder_view_switch_favorite"
+				key="A" modifiers="accel,alt,shift" oncommand="loadFolderView(2);" />
+
+			<key id="carrot_garden.key_folder_view_switch_recent"
+				key="A" modifiers="accel,alt,shift" oncommand="loadFolderView(3);" />
+
+		</keyset>
+
+	</keyset>
+
+
+	<!-- 
+		//############################
+		//	VIEW BAR; SEARCH BAR
+		//############################
+	-->
+
+	<!-- 
+		messenger.jar::mailWindowOverlay.xul::
+		toolbaritem id="mailviews-container"  
+		toolbaritem id="search-container"
+	-->
+
+
+	<toolbaritem id="mailviews-container">
+		<popupset>
+			<tooltip id="carrot_garden.viewPicker.tooltip"
+				orient="vertical" style="background-color: #33DD00;">
+				<description
+					id="carrot_garden.viewPicker_tooltip_description" value="Use Special Keys" />
+			</tooltip>
+		</popupset>
+		<menulist id="viewPicker"
+			tooltip="carrot_garden.viewPicker.tooltip" />
+	</toolbaritem>
+
+	<toolbaritem id="search-container">
+		<popupset>
+			<tooltip id="carrot_garden.searchInput.tooltip"
+				orient="vertical" style="background-color: #33DD00;">
+				<description
+					id="carrot_garden.searchInput_tooltip_description" value="Use Special Keys" />
+			</tooltip>
+		</popupset>
+		<textbox id="searchInput"
+			tooltip="carrot_garden.searchInput.tooltip" />
+	</toolbaritem>
+
+	<keyset id="mailKeys">
+	
+		<!-- disable native binding -->
+		
+		<key id="key_getNewMessages2" keycode="" oncommand=""/>
+		
+		
+		<!-- add custom binding -->		
+
+		<keyset id="carrot_garden.search_bar">
+
+			<key
+				id="carrot_garden.key_search_bar_switch_view_all_unread" key="A"
+				modifiers="accel,alt,shift"
+				oncommand="carrotViewSearchBar.doSwitch();" />
+
+			<key id="carrot_garden.key_search_bar_switch_focus" key="A"
+				modifiers="accel,alt,shift"
+				XXXoncommand="carrotViewSearchBar.doFocus();" />
+
+			<key id="carrot_garden.key_search_bar_clear_search" key="A"
+				modifiers="accel,alt,shift"
+				oncommand="carrotViewSearchBar.doClear();" />
+
+		</keyset>
+
+	</keyset>
+
+	<!-- 	
+		
+		<hbox id="searchBox"> 
+		
+		<toolbarbutton label="Unread" insertafter="viewPicker" 
+		id="carrot_garden.button_search_bar_switch_all_unread" 
+		oncommand="carrotViewSearchBar.doSwitch();"/>
+		
+		<toolbarbutton label="Clear"  insertbefore="searchInput" 
+		id="carrot_garden.button_search_bar_clear_search" 
+		oncommand="carrotViewSearchBar.doClear();"/>
+		
+		<textbox id="searchInput" 
+		onclick="
+		//carrotViewSearchBar.onClearSearch();
+		onSearchInputClick(event);
+		"
+		onkeypress="
+		//carrotViewSearchBar.onSearch(); 
+		onSearchKeyPress(event);
+		">
+		<button id="quick-search-button">
+		<menupopup id="quick-search-menupopup" 
+		onpopupshowing="
+		//carrotViewSearchBar.onSearch();
+		InitQuickSearchPopup();
+		"
+		/>					
+		</button>
+		</textbox>
+		
+		</hbox>
+		
+	-->
+
+</overlay>
+

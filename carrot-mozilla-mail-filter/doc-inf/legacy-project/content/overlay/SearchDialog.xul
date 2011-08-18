@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://carrot_garden/skin/button/button.css" type="text/css"?>
+
+<?xul-overlay href="chrome://carrot_garden/content/overlay/thisFolderAction.xul"?>
+
+<overlay 
+	id="carrot_garden.SearchDialog.xul" 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<!-- carrot_garden -->
+	<script type="application/x-javascript" src="chrome://carrot_garden/content/overlay/SearchDialog.js"/>
+
+<!-- disable "close SearchDialog window by ESCAPE key": -->
+<!-- this does not work -->
+	<keyset id="mailKeys">
+		<key keycode="VK_ESCAPE" xulkey="false" oncommand=""/>
+	</keyset>
+<!-- this is a workaround -->
+	<script type="application/x-javascript"><![CDATA[
+		var list = document.getElementsByAttribute( 'keycode', "VK_ESCAPE" );
+		for( var k = 0; k < list.length; k++ ){
+			var element = list[k];
+			element.setAttribute( 'oncommand', '' );
+		}
+	]]></script>
+
+
+    <vbox id="searchTerms" flex="3" persist="height">
+
+<!-- XXX relocate | remove the menubar; currently nedded for key init functions -->
+
+		<menubar id="mail-menubar">
+		
+		    <toolbarseparator/>
+		
+		    <menu id="carrot_garden.menu"
+				  class="carrot_garden-icon menu-iconic menuitem-iconic" 
+		          label="Carrot"
+		          accesskey="A"
+		          insertafter="helpMenu">
+		
+		      <menupopup id="carrot_garden.menu-popup" onpopupshowing="">
+		             
+		        <menuseparator/>
+		
+		        <menuitem id="carrot_garden.test"
+		             label="cmdTEST"
+		             accesskey="T"
+		             oncommand="cmdTEST();" />
+		
+				<menu label="Utilities" accesskey="U" id="carrot_garden.menu-utilities">
+					<menupopup>
+		
+				        <menuitem id="carrot_garden.menu-utilities-show-all-keys"
+				             label="Show All Keys"
+				             accesskey=""
+				             oncommand="carrotMail.showAllKeys();" />
+		
+					</menupopup>
+				</menu>
+		
+		
+		      </menupopup>
+		
+		    </menu>
+		
+		</menubar>
+    
+    </vbox> 
+	
+	
+</overlay>
+	

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+
+<overlay id="carrot_garden.thisFolderAction.xul"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<!-- 
+		//############################
+		//	STATUS BAR
+		//############################
+	-->
+
+	<keyset id="mailKeys">
+		<keyset id="carrot_garden.status_bar">
+			<key id="carrot_garden.key_status_bar_search_folders_select"
+				key="A" modifiers="accel,alt,shift"
+				oncommand="carrotFolderAction.setCommand( 'Select Folder  ', 'cmdSelectFolder' );" />
+			<key id="carrot_garden.key_status_bar_search_folders_copy"
+				key="A" modifiers="accel,alt,shift"
+				oncommand="carrotFolderAction.setCommand( 'Copy to Folder ', 'cmdCopyToFolder' );" />
+			<key id="carrot_garden.key_status_bar_search_folders_move"
+				key="A" modifiers="accel,alt,shift"
+				oncommand="carrotFolderAction.setCommand( 'Move to Folder ', 'cmdMoveToFolder' );" />
+		</keyset>
+	</keyset>
+
+	<statusbar id="status-bar">
+
+		<toolbarbutton
+			id="carrot_garden.button_status_bar_search_folder"
+			class="carrot_garden-icon menu-iconic menuitem-iconic"
+			disabled="true" position="1" label="Folder Action  "
+			oncommand="alert('not implemented; set folder flags');" />
+
+		<hbox id="carrot_garden.hbox_status_bar_search_folder"
+			collapsed="true" position="2" style="width: 350px;" flex="3">
+
+			<!-- 
+				NOTE: this textbox uses "firefox-style" type of auto-complete textbox;
+				http://www.xulplanet.com/references/elemref/ref_textboxFirefoxAutoComplete.html
+			-->
+			<textbox id="carrot_garden.textbox_status_bar_search_folder"
+				type="autocomplete" autoFill="false" autoFillAfterMatch="false"
+				crop="start" enablehistory="false" forcecomplete="false"
+				ignoreblurwhilesearching="false" minresultsforpopup="1"
+				tabscrolling="true" timeout="50"
+				inputtooltiptext="Start typing folder name here"
+				oninput="carrotFolderAction.updateSearch(event);"
+				onsearchcomplete="" ontextentered="carrotFolderAction.runCommand();"
+				ontextreverted="carrotFolderAction.abortSearch();" maxlength="160" flex="3"
+				maxrows="20" class="plain"
+				style="width: 350px; background-color: #ffffff;" value="" />
+
+			<checkbox
+				id="carrot_garden.checkbox_status_bar_search_folder" accesskey=""
+				label="Jump" checked="false" />
+
+		</hbox>
+
+		<separator class="thin" />
+
+	</statusbar>
+
+
+</overlay>

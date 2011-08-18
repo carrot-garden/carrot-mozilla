@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+
+<overlay id="carrot_garden.thisCopySent.xul"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:nc="http://home.netscape.com/NC-rdf#">
+
+	<!-- 
+		//############################
+		//	STATUS BAR
+		//############################
+	-->
+
+
+	<keyset id="mailKeys">
+		<keyset id="carrot_garden.status_bar">
+			<key id="carrot_garden.key_status_bar_copy_sent" key="A"
+				modifiers="accel,alt,shift" oncommand="" />
+		</keyset>
+	</keyset>
+
+	<statusbar id="status-bar">
+
+		<toolbarbutton id="carrot_garden.button_status_bar_copy_sent"
+			class="carrot_garden-icon menu-iconic menuitem-iconic"
+			disabled="true" position="1" label="Copy Message To: "
+			oncommand="carrotCompose.setCopySentPref();" />
+
+		<hbox id="carrot_garden.hbox_status_bar_copy_sent"
+			collapsed="true" position="2" style="width: 150px;" flex="1">
+
+			<!-- textbox class="plain" value="" label="" -->
+
+			<!-- 
+				the following menu makes folder tree
+				
+				blank parameters (	SpecialFolder="" BiffState="" IsServer="" IsSecure="" ServerType="" )
+				control display mode / icons for different folder types;
+				
+			-->
+		
+			
+
+			<menu id="carrot_garden.fccFolderPicker"
+				class="folderMenuItem menu-iconic" 
+				label="Click to select folder"
+				oncommand="carrotCopySent.selectionChange( event, this );"
+				disableonsend="true"
+				tooltiptext="Select folder that will keep a copy of this message"
+				flex="1" SpecialFolder="" BiffState="" IsServer="" IsSecure=""
+				ServerType=""
+				datasources="rdf:msgaccountmanager rdf:mailnewsfolders"
+				sortResource="http://home.netscape.com/NC-rdf#FolderTreeName"
+				sortDirection="ascending" 
+				uri="" 
+				ref="msgaccounts:/">
+
+				<!-- add 'manual' menu item for 'do not copy' -->
+				<menupopup>
+					<menuitem id="nocopy://" class="plain"
+						oncommand="carrotCopySent.selectNoCopy( event.target );"
+						label="Do Not Copy" style="background-color: #ffddbb;"
+						SpecialFolder="" BiffState="" IsServer="" IsSecure=""
+						ServerType="" />
+					<menuseparator />
+				</menupopup>
+
+
+            <template> 
+
+              <rule nc:CanFileMessages="true" iscontainer="true" isempty="false">
+                <menupopup>
+                  <menu uri="..."  class="folderMenuItem menu-iconic" 
+                  		label="rdf:http://home.netscape.com/NC-rdf#Name"
+                        SpecialFolder="rdf:http://home.netscape.com/NC-rdf#SpecialFolder"
+                        BiffState="rdf:http://home.netscape.com/NC-rdf#BiffState"
+                        IsServer="rdf:http://home.netscape.com/NC-rdf#IsServer"
+                        IsSecure="rdf:http://home.netscape.com/NC-rdf#IsSecure"
+                        ServerType="rdf:http://home.netscape.com/NC-rdf#ServerType">
+                    <menupopup>
+                      <menuitem label="File Here"
+                                oncommand="carrotCopySent.selectItem( event.target.parentNode.parentNode );	//	MessageFcc(event.target.parentNode.parentNode)"/>
+                      <menuseparator/>
+                    </menupopup>
+                  </menu>
+                </menupopup>
+              </rule>
+              
+              <rule nc:CanFileMessagesOnServer="false"/>
+              
+              <rule nc:CanFileMessages="false" iscontainer="true" isempty="false">
+                <menupopup>
+                  <menu uri="..."  class="folderMenuItem menu-iconic" 
+                  		label="rdf:http://home.netscape.com/NC-rdf#Name"
+                        SpecialFolder="rdf:http://home.netscape.com/NC-rdf#SpecialFolder"
+                        BiffState="rdf:http://home.netscape.com/NC-rdf#BiffState"
+                        IsServer="rdf:http://home.netscape.com/NC-rdf#IsServer"
+                        IsSecure="rdf:http://home.netscape.com/NC-rdf#IsSecure"
+                        ServerType="rdf:http://home.netscape.com/NC-rdf#ServerType">
+                    <menupopup/>
+                  </menu>
+                </menupopup>
+              </rule>
+              
+              <rule nc:CanFileMessages="true">
+                <menupopup>
+                  <menuitem uri="..." class="folderMenuItem menuitem-iconic" 
+                  			label="rdf:http://home.netscape.com/NC-rdf#Name"
+                            oncommand="carrotCopySent.selectItem( event.target );	//	MessageFcc(event.target)" 
+                            SpecialFolder="rdf:http://home.netscape.com/NC-rdf#SpecialFolder"
+                            BiffState="rdf:http://home.netscape.com/NC-rdf#BiffState"
+                            IsServer="rdf:http://home.netscape.com/NC-rdf#IsServer"
+                            IsSecure="rdf:http://home.netscape.com/NC-rdf#IsSecure"
+                            ServerType="rdf:http://home.netscape.com/NC-rdf#ServerType"/>
+                </menupopup>
+              </rule>
+              
+            </template>
+	
+
+
+				
+				<!-- <menupopup /> XXX what for? -->
+
+			</menu>
+			
+			<!-- /textbox -->
+
+			<checkbox id="" accesskey="T" label="Test" checked="false" />
+
+		</hbox>
+
+		<separator class="thin" />
+
+	</statusbar>
+
+</overlay>
+
+

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<overlay 
+	id="carrot_garden.filter-list-overlay" 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<!-- mozilla -->
+
+<!-- carrot_garden -->
+	<script type="application/x-javascript" src="chrome://carrot_garden/content/overlay/FilterListDialog.js"/>
+
+	<window id="filterListDialog">
+	</window>
+
+</overlay>
+

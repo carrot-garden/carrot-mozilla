@@ -1,0 +1,19 @@
+//	compile with xpidl
+//	xpidl -m typelib -w -v -I C:\mnt\TEMP\development\gecko-sdk\idl -o nsISimple C:\mnt\TEMP\development\gecko-sdk\idl\nsISimple.idl
+
+//	{5746E7A0-48F0-11DB-8AF6-B622A1EF5492}
+
+#include "nsISupports.idl"
+
+[scriptable, uuid(5746E7A0-48F0-11DB-8AF6-B622A1EF5492)]
+
+interface nsISimple : nsISupports {
+
+	attribute string name; 
+
+//	void GetName( out PRInt32 number );
+
+	void write( in string name );
+
+
+};

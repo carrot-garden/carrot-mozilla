@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+
+<?xul-overlay href="chrome://carrot_garden/content/overlay/thisFolderAction.xul"?>
+
+<overlay id="carrot_garden.messageWindow.xul"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<script type="application/x-javascript"
+		src="chrome://carrot_garden/content/overlay/messageWindow.js" />
+
+
+	<menubar id="mail-menubar">
+
+		<toolbarseparator />
+
+		<menu id="carrot_garden.menu"
+			class="carrot_garden-icon menu-iconic menuitem-iconic" label="Carrot"
+			accesskey="A" insertafter="helpMenu">
+
+			<menupopup id="carrot_garden.menu-popup"
+				onpopupshowing="">
+
+				<menuitem id="carrot_garden.3" label="cmdTEST"
+					accesskey="T" oncommand="carrotMail.testMain();" />
+
+				<menuseparator />
+
+				<menu label="Utilities" accesskey="U"
+					id="carrot_garden.menu-utilities">
+
+					<menupopup>
+
+						<menuitem
+							id="carrot_garden.menu-utilities-show-all-keys"
+							label="Show All Keys" accesskey=""
+							oncommand="carrotMail.showAllKeys();" />
+
+						<menuitem
+							id="carrot_garden.menu-utilities-make-uuid-put-in-clipboard"
+							label="Put new UUID in clipboard" accesskey=""
+							oncommand="carrotMail.makeUUID();" />
+
+					</menupopup>
+				</menu>
+
+
+			</menupopup>
+
+		</menu>
+
+	</menubar>
+
+</overlay>
+

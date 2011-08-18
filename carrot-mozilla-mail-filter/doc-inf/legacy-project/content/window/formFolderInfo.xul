@@ -1,0 +1,288 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<?xml-stylesheet href="data:text/css,
+	textbox.bg_green { color: green; }
+" type="text/css"?>
+
+<window 
+	id="carrot_garden.form-folder-info" 
+	title="Folder Info"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:nc="http://home.netscape.com/NC-rdf#"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	persist="width height screenX screenY"
+	onload ="windowEvents.loadForm();"
+	onclose="windowEvents.skipForm();"
+	flex="1"
+	>
+
+<!-- mozilla -->
+
+<!-- carrot_garden -->
+	<script type="application/x-javascript" src="chrome://carrot_garden/content/window/formFolderInfo.js"/>
+
+	<keyset>
+		<key keycode="VK_ESCAPE" xulkey="false" oncommand="windowEvents.skipForm();" />
+		<key keycode="VK_RETURN" xulkey="false" oncommand="windowEvents.makeWork();" />
+	</keyset>
+
+<vbox flex="1" id="carrot_garden.main">
+
+	<grid flex="1">
+	  <columns>
+		<spacer width="10px"/>
+	    <column id="1" />
+	    <column id="2" flex="1"/>
+		<spacer width="10px"/>
+	  </columns>
+	
+	<rows>
+
+		<spacer height="15px"/>
+
+		<row id="box.emailTerm" >
+			<label control="emailTerm" value="Original Email"/>
+			<textbox id="emailTerm" tooltip="email-tip" value="" oninput="windowEvents.updateForm();" />
+		</row>    
+
+		<spacer height="5px"/>
+
+		<row id="box.serverSelector">
+			<label value="Server"/>
+			<textbox id="serverSelector" control="serverSelector" value="Local Folders" oninput="windowEvents.updateForm();"/>
+		</row>
+
+		<spacer height="5px"/>
+
+		<row>
+			<label id="folderPickerPrefix" value="Parent Folder" accesskey="" />
+
+		    <menulist 
+		    	id="folderPicker"
+				class="folderMenuItem menu-iconic" 
+				label="Select Folder"
+				uri="..." ref="" tooltip="accounts-tip" 
+				containment="http://home.netscape.com/NC-rdf#child"
+				sortResource="http://home.netscape.com/NC-rdf#FolderTreeName"
+				sortDirection="ascending"
+				datasources="rdf:msgaccountmanager rdf:mailnewsfolders"
+
+				SpecialFolder=""
+				BiffState=""
+				IsServer=""
+				IsSecure=""
+				ServerType=""
+				>
+		      <template>
+		        <rule nc:NoSelect="false" iscontainer="true" isempty="false">
+		          <menupopup>
+		              <menu uri="..." 
+		                label="rdf:http://home.netscape.com/NC-rdf#Name"
+		                class="folderMenuItem menu-iconic"
+		                oncommand="windowEvents.PickedMsgFolder(event.target)"
+		                SpecialFolder="rdf:http://home.netscape.com/NC-rdf#SpecialFolder"
+		                BiffState="rdf:http://home.netscape.com/NC-rdf#BiffState"
+		                IsServer="rdf:http://home.netscape.com/NC-rdf#IsServer"
+		                IsSecure="rdf:http://home.netscape.com/NC-rdf#IsSecure"
+		                ServerType="rdf:http://home.netscape.com/NC-rdf#ServerType"
+		                >
+		                <menupopup class2="menulist-menupopup">
+		                  <menuitem 
+		                  		label="Choose this folder"
+								class="folderMenuItem menu-iconic" 
+		                        oncommand="windowEvents.PickedMsgFolder(event.target.parentNode.parentNode)"/>
+		                  <menuseparator/>
+		                </menupopup>
+		              </menu>
+		          </menupopup>
+		       </rule>
+		       <rule nc:NoSelect="true" iscontainer="true" isempty="false">
+		          <menupopup>
+		             <menu uri="..."
+		               label="rdf:http://home.netscape.com/NC-rdf#Name"
+		               class="folderMenuItem menu-iconic"
+		               oncommand="windowEvents.PickedMsgFolder(event.target)"
+		               SpecialFolder="rdf:http://home.netscape.com/NC-rdf#SpecialFolder"
+		               BiffState="rdf:http://home.netscape.com/NC-rdf#BiffState"
+		               IsServer="rdf:http://home.netscape.com/NC-rdf#IsServer"
+		               IsSecure="rdf:http://home.netscape.com/NC-rdf#IsSecure"
+		               ServerType="rdf:http://home.netscape.com/NC-rdf#ServerType"
+		               >
+		               <menupopup class2="menulist-menupopup"/>
+		              </menu>
+		          </menupopup>
+		        </rule>
+		        <rule nc:NoSelect="false">
+		          <menupopup>
+		             <menuitem uri="..." value="..."  
+		              label="rdf:http://home.netscape.com/NC-rdf#Name"
+		              class="folderMenuItem menuitem-iconic"
+		              oncommand="windowEvents.PickedMsgFolder(event.target)"
+		              SpecialFolder="rdf:http://home.netscape.com/NC-rdf#SpecialFolder"
+		              BiffState="rdf:http://home.netscape.com/NC-rdf#BiffState"
+		              IsServer="rdf:http://home.netscape.com/NC-rdf#IsServer"
+		              IsSecure="rdf:http://home.netscape.com/NC-rdf#IsSecure"
+		              ServerType="rdf:http://home.netscape.com/NC-rdf#ServerType"
+		              />
+		          </menupopup>
+		        </rule>
+		      </template>
+		      <menupopup/>
+		    </menulist>
+				
+		</row>
+
+		<spacer height="5px"/>
+
+		<row id="box.inputName">
+			<label control="inputName" value="Display Name"/>
+			<textbox id="inputName"  style="font-weight: bold;"
+				tooltip="company-tip" 
+				value="" 
+				oninput="windowEvents.updateForm();" />
+		</row>    
+
+		<spacer height="5px"/>
+
+		<row id="box.anchorName">
+			<label control="anchorName" value="Name Anchor"/>
+			<textbox id="anchorName" tooltip="domain-tip" value="" oninput="windowEvents.updateForm();" />
+		</row>    
+
+		<spacer height="5px"/>
+
+		<row id="box.subjectKeyword">
+			<label control="subjectKeyword" value='"Subject" Keyword'/>
+			<textbox id="subjectKeyword" tooltip="" value="" oninput="windowEvents.updateForm();" />
+		</row>    
+
+		<spacer height="5px"/>
+
+		<row id="box.toccKeyword">
+			<label control="toccKeyword" value='"To or Cc" Keyword'/>
+			<textbox id="toccKeyword" tooltip="" value="" oninput="windowEvents.updateForm();" />
+		</row>
+		
+		<spacer height="5px"/>
+	
+		<vbox id="box.folderName">
+			<hbox align="start">
+				<spacer width="10px"/>
+				<toolbarbutton flex="0" 
+					id="button-show-folder" 
+					tooltip="" label="Preview Folder"
+					oncommand="toggleCollapsed('box.folderName.detail');" />
+				<label flex="1"/>	
+			</hbox>
+			<hbox>
+				<spacer width="14px"/>
+				<textbox class="plain" style="max-height: 1px; background-color: gray;" flex="1"/>
+				<spacer width="14px"/>
+			</hbox>
+
+			<vbox id="box.folderName.detail" persist="collapsed" >			
+				<hbox>
+					<spacer width="10px"/>
+					<textbox 
+						id="folderName" value="" flex="1"
+						readonly="true" style="font-weight: bold; colorXXX: blue; background-color: #33DD00;" />
+					<spacer width="10px"/>
+				</hbox>
+				<hbox>
+					<spacer width="10px"/>
+					<textbox 
+						id="folderNameLong" value="" flex="1" 
+						readonly="true" style="colorXXX: blue; background-color: #33DD00;" />
+					<spacer width="10px"/>
+				</hbox>
+			</vbox>			
+			
+		</vbox>
+		
+		<spacer height="5px"/>
+
+		<vbox id="box.filter">
+			<hbox>
+				<spacer width="10px"/>
+				<toolbarbutton flex="0"
+					id="button-show-filter" 
+					tooltip="" label="Preview Filter" 
+					oncommand="toggleCollapsed('filter');" />
+				<label flex="1"/>	
+			</hbox>
+			<hbox>
+				<spacer width="14px"/>
+				<textbox class="plain" style="max-height: 1px; background-color: gray;" flex="1"/>
+				<spacer width="14px"/>
+			</hbox>
+			<hbox>
+				<spacer width="10px"/>
+				<vbox id='filter' persist="collapsed" flex="1">
+					<textbox id="filterName" control="filter" value="" flex="1"
+						readonly="true" style="colorXXX: blue; background-color: #33DD00;" />
+					<textbox id="filterTerms" control="filter" value="" flex="1" 
+						multiline="true" rows="5" 
+						readonly="true" style="colorXXX: blue; background-color: #33DD00;" />
+					<textbox id="filterActions" control="filter" value="" flex="1"
+						multiline="true" rows="4" 
+						readonly="true" style="colorXXX: blue; background-color: #33DD00;" />
+				</vbox>
+				<spacer width="10px"/>
+			</hbox>
+		</vbox>
+	
+		<spacer height="10px" />
+	
+		<hbox id="boxButtons" >
+			<spacer width="10px"/>
+			<button 
+				id="button-accept" style="width: 80px; height: 10px;" 
+				tooltip="button-accept-tip" label="Accept" oncommand="windowEvents.makeWork();" />
+			<spacer />
+			<button 
+				id="button-cancel" style="width: 80px; height: 10px;" 
+				tooltip="button-cancel-tip" label="Cancel" oncommand="windowEvents.skipForm();" />
+			<spacer />
+			<spacer width="10px"/>
+		</hbox>
+	
+		<spacer height="10px" />
+
+	<label id="label-end-of-window" collapsed="true" help="keep this element last visible element"/>
+	
+	 </rows>
+	
+	</grid>
+	
+</vbox>
+
+	<popupset>
+		  <tooltip id="accounts-tip" orient="vertical" style="background-color: #33DD00;">
+		    <description value="Parent tolder, such as 'Accounts' in which new Company folder will be created." />
+		    <description value="Click pull-down list to select a folder" />
+		  </tooltip>
+		  <tooltip id="company-tip" orient="vertical" style="background-color: #33DD00;">
+		    <description value="Company name that used part of full folder name" />
+		    <description value="Must contain only [A-Za-z_- ]" style="color: red;" />
+		  </tooltip>
+		  <tooltip id="domain-tip" orient="vertical" style="background-color: #33DD00;">
+		    <description value="Domain name that used part of full folder name" />
+		    <description value="Must contain only [A-Za-z_-.]" style="color: red;" />
+		  </tooltip>
+		  <tooltip id="person-tip" orient="vertical" style="background-color: #33DD00;">
+		    <description value="Person's name for a virtual subfolder under this Company's folder" />
+		    <description value="Must contain only [A-Za-z_- ]" style="color: red;" />
+		  </tooltip>
+		  <tooltip id="button-accept-tip" orient="vertical" style="background-color: #33DD00;">
+		    <description value="Click to save your changes" />
+		    <description value="This will create Folder, Filter and reletaed Subfolders" style="color: red;" />
+		  </tooltip>
+		  <tooltip id="button-cancel-tip" orient="vertical" style="background-color: #33DD00;">
+		    <description value="Quit and discard your edits" />
+		    <description value="No changes will be made" style="color: red;" />
+		  </tooltip>
+		</popupset>
+
+</window>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<?xml-stylesheet href="chrome://carrot_garden/skin/checkbox/checkbox.css" type="text/css"?> 
+
+<dialog 
+	id="carrot_garden.formTest.xul" 
+	title="TEST"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:NS="http://carrot_garden/rdf#"
+	persist="width height screenX screenY"
+	onload ="windowEvents.loadForm();"
+	onclose="windowEvents.skipForm();"
+	flex="1"
+  	style="width: 360px; height: 200px;"
+  	buttons="accept, extra2"
+  	buttonlabelextra2="View"
+  	ondialogextra2="windowEvents.toggleView();"
+	>
+
+	<script type="application/x-javascript" 
+			src="chrome://carrot_garden/content/window/formTest.js"/>
+
+	<keyset>
+		<key keycode="VK_ESCAPE" xulkey="false" oncommand="windowEvents.skipForm();" />
+		<key keycode="VK_RETURN" xulkey="false" oncommand="windowEvents.makeWork();" />
+	</keyset>
+
+	<tree id="testTree" flex="1">
+	  <treecols>
+	    <treecol id="colRowIndex" label="ID" flex="1"/>
+	    <treecol id="colId" label="ID" flex="1"/>
+	    <treecol id="colSubject" label="Subject" flex="1"/>
+	    <treecol id="colEmailTerm" label="Email Term" flex="1"/>
+	    <treecol id="colFolderUri" label="Folder Uri" flex="1"/>
+	  </treecols>
+	  <treechildren/>
+	</tree>
+
+</dialog>
+	

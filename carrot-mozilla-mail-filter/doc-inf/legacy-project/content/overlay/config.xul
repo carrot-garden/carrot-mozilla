@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<overlay 
+	id="carrot_garden.config.xul" 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+
+<window id="config"
+        persist="width height screenX screenY">
+
+	<keyset id="carrot_garden_config_keys">
+		<key id="carrot_garden_key_close_window"
+			keycode="VK_ESCAPE" 
+			xulkey="false" 
+			oncommand="window.close();" />
+	</keyset>
+        
+</window>
+
+</overlay>

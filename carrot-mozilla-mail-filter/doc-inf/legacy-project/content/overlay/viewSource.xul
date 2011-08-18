@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<overlay 
+	id="carrot_garden.viewSource.xul" 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<keyset id="viewSourceKeys">
+		<key id="carrot_garden.key_close_window"
+			keycode="VK_ESCAPE" 
+			oncommand="window.close();" />
+	</keyset>
+	
+</overlay>

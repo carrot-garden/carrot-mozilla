@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://carrot_garden/skin/button/button.css" type="text/css"?>
+
+<?xul-overlay href="chrome://carrot_garden/content/overlay/thisMessengerMenu.xul"?>
+<?xul-overlay href="chrome://carrot_garden/content/overlay/thisFolderAction.xul"?>
+
+<overlay 
+	id="carrot_garden.messenger.xul" 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+
+<!-- js lib -->
+
+<script type="application/x-javascript" src="chrome://jslib/content/jslib.js" />
+
+
+<!-- carrot_garden -->
+
+	<script type="application/x-javascript" src="chrome://carrot_garden/content/libUtils.js"/>
+	<script type="application/x-javascript" src="chrome://carrot_garden/content/main.js"/>
+
+	<script type="application/x-javascript" src="chrome://carrot_garden/content/overlay/messenger.js"/>
+
+<!--  
+window id="messengerWindow"
+	onfocus="carrotMail.listenerWindowFocus(event);"
+	/>
+ -->
+
+<!-- 
+//############################
+//	FOLDER PANE VIEW TOOLBAR
+//############################
+-->
+
+ 
+<sidebarheader id="folderPaneHeader" >
+
+		<spacer flex="1" insertafterXXX="folderpane-title" />
+		
+		<!-- uses: msgMail3PaneWindow.js::loadFolderView(idx); -->	
+        
+        <toolbarbutton id="carrot_garden.button_switch_folder_view_all"  class=""	positionXXX="2"
+        	label="A" onclick="loadFolderView(0);" tooltiptext="All"/>
+        
+        <toolbarbutton id="carrot_garden.button_switch_folder_view_unread"  class=""	positionXXX="3"
+        	label="U" onclick="loadFolderView(1);" tooltiptext="Unread"/>
+        
+        <toolbarbutton id="carrot_garden.button_switch_folder_view_favorite"  class=""	positionXXX="4"
+        	label="F" onclick="loadFolderView(2);" tooltiptext="Favorite"/>
+        
+        <toolbarbutton id="carrot_garden.button_switch_folder_view_recent"  class=""	positionXXX="5"
+        	label="R" onclick="loadFolderView(3);" tooltiptext="Recent"/>
+        	
+</sidebarheader>
+
+ 
+
+<!-- 
+//############################
+//	FOLDER PANE CONTEXT
+//############################
+-->
+
+<menupopup id="folderPaneContext">
+
+    <menu id="carrot_garden.folderPaneContext" 
+		label="Carrot"
+		class="carrot_garden-icon menu-iconic menuitem-iconic" 
+		accesskey="A"
+		oncommand=""
+		insertbefore="folderPaneContext-searchMessages">
+
+        <menupopup id="carrot_garden.folderPaneContext-menupopup">
+
+   	    	<menuitem id="carrot_garden.folderPaneContext-auto-search-external" 
+				label="Add External Member SFs" 
+				accesskey="1"
+				oncommand="cmdAccountsSelected.membersCreate('external');" />
+
+   	    	<menuitem id="carrot_garden.folderPaneContext-auto-search-external" 
+				label="Add Internal Member SFs" 
+				accesskey="2"
+				oncommand="cmdAccountsSelected.membersCreate('internal');" />
+
+   	    	<menuitem id="carrot_garden.folderPaneContext-auto-search-all" 
+				label="Add Member SFs (all)" 
+				accesskey="3"
+				oncommand="cmdAccountsSelected.membersCreate('all');" />
+
+        	<menuitem id="carrot_garden.folderPaneContext-auto-search-delete" 
+				label="Remove ALL Member SFs" 
+				accesskey="4"
+       	      oncommand="cmdAccountsSelected.membersDelete();" />
+
+			<menuseparator />
+
+        	<menuitem id="carrot_garden.folderPaneContext-create-generic-folders" 
+				label="Add Generic SFs" 
+				accesskey="5"
+       	      oncommand="cmdAccountsSelected.genericsCreate();" />
+
+        	<menuitem id="carrot_garden.folderPaneContext-delete-generic-folders" 
+				label="Remove Generic SFs" 
+				accesskey="6"
+       	      oncommand="cmdAccountsSelected.genericsDelete();" />
+
+			<menuseparator />
+
+			<menuitem id="carrot_garden.folderPaneContext-delete-all-search-folders" 
+				label="Remove All Search Folders" 
+				accesskey="7" 
+				oncommand="cmdAccountsSelected.allDelete();" />
+
+			<menuseparator />
+
+			<menuitem id="carrot_garden.folderPaneContext-subtree-expand" 
+				label="Expand Subtree" 
+				accesskey="" 
+				oncommand="carrotMail.subtreeExpand();" />
+
+			<menuitem id="carrot_garden.folderPaneContext-subtree-mark-read" 
+				label="Mark Read Subtree" 
+				accesskey="" 
+				oncommand="carrotMail.subtreeMarkRead();" />
+
+        </menupopup>
+
+ 	</menu>       
+
+</menupopup>
+
+
+
+<!-- 
+//############################
+//	THREAD PANE
+//############################
+-->
+
+<keyset id="mailKeys">
+	<keyset id="carrot_garden.thread_pane">
+		<key id="carrot_garden.key_thread_pane_open_msg_folder" 
+			key="A" modifiers="accel,alt,shift"
+			oncommand="carrotMail.openMsgFolderNewWindow();" />
+	</keyset>
+</keyset>
+
+<menupopup id="threadPaneContext">
+
+    <menu 
+    	id="carrot_garden.threadPaneContext" 
+		class="carrot_garden-icon menu-iconic menuitem-iconic" 
+    	label="Carrot" 
+    	insertbefore="threadPaneContext-openNewWindow">
+    	
+        <menupopup 
+        	id="carrot_garden.threadPaneContext-open-message-folder-window">
+            <menuitem 
+            	label="Open Message Folder" 
+            	oncommand="carrotMail.openMsgFolderNewWindow();"/>
+        </menupopup>
+        
+    </menu>
+    
+    <menuseparator />
+    
+</menupopup>
+
+</overlay>
+
+ 

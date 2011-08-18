@@ -1,0 +1,10 @@
+textbox {
+  border : solid thin;
+  border-width : 0px;
+  padding : 0px;
+  margin : 0px;
+}
+
+/* sdfasdf */
+
+input:focus { background-color: #FFFFAA; }

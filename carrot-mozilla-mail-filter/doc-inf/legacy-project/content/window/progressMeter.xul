@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<window id="carrotProgressMeter"
+	xmlns:nc="http://home.netscape.com/NC-rdf#"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	style="width: 360px; height: 60px;" persist="screenX screenY"
+	title="progress" onload="carrotMeter.start();"
+	onclose="carrotMeter.cancel();">
+
+	<!-- carrot_garden -->
+
+	<script type="application/x-javascript"
+		src="chrome://carrot_garden/content/window/progressMeter.js" />
+
+
+	<vbox>
+
+		<hbox>
+
+			<textbox id="carrot_garden.progress-textbox" size="50"
+				readonly="true" value=""
+				XXXstyle="margin: 8px; height: 16px; text-align: left;"
+				style="margin: 8px; text-align: left;" />
+
+			<textbox id="carrot_garden.progress-ratio" size="12"
+				readonly="true" value=""
+				XXXstyle="margin: 8px; height: 16px; text-align: right;"
+				style="margin: 8px; text-align: right;" />
+
+		</hbox>
+
+		<hbox>
+
+			<progressmeter id="carrot_garden.progress-meter"
+				mode="determined" value="0%"
+				XXXstyle="margin: 8px; width: 193px; height: 10px;"
+				style="margin: 8px; width: 193px; " />
+
+			<button id="carrot_garden.progress-button-ok" oncommand=""
+				style="margin: 4px;" label="OK" disabled="true" default="true" />
+
+			<button id="carrot_garden.progress-button-cancel"
+				oncommand="carrotMeter.cancel();" style="margin: 4px;"
+				label="Cancel" disabled="false" />
+
+		</hbox>
+
+	</vbox>
+
+</window>

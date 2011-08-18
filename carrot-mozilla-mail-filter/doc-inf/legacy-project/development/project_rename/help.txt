@@ -1,0 +1,22 @@
+
+//	global js object
+//	global overlay prefix
+carrot_garden
+
+//	class instance prefix
+carrot
+
+//	xul menu names
+Carrot
+
+//	interface name
+cgICarrotGarden
+
+//	components
+carrot_garden.js
+carrot_garden.xpt
+
+//	preferences
+prefCarrot.js
+
+

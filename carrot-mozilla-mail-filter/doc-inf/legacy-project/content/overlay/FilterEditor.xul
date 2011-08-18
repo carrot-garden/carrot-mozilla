@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<overlay 
+	id="carrot_garden.list-overlay" 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<!-- mozilla -->
+
+<!-- carrot_garden -->
+	<script type="application/x-javascript" src="chrome://carrot_garden/content/overlay/FilterEditor.js"/>
+
+    <listbox id="filterActionList" 
+	    rows="6" 
+	    onclick="carrotFilterActionList.resize();"
+    />
+
+</overlay>
+

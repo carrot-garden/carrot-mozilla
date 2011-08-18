@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<overlay
+	id="carrot_garden.msgHdrViewOverlay.xul" 
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<script src="chrome://carrot_garden/content/overlay/msgHdrViewOverlay.js"/>
+
+</overlay>
+
+

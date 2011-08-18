@@ -1,0 +1,13 @@
+<!ENTITY slideshowWindow.title "Slideshow">
+<!ENTITY fileMenu.label "File">
+
+<!ENTITY saveAsMenu.label "Save As"> 
+<!ENTITY saveAsMenu.toolTip "Save this image">
+<!ENTITY saveAsMenu.accesskey "S">
+
+<!ENTITY saveAllMenu.label "Save All..."> 
+<!ENTITY saveAllMenu.toolTip "Save all the images">
+<!ENTITY saveAllMenu.accesskey "A">
+<!ENTITY editMenu.label "Edit">
+<!ENTITY openCmd.accesskey "o">
+<!ENTITY cutCmd.commandkey "X">

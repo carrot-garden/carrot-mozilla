@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://carrot_garden/skin/button/button.css" type="text/css"?>
+
+<?xul-overlay href="chrome://carrot_garden/content/overlay/thisCopySent.xul"?>
+
+<overlay id="carrot_garden.messengercompose.xul"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<!-- mozilla -->
+	<!-- required for thisCopySent.xul -->
+	<script type="application/x-javascript"
+		src="chrome://messenger/content/msgFolderPickerOverlay.js" />
+
+	<!-- carrot_garden -->
+	<script type="application/x-javascript"
+		src="chrome://carrot_garden/content/overlay/messengercompose.js" />
+
+	<menubar id="mail-menubar">
+
+		<toolbarseparator />
+
+		<menu id="carrot_garden.menu-bar"
+			class="carrot_garden-icon menu-iconic menuitem-iconic" label="Carrot"
+			accesskey="A" insertafter="helpMenu">
+
+			<menupopup id="carrot_garden.menu-popup"
+				onpopupshowing="">
+
+				<menuitem id="carrot_garden.menu-test" label="menu test"
+					accesskey="T" oncommand="testCarrotAttachment();" />
+
+				<menuseparator />
+
+				<menu label="Utilities" accesskey="U"
+					id="carrot_garden.menu-utilities">
+					<menupopup>
+
+						<menuitem
+							id="carrot_garden.menu-utilities-show-all-keys"
+							label="Show All Keys" accesskey=""
+							oncommand="carrotMail.showAllKeys();" />
+
+						<menuitem
+							id="carrot_garden.menu-utilities-make-uuid-put-in-clipboard"
+							label="Put new UUID in clipboard" accesskey=""
+							oncommand="carrotMail.makeUUID();" />
+
+					</menupopup>
+				</menu>
+
+
+			</menupopup>
+
+		</menu>
+
+	</menubar>
+
+	<!-- 
+		<vbox id="addresses-box" 
+		onkeydown="dump2('1-onkeydown');"
+		onclick="dump2('1-onclick');"
+		/>
+		<vbox id="appcontent" 
+		onkeydown="dump2('2-onkeydown');"
+		onclick="dump2('2-onclick');"
+		/>
+	-->
+
+
+	<!-- message headers -->
+
+
+	<!-- attachments -->
+
+	<listbox id="addressingWidget" rows="6" />
+
+	<textbox id="addressCol2#1" maxrows="8" />
+
+	<splitter id="attachmentbucket-sizer" collapsed="false" />
+
+	<vbox id="attachments-box" collapsed="false" persist="width">
+
+		<label id="attachmentBucketText" collapsed="true" />
+
+		<hbox id="carrot_garden.attachmentBucketText_hbox_attach"
+			insertafter="attachmentBucketText">
+
+			<label id="carrot_garden.attachmentBucketText_label_attach"
+				value="Attachments:" />
+
+			<textbox
+				id="carrot_garden.attachmentBucketText_textbox_count"
+				readonly="true" class="plain" value="0"
+				style="background-color: white; width: 20px; text-align: right;" />
+
+			<spacer flex="1" />
+
+			<toolbarbutton
+				id="carrot_garden.attachmentBucketText_button_removeall"
+				oncommand="RemoveAllAttachments();" label="Remove All" />
+
+			<separator />
+
+			<textbox
+				id="carrot_garden.attachmentBucketText_textbox_size" readonly="true"
+				class="plain" value="0 KB"
+				style="background-color: white; width: 60px; text-align: right; " />
+
+			<separator style="margin-right: 5px;" />
+
+		</hbox>
+
+		<listbox id="attachmentBucket" rows="6" />
+
+	</vbox>
+
+
+	<!-- extend drag and drop 
+		
+		<window id="msgcomposeWindow"	
+		ondragover="nsDragAndDrop.dragOver(event, envelopeDragObserver);"
+		ondragdrop="nsDragAndDrop.drop(event, envelopeDragObserver);"
+		ondragexit="nsDragAndDrop.dragExit(event, envelopeDragObserver);"
+		/>
+		<vbox id="appcontent" 
+		ondragover="nsDragAndDrop.dragOver(event, envelopeDragObserver);"
+		ondragdrop="nsDragAndDrop.drop(event, envelopeDragObserver);"
+		ondragexit="nsDragAndDrop.dragExit(event, envelopeDragObserver);"
+		/>
+		<editor id="content-frame" 
+		ondragover="nsDragAndDrop.dragOver(event, envelopeDragObserver);"
+		ondragdrop="nsDragAndDrop.drop(event, envelopeDragObserver);"
+		ondragexit="nsDragAndDrop.dragExit(event, envelopeDragObserver);"
+		/>
+		
+	-->
+
+</overlay>
+

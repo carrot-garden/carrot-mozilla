@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:NS1="http://carrot_garden/rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+
+  <RDF:Seq RDF:about="urn:root">
+    <RDF:li RDF:resource="urn:root:account1"/>
+  </RDF:Seq>
+
+
+  <RDF:Seq RDF:about="urn:root:account1">
+    <RDF:li RDF:resource="urn:root:account1:id1"/>
+    <RDF:li RDF:resource="urn:root:account1:id2"/>
+  </RDF:Seq>
+
+
+  <RDF:Description RDF:about="urn:root:account1"
+                   NS1:name="AAA Name Acc 1" />
+
+
+  <RDF:Description RDF:about="urn:root:account1:id1"
+                   NS1:name="BBB Name id 1"
+                   NS1:identity="Acc 1 - id 1" />
+
+  <RDF:Description RDF:about="urn:root:account1:id2"
+                   NS1:name="CCC Name id 2"
+                   NS1:identity="Acc 1 - id 2" />
+
+</RDF:RDF>
+

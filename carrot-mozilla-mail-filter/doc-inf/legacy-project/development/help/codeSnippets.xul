@@ -1,0 +1,434 @@
+				<!-- add 'automatic' menu items tree for 'actual folders' -->
+				<template>
+
+					<!-- ignore 'nntp' & similar folders which does not allow message filing"  -->
+					<rule nc:CanFileMessagesOnServer="false" />
+
+					<!-- fileable, folder, with subfolders - need to add 'Choose this folder' -->
+					<rule nc:CanFileMessages="true" iscontainer="true" isempty="false">
+						<menupopup>
+							<menu uri="..."
+								class="folderMenuItem menu-iconic"
+								oncommand="carrotCopySent.selectItem( event.target );"
+								label="rdf:http://home.netscape.com/NC-rdf#Name"
+								SpecialFolder="rdf:http://home.netscape.com/NC-rdf#SpecialFolder"
+								BiffState="rdf:http://home.netscape.com/NC-rdf#BiffState"
+								IsServer="rdf:http://home.netscape.com/NC-rdf#IsServer"
+								IsSecure="rdf:http://home.netscape.com/NC-rdf#IsSecure"
+								ServerType="rdf:http://home.netscape.com/NC-rdf#ServerType">
+								<!-- 'manual' entry for choosing -->
+								<menupopup>
+									<menuitem label="Choose this folder"
+										oncommand="carrotCopySent.selectItem( event.target.parentNode.parentNode );" />
+									<menuseparator />
+								</menupopup>
+							</menu>
+						</menupopup>
+					</rule>
+
+					<!-- NOT fileable, folder, with subfolders - NO need to add 'Choose this folder' -->
+					<rule nc:CanFileMessages="false" iscontainer="true" isempty="false">
+						<menupopup>
+							<menu uri="..."
+								class="folderMenuItem menu-iconic"
+								label="rdf:http://home.netscape.com/NC-rdf#Name"
+								oncommand="carrotCopySent.selectItem(event.target);"
+								SpecialFolder="rdf:http://home.netscape.com/NC-rdf#SpecialFolder"
+								BiffState="rdf:http://home.netscape.com/NC-rdf#BiffState"
+								IsServer="rdf:http://home.netscape.com/NC-rdf#IsServer"
+								IsSecure="rdf:http://home.netscape.com/NC-rdf#IsSecure"
+								ServerType="rdf:http://home.netscape.com/NC-rdf#ServerType">
+								<menupopup />
+							</menu>
+						</menupopup>
+					</rule>
+					
+					<!-- fileable, folder, with NO subfolders - NO need to add 'Choose this folder' -->
+					<rule nc:CanFileMessages="true">
+						
+						<menupopup>
+							<menuitem uri="..."
+								class="folderMenuItem menuitem-iconic"
+								oncommand="carrotCopySent.selectItem(event.target);"
+								label="rdf:http://home.netscape.com/NC-rdf#Name"
+								SpecialFolder="rdf:http://home.netscape.com/NC-rdf#SpecialFolder"
+								BiffState="rdf:http://home.netscape.com/NC-rdf#BiffState"
+								IsServer="rdf:http://home.netscape.com/NC-rdf#IsServer"
+								IsSecure="rdf:http://home.netscape.com/NC-rdf#IsSecure"
+								ServerType="rdf:http://home.netscape.com/NC-rdf#ServerType" />
+						</menupopup>
+					</rule>
+
+				</template>
+
+
+
+
+
+			<key id="carrot_garden.key_toggle_collapse_folder_pane"
+				key="A" modifiers="accel,alt,shift" oncommand="" />
+
+
+
+  	<separator/>      
+
+     <vbox flex="1">   
+
+          <tree id="accountsTree_XXX" 
+          		flex="1" 
+          		hidecolumnpicker="false"
+                onselect=""
+                onkeypress=""
+                ondblclick=""
+
+	            sortResource="http://home.netscape.com/NC-rdf#FolderTreeName"
+	            sortDirection="ascending"
+
+                datasources2="rdf:msgaccountmanager" 
+	            ref2="msgaccounts:/" 
+
+				datasources="rdf:null" 
+				ref="urn:root"
+
+                flags=""
+                flags2="dont-build-content"
+                >
+
+            <treecols>
+              <treecol id="nameColumn" flex="1" label="Name" sort="?Name"
+	              persist="width ordinal hidden sortActive sortDirection"
+              />
+              <splitter/>
+              <treecol id="identityColumn" flex="1" label="Identity" 
+	              persist="width ordinal hidden sortActive sortDirection"
+              />
+              <splitter/>
+              <treecol id="activeColumn" label="Enabled" cycler="true"
+	              persist="width ordinal hidden sortActive sortDirection"
+              />
+            </treecols>
+
+            <template>
+              <rule>
+                <conditions>
+                  <content uri="?container"/>
+                  <member container="?container" child="?member"/>
+                </conditions>
+                
+                <bindings>
+   	              <binding subject="?member"
+                          predicate="rdf:resource"
+                          object="?Name"/>
+   	              <binding subject="?member"
+                          predicate="http://home.netscape.com/NC-rdf#IsDefaultServer"
+                          object="?IsDefaultServer"/>
+   	              <binding subject="?member"
+                          predicate="http://carrot_garden/rdf#identity"
+                          object="?Identity"/>
+		          </bindings>
+
+                <action>
+
+                  <treechildren>
+                    <treeitem uri="?member" >
+                      <treerow>
+                        <treecell label="?Name"/>
+                        <treecell label="?Identity"/>
+                        <treecell label="?Name"/>
+                      </treerow>
+                    </treeitem>
+                  </treechildren>
+
+                </action>
+              </rule>
+            </template>	
+          </tree>
+        </vbox>
+        
+
+
+
+
+
+
+
+	<vbox>
+<tree flex="1" width="200" height="200"
+      datasources="animals.rdf" ref="http://www.some-fictitious-zoo.com/all-animals">
+
+  <treecols>
+    <treecol id="name" label="Name" primary="true" flex="1"/>
+    <treecol id="species" label="Species" flex="1"/>
+  </treecols>
+
+  <template>
+    <rule>
+      <treechildren>
+       <treeitem uri="rdf:*">
+         <treerow>
+           <treecell label="rdf:http://www.some-fictitious-zoo.com/rdf#name"/>
+           <treecell label="rdf:http://www.some-fictitious-zoo.com/rdf#species"/>
+         </treerow>
+       </treeitem>
+      </treechildren>
+    </rule>
+
+  </template>
+</tree>
+	
+	</vbox>
+
+
+<!-- 
+              <rule>
+                  <treechildren>
+                    <treeitem uri="rdf:*" open="true">
+                      <treerow>
+                        <treecell label="rdf:http://carrot_garden/rdf#:accountName"/>
+                        <treecell label="rdf:http://carrot_garden/rdf#identityName"/>
+                        <treecell value="rdf:http://carrot_garden/rdf#fccEnabled" editable="false"/>
+                      </treerow>
+                    </treeitem>
+                  </treechildren>
+
+              </rule>
+
+
+ -->
+
+
+<menulist id="viewPicker" oncommand="viewChange(this, this.value);"/>
+
+  <textbox id="searchInput" flex="1" 
+  		onfocus="onSearchInputFocus(event);" 
+  		onclick="onSearchInputClick(event);" 
+        onmousedown="onSearchInputMousedown(event);" 
+        onblur="onSearchInputBlur(event);"
+        oninput="onSearchInput(false);" 
+        onkeypress="onSearchKeyPress(event);">
+        
+    <button id="quick-search-button" type="menu">
+      <menupopup id="quick-search-menupopup" value="2" persist="value" 
+      		onpopupshowing="InitQuickSearchPopup();" 
+      		popupalign="topleft" 
+      		popupanchor="bottomleft">
+      		
+        <menuitem value="0" label="&searchSubjectMenu.label;" type="radio"  
+            oncommand="changeQuickSearchMode(this)"/>
+
+
+
+<?xml version="1.0"?>
+
+<overlay 
+	id="carrot_garden.mailWindowOverlay.xul" 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+
+<!-- carrot_garden -->
+	<script type="application/x-javascript" src="chrome://carrot_garden/content/main.js"/>
+	<script type="application/x-javascript" src="chrome://carrot_garden/content/libUtils.js"/>
+
+<!-- mozilla -->
+	<script type="application/x-javascript" src="chrome://carrot_garden/content/mailWindowOverlay.js"/>
+
+
+
+<!-- 
+//############################
+//	MENU BAR
+//############################
+-->
+
+<menubar id="mail-menubar">
+
+    <menu id="menu_carrot"
+          label="Carrot"
+          accesskey="A"
+          insertbefore="tasksMenu">
+
+      <menupopup id="carrot_garden.menu-popup" onpopupshowing="">
+             
+		<menu label="Accounts" accesskey="A" id="carrot_garden.menu-accounts">
+			<menupopup>
+
+		        <menuitem id="carrot_garden.menu-accounts-response-create"
+        		     label="Create 'My Response' SF"
+		             accesskey="R"
+		             oncommand="cmdAccounts.responseCreate();" />
+
+		        <menuitem id="carrot_garden.menu-accounts-response-delete"
+        		     label="Delete 'My Response' SF"
+		             accesskey="E"
+		             oncommand="cmdAccounts.responseDelete();" />
+
+		        <menuseparator/>
+
+		        <menuitem id="carrot_garden.accounts-search-create"
+        		     label="Create Generic SFs"
+		             accesskey="S"
+		             oncommand="cmdAccounts.genericsCreate();" />
+
+		        <menuitem id="carrot_garden.accounts-search-delete"
+        		     label="Delete Generic SFs"
+		             accesskey="H"
+		             oncommand="cmdAccounts.genericsDelete();" />
+
+		        <menuseparator/>
+
+		        <menuitem id="carrot_garden.accounts-members-create"
+        		     label="Create Member SFs"
+		             accesskey="M"
+		             oncommand="cmdAccounts.membersCreate();" />
+
+		        <menuitem id="carrot_garden.accounts-members-delete"
+        		     label="Delete Member SFs"
+		             accesskey="R"
+		             oncommand="cmdAccounts.membersDelete();" />
+
+			</menupopup>
+
+		</menu>
+
+        <menuitem id="carrot_garden.2"
+             label="Managers"
+             accesskey=""
+             oncommand="" />
+
+        <menuseparator/>
+
+        <menuitem id="carrot_garden.3"
+             type="checkbox"
+             checked="false"
+             label="cmdTEST"
+             accesskey="T"
+             oncommand="cmdTEST();" />
+
+        <menuitem id="carrot_garden.4"
+             label="cmdLOOP"
+             accesskey="L"
+             oncommand="cmdLOOP();" />
+
+        <menuitem id="carrot_garden.pref"
+             label="Preferences"
+             accesskey="P"
+             oncommand="carrotPrefWindow('', '', '');" />
+
+      </menupopup>
+
+    </menu>
+
+  </menubar>
+
+
+
+<!-- 
+//############################
+//	FOLDER PANE
+//############################
+-->
+
+<menupopup id="folderPaneContext">
+
+    <menu id="carrot_garden.folderPaneContext" 
+		label="Carrot Filter" 
+              accesskey="A"
+              oncommand=""
+              insertbefore="folderPaneContext-searchMessages">
+
+        <menupopup id="carrot_garden.folderPaneContext-menupopup">
+           	
+		    <menu id="carrot_garden.folderPaneContext-auto-search" 
+				label="Create Member Search Folders" 
+        		accesskey="M"
+            	oncommand="">
+
+			        <menupopup id="carrot_garden.folderPaneContext-auto-search-menupopup">
+
+		    	    	<menuitem id="carrot_garden.folderPaneContext-auto-search-external" 
+							label="External Domains Only" 
+							accesskey="E"
+							oncommand="cmdAccountsSelected.membersCreate('external');" />
+
+		    	    	<menuitem id="carrot_garden.folderPaneContext-auto-search-all" 
+							label="Internal and External Domains" 
+							accesskey="I"
+							oncommand="cmdAccountsSelected.membersCreate('all');" />
+
+	 		        </menupopup >
+	
+		       </menu>
+
+        	<menuitem id="carrot_garden.folderPaneContext-auto-search-delete" 
+				label="Delete Member Search Folders" 
+				accesskey="R"
+       	      oncommand="cmdAccountsSelected.membersDelete();" />
+
+			<menuseparator />
+
+        	<menuitem id="carrot_garden.folderPaneContext-create-generic-folders" 
+				label="Create Generic Account Search Folders" 
+				accesskey="A"
+       	      oncommand="cmdAccountsSelected.genericsCreate();" />
+
+        	<menuitem id="carrot_garden.folderPaneContext-delete-generic-folders" 
+				label="Delete Generic Account Search Folders" 
+				accesskey="T"
+       	      oncommand="cmdAccountsSelected.genericsDelete();" />
+
+			<menuseparator />
+
+			<menuitem id="carrot_garden.folderPaneContext-delete-all-search-folders" 
+				label="Delete All Search Folders" 
+				accesskey="D" 
+				oncommand="cmdAccountsSelected.allDelete();" />
+
+        </menupopup>
+
+ 	</menu>       
+
+</menupopup>
+
+
+<!-- 
+//############################
+//	THREAD PANE
+//############################
+-->
+
+<menupopup id="emailAddressPopup">
+    
+    <menu id="carrot_garden.emailAddressPopup-menu" 
+		label="Carrot Filter" 
+		accesskey="A">
+
+        <menupopup id="carrot_garden.emailAddressPopup-menupopup">
+
+        	<menuitem id="carrot_garden.emailAddressPopup-new-account" 
+				label="Create Account Folder" 
+				accesskey="A"
+        	    oncommand="cmdAccountCreate();" />
+
+        	<menuitem id="carrot_garden.emailAddressPopup-account-member" 
+				label="Create Account Member Folder" 
+				accesskey="M"
+				oncommand="cmdNewAccountMember();" />
+
+		<menuseparator />
+
+		<menuitem id="carrot_garden.emailAddressPopup-manager" 
+			label="Manager" 
+			accesskey="g" 
+			oncommand="" />
+
+		<menuseparator/>
+        	
+        </menupopup>
+
+    </menu>
+    
+</menupopup>
+
+
+</overlay>
+

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://communicator/skin/" type="text/css"?>
+
+<?xul-overlay href="chrome://messenger/content/msgFolderPickerOverlay.xul"?>
+
+<dialog id="carrotPref"
+        title="carrot_garden Preferences"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        onload="carrotLoadOptions();"
+        ondialogaccept="carrotSaveOptions();">
+
+  <script type="application/x-javascript" src="chrome://carrot_garden/content/main.js"/>
+  <script type="application/x-javascript" src="chrome://carrot_garden/content/window/carrotPref.js"/>
+
+  <tabbox flex="1" style="margin:5px">
+    <tabs id="prefTabBox">
+      <tab id="accountsTab"    label="Accounts"/>
+      <tab id="sendTab"     label="send"/>
+      <tab id="keySelTab"   label="key"/>
+      <tab id="pgpMimeTab"  label="mime"/>
+      <tab id="advancedTab" label="adv"/>
+      <tab id="debugTab"    label="debug"/>
+    </tabs>
+
+    <tabpanels flex="1">
+		  <!-- "accounts" Tab -->
+      <vbox id="accounts" flex="1">
+          <description class="">descr</description>
+					
+					<grid>
+            <columns>
+              <column flex="1"/>
+              <column/>
+            </columns>
+
+            <rows> <!-- autostretch="never"> -->
+							<row>
+							  <hbox align="center">
+							    <label control="" 
+                    value="Accounts Folder" />
+							  </hbox>
+								<hbox align="center">
+
+	<menulist id="runFiltersFolder" label="" uri="" ref="" tooltip="accounts-tip" size="50"/>
+
+
+                  <button id="browse" label="browse"
+                    oncommand="enigLocateGpg();"/>
+								</hbox>
+							</row>
+							<row>
+								<hbox align="center">
+									<label control=""
+											value="parm"/>
+								</hbox>
+								<hbox>
+									<textbox id="enigmail_agentAdditionalParam" size="30"/>
+								</hbox>
+							</row>
+						</rows>
+				  </grid>
+
+          <hbox>
+            <groupbox orient="vertical" flex="1">
+              <caption label="caption"/>
+                <hbox autostretch="never" align="center">
+                  <label control="enigmail_maxIdleMinutes"
+                        value="minutes" />
+
+                  <textbox id="enigmail_maxIdleMinutes"
+                          size="4"
+                          maxlength="4"
+                          pref="true"
+                          preftype="int"
+                          prefstring="extensions.enigmail.maxIdleMinutes"/>
+
+                  <description>descr</description>
+                </hbox>
+
+                <checkbox id="enigmail_noPassphrase"
+                        label="lable"
+                        pref="true"
+                        preftype="bool"
+                        prefstring="extensions.enigmail.noPassphrase"
+                        prefattribute="checked"/>
+
+            </groupbox>
+          </hbox>
+          <vbox>
+            <label control="enigmail_keyserver"
+                  value="lable" />
+            <textbox id="enigmail_keyserver"/>
+            <label value="aaa" style="font-style: italic;"/>
+          </vbox>
+          <separator/>
+          <vbox autostretch="never" align="end">
+            <hbox>
+              <button id="uninstall"
+                      class="dialog"
+                      label="asdasdas"
+                      oncommand="enigUninstall()"/>
+              <button id="resetPrefs"
+                      label="dfhgdfgdf"
+                      oncommand="resetPrefs();"/>
+            </hbox>
+          </vbox>
+
+      </vbox>
+
+			<!-- "Sending" Tab -->
+      <vbox id="sending" flex="1">
+          <description class="enigmailPrefsTitle">a</description>
+
+          <checkbox id="enigmail_encryptToSelf"
+                    label="b" />
+
+          <checkbox id="enigmail_alwaysTrustSend"
+                    label="c" />
+
+          <checkbox id="enigmail_confirmBeforeSend"
+                    label="d" />
+
+          <checkbox id="enigmail_wrapHtmlBeforeSend"
+                    label="e" />
+
+				  <checkbox id="enigmail_allowEmptySubject"
+                    label="f" />
+
+          <checkbox id="send_plaintext_flowed"
+                    label="j" />
+      </vbox>
+
+			<!-- "Key Selection" Tab -->
+      <vbox id="keySel" flex="1">
+          <description class="enigmailPrefsTitle">s</description>
+          <groupbox>
+            <caption label="www"/>
+            <radiogroup id="enigmail_recipientsSelectionOption">
+              <radio id="askRecipientsNever"
+                    value="0"
+                    label="adsd"/>
+  
+              <radio id="askRecipientsClever"
+                    value="1"
+                    label="werwer"/>
+  
+              <radio id="askRecipientsAlways"
+                    value="2"
+                    label="34534"/>
+            </radiogroup>
+          </groupbox>
+          
+          <separator/>
+          
+          <groupbox>
+            <caption label="354345"/>
+            <grid>
+              <columns>
+              <column flex="1"/>
+              <column/>
+            </columns>
+
+            <rows autostretch="never">
+              <row>
+                <radiogroup id="enigmail_perRecipientRules">
+                    <radio id="perRecipientRulesNo"
+                        value="0"
+                        label="ksksksksk"/>
+      
+                  <radio id="perRecipientRulesManual"
+                        value="1"
+                        label="345345"/>
+      
+                  <radio id="perRecipientRulesAlways"
+                        value="2"
+                        label="werwer"/>
+                </radiogroup>
+                <hbox autostretch="never" align="end">
+                  <button label="werwer"
+                          oncommand="EnigRulesEditor();"/>
+                </hbox>                            
+              </row>
+            </rows>
+          </grid>
+          </groupbox>
+      </vbox>
+
+			<!-- "PGP/MIME" Tab -->
+      <vbox id="pgpMime" flex="1">
+          <description class="enigmailPrefsTitle">werwer</description>
+          <radiogroup id="enigmail_usePGPMimeOption">
+
+            <radio id="usePGPMimeNever"
+                  value="0"
+                  label="eterte" />
+
+            <radio id="usePGPMimePossible"
+                  value="1"
+                  label="sdsdf" />
+
+            <radio id="usePGPMimeAlways"
+                  value="2"
+                  label="werwer" />
+
+          </radiogroup>
+
+          <hbox align="center">
+            <label control="mimeHashList"
+                value="46egfdgf" />
+            <menulist id="mimeHashList" label="SHA1" flex="1">
+
+              <menupopup id="mimeHashPopup">
+                <menuitem id="mimeHashSHA1"  label="SHA1" selected="true"/>
+                <menuitem id="mimeHashRIPEMD160" label="RIPEMD160"/>
+                <menuitem id="mimeHashSHA256" label="SHA256"/>
+                <menuitem id="mimeHashSHA384" label="SHA384"/>
+                <menuitem id="mimeHashSHA512" label="SHA512"/>
+              </menupopup>
+            </menulist>
+          </hbox>
+      </vbox>
+
+			<!-- "Advanced" Tab -->
+      <vbox id="advanced" flex="1">
+          <description class="enigmailPrefsTitle">sdf</description>
+          <spacer flex="0"/>
+
+          <checkbox id="enigmail_keepSettingsForReply"
+                    label="4534" />
+
+          <checkbox id="enigmail_useDefaultComment"
+                    label="asf" />
+
+          <checkbox id="enigmail_doubleDashSeparator"
+                    label="sdfsdf" />
+
+          <checkbox id="enigmail_useGpgAgent"
+                    label="sdfsdf" />
+
+          <checkbox id="enigmail_hushMailSupport"
+                    label="sdfsdf" />
+
+          <checkbox id="enigmail_disableSMIMEui"
+                    label="sdfsdf" />
+
+          <checkbox id="mime_parts_on_demand"
+                    label="www"
+                    tooltiptext="vvvv" />
+
+          <separator/>
+
+          <hbox align="center">
+            <label value="eewwewe"/>
+            <textbox id="enigmail_autoKeyRetrieve" size="30"/>
+          </hbox>
+          
+          <separator/>
+
+          <hbox>
+            <button id="resetRememberedValues"
+                    label="rfwerwer"
+                    oncommand="resetRememberedValues();"/>
+          </hbox>
+      </vbox>
+
+			<!-- "Debugging" Tab -->
+      <vbox id="debug" flex="1">
+        <description class="enigmailPrefsTitle">sdfsdfsdf</description>
+        <spacer flex="0"/>
+
+        <grid>
+          <columns>
+            <column/>
+            <column flex="1"/>
+          </columns>
+
+          <rows autostretch="never">
+            <row>
+              <hbox align="center">
+                <label control="enigmail_logDirectory"
+                    value="werwerwe" />
+              </hbox>
+              <textbox id="enigmail_logDirectory" />
+            </row>
+            <row>
+              <hbox align="center">
+                <label control="enigmail_test_email"
+                    value="rwerwer" />
+              </hbox>
+              <hbox autostretch="never">
+                <textbox id="enigmail_test_email"/>
+
+                <button class="dialog"
+                        id="enigmail_test"
+                        label="34534543"
+                        oncommand="EnigTest();"/>
+              </hbox>
+            </row>
+          </rows>
+        </grid>
+      </vbox>
+    </tabpanels>
+  </tabbox>
+
+
+</dialog>

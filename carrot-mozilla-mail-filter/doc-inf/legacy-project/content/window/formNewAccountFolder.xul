@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<?xul-overlay href="chrome://messenger/content/msgFolderPickerOverlay.xul"?>
+
+<window 
+	id="formNewAccountFolder" 
+	title="Please define Company and Domain"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	persist="width height screenX screenY"
+	onload ="loadForm();"
+	onclose="skipForm();"
+	>
+
+<!-- mozilla -->
+	<script type="application/x-javascript" src="chrome://messenger/content/msgFolderPickerOverlay.js"/>
+	<script type="application/x-javascript" src="chrome://messenger/content/widgetglue.js"/>
+	<script type="application/x-javascript" src="chrome://messenger/content/commandglue.js"/>
+
+<!-- carrot_garden -->
+	<script type="application/x-javascript" src="chrome://carrot_garden/content/main.js"/>
+	<script type="application/x-javascript" src="chrome://carrot_garden/content/libUtils.js"/>
+	<script type="application/x-javascript" src="chrome://carrot_garden/content/window/formNewAccountFolder.js"/>
+
+
+	<label value="Server"/>
+	<textbox id="serverSelectror" control="serverSelector" value="Local Folders" readonly="true"/>
+
+	<label id="folderPickerPrefix" value="Parent Folder" accesskey="" control="runFiltersFolder"/>
+	<menulist id="runFiltersFolder" uri="" ref="" tooltip="accounts-tip"/>
+
+	<label control="domain" value="Domain Name"/>
+	<textbox id="domain" tooltip="domain-tip" value="" oninput="updateForm();" />
+
+	<label control="company" value="Company Name"/>
+	<textbox id="company" tooltip="company-tip" value="" oninput="updateForm();" />
+
+	<label control="person" value="Contact Name"/>
+	<textbox id="person" tooltip="person-tip" value="" oninput="updateForm();" />
+
+	<label control="targetFolder" value=""/>
+
+	<label control="targetFolder" value="Preview Folder Names"/>
+
+	<textbox id="targetAccount" control="targetFolder" value="" 
+		readonly="true" style="color: red; background-color: #33DD00;" />
+
+	<textbox id="targetPerson" control="targetFolder" value="" 
+		readonly="true" style="color: red; background-color: #33DD00;" /><hbox>
+
+	<button id="button-accept" style="width: 80px; height: 10px;" 
+		tooltip="button-accept-tip" label="Accept" oncommand="makeWork();" />
+	<spacer />
+
+	<button id="button-cancel" style="width: 80px; height: 10px;" 
+		tooltip="button-cancel-tip" label="Cancel" oncommand="skipForm();" />
+	<spacer />
+
+</hbox>
+
+<popupset>
+	  <tooltip id="accounts-tip" orient="vertical" style="background-color: #33DD00;">
+	    <description value="Parent tolder, such as 'Accounts' in which new Company folder will be created." />
+	    <description value="Click pull-down list to select a folder" />
+	  </tooltip>
+	  <tooltip id="company-tip" orient="vertical" style="background-color: #33DD00;">
+	    <description value="Company name that used part of full folder name" />
+	    <description value="Must contain only [A-Za-z_- ]" style="color: red;" />
+	  </tooltip>
+	  <tooltip id="domain-tip" orient="vertical" style="background-color: #33DD00;">
+	    <description value="Domain name that used part of full folder name" />
+	    <description value="Must contain only [A-Za-z_-.]" style="color: red;" />
+	  </tooltip>
+	  <tooltip id="person-tip" orient="vertical" style="background-color: #33DD00;">
+	    <description value="Person's name for a virtual subfolder under this Company's folder" />
+	    <description value="Must contain only [A-Za-z_- ]" style="color: red;" />
+	  </tooltip>
+	  <tooltip id="button-accept-tip" orient="vertical" style="background-color: #33DD00;">
+	    <description value="Click to save your changes" />
+	    <description value="This will create Folder, Filter and reletaed Subfolders" style="color: red;" />
+	  </tooltip>
+	  <tooltip id="button-cancel-tip" orient="vertical" style="background-color: #33DD00;">
+	    <description value="Quit and discard your edits" />
+	    <description value="No changes will be made" style="color: red;" />
+	  </tooltip>
+	</popupset>
+	
+	<keyset>
+		<key keycode="VK_ESCAPE" xulkey="false" oncommand="skipForm();" />
+	</keyset>
+
+</window>

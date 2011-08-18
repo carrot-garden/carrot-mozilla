@@ -1,0 +1,59 @@
+<?xml version="1.0"?> 
+
+<?xml-stylesheet href="chrome://carrot_garden/skin/button/button.css" type="text/css"?>
+
+<?xul-overlay href="chrome://carrot_garden/content/overlay/thisAddressBookMenu.xul"?>
+
+<overlay 
+	id="carrot_garden.addressbook.xul" 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<!-- carrot_garden -->
+	<script type="application/x-javascript" src="chrome://carrot_garden/content/overlay/addressbook.js"/>
+
+
+<!-- 
+#######################################
+	DIRECTORIES TREE CONTEXT
+#######################################
+-->
+
+<popup id="dirTreeContext">
+
+	<menu id="carrot_garden.dirTreeContext-menu"
+		class="carrot_garden-icon menu-iconic menuitem-iconic" 
+		label="Carrot" 
+		accesskey="A" 
+		insertbefore="dirTreeContext-properties"
+		>
+
+		<menupopup>
+			<menuitem id="carrot_garden.dirTreeContext-menu-backup"
+				label="Backup Address Book"
+				accesskey=""
+				oncommand="carrotDirectoryCommands.backup();"/>
+			<menuitem id="carrot_garden.dirTreeContext-menu-test"
+				label="Normalize Cards"
+				accesskey=""
+				oncommand="carrotDirectoryCommands.normalize()"/>
+			<menuitem id="carrot_garden.dirTreeContext-menu-test"
+				label="Show Duplicates"
+				accesskey=""
+				oncommand="alert('noop')"/>
+			<menuitem id="carrot_garden.dirTreeContext-menu-merge"
+				label="Merge Duplicates"
+				accesskey=""
+				oncommand="carrotDirectoryCommands.merge();"/>
+			
+			<menuitem id="carrot_garden.dirTreeContext-menu-test"
+				label="TEST"
+				accesskey=""
+				oncommand="cmdAbSelectedDirectoryTest();"/>
+	
+		</menupopup>
+		
+	</menu>		          
+	
+</popup>
+  
+</overlay>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?> 
+
+<?xul-overlay href="chrome://carrot_garden/content/overlay/thisEmailPopup.xul"?>
+
+<overlay 
+	id="carrot_garden.thisEmailPupup_1.xul" 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<menupopup id="emailAddressPopup" >
+	    <menu id="carrot_garden.thisEmailPopup-menu" position="1" />
+	   	<menuseparator position="2" />
+	</menupopup> 
+
+       
+</overlay>
+

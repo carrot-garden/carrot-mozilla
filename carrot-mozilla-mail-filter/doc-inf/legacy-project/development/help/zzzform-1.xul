@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<window 
+	id="form-1" 
+	title="Please define Account and Domain"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	onload="onLoadWindow()"
+	
+>
+
+<script type="application/x-javascript" src="chrome://carrot_garden/content/functions.js"/>
+
+<key id="close-window" keycode="VK_ESCAPE" command="window.close();"/>
+
+	<label value="Local Folders\"/>
+	<label value=" "/>
+
+	<label control="main" value="Parent Folder"/>
+	<textbox id="main" value="Accounts"/>
+
+	<label control="account" value="Account Name"/>
+	<textbox id="account"/>
+
+	<label control="domain" value="Domain Name"/>
+	<textbox id="domain"/>
+
+<hbox>
+
+	<button id="button-create" style="width: 80px; height: 10px;"  label="Create" oncommand="onButtonCreate();" />
+	<spacer />
+
+</hbox>
+
+</window>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:ANIMALS="http://www.some-fictitious-zoo.com/rdf#">
+
+
+  <RDF:Seq RDF:about="http://www.some-fictitious-zoo.com/all-animals">
+        <RDF:li RDF:resource="http://www.some-fictitious-zoo.com/arachnids"/>
+  </RDF:Seq>
+
+
+  <RDF:Seq RDF:about="http://www.some-fictitious-zoo.com/arachnids">
+	    <RDF:li RDF:resource="http://www.some-fictitious-zoo.com/arachnids/tarantula"/>
+  </RDF:Seq>
+
+
+   <RDF:Description 
+   		RDF:about="http://www.some-fictitious-zoo.com/arachnids"
+   		ANIMALS:name="Arachnids"
+   />
+
+
+   <RDF:Description RDF:about="http://www.some-fictitious-zoo.com/arachnids/tarantula" ANIMALS:specimens="0">
+     <ANIMALS:name>Tarantula</ANIMALS:name>
+     <ANIMALS:species>Avicularia avicularia</ANIMALS:species>
+   </RDF:Description>
+
+
+</RDF:RDF>

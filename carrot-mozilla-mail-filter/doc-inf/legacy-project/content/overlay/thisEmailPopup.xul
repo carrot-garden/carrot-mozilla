@@ -1,0 +1,213 @@
+<?xml version="1.0"?> 
+
+<?xml-stylesheet href="chrome://carrot_garden/skin/button/button.css" type="text/css"?>
+
+<overlay 
+	id="carrot_garden.thisEmailPopup.xul" 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<!-- 
+//############################
+//	emailAddressPopup
+//############################
+-->
+
+<menupopup id="emailAddressPopup" >
+    <menu 
+    	id="carrot_garden.thisEmailPopup-menu"
+		class="carrot_garden-icon menu-iconic menuitem-iconic" 
+		label="Carrot" 
+		accesskey="A"
+	    position="1" 
+		>
+
+        <menupopup id="carrot_garden.thisEmailPopup-menupopup">
+
+			<menuitem id="carrot_garden.thisEmailPopup-copy-name" 
+				label="Copy Name" 
+				accesskey="" 
+				oncommand="carrotMail.copyPopup('name');" />
+
+			<menuitem id="carrot_garden.thisEmailPopup-copy-email" 
+				label="Copy Email" 
+				accesskey="" 
+				oncommand="carrotMail.copyPopup('email');" />
+
+			<menuitem id="carrot_garden.thisEmailPopup-copy-name-and-email" 
+				label="Copy Name and Email" 
+				accesskey="" 
+				oncommand="carrotMail.copyPopup('all');" />
+
+			<menuseparator />
+
+        	<menuitem id="carrot_garden.thisEmailPopup-open-website" 
+				label="Open Web Site" 
+				accesskey=""
+        	    oncommand="carrotMail.openWebSiteFromEmail();" />
+
+			<menuseparator />
+
+        	<menuitem id="carrot_garden.thisEmailPopup-new-account" 
+				label="Add Account Folder" 
+				accesskey="A"
+        	    oncommand="carrotMail.makeCustomerFolder();" />
+
+        	<menuitem id="carrot_garden.thisEmailPopup-account-member" 
+				label="Add Account Member SF" 
+				accesskey="M"
+				oncommand="cmdNewAccountMember();" />
+
+			<menuseparator />
+	
+			<menuitem id="carrot_garden.thisEmailPopup-manager" 
+				label="Add Manager" 
+				accesskey="" 
+				oncommand="carrotMail.makeManagerFolder();" />
+	
+			<menuseparator/>
+	
+			<menuitem id="carrot_garden.thisEmailPopup-list-news-events" 
+				label="Add Mail List" 
+				accesskey="" 
+				oncommand="carrotMail.makeEventsNewsFolder();" />
+		
+			<menuseparator/>
+	
+			<menuitem id="carrot_garden.thisEmailPopup-vendor" 
+				label="Add Vendor" 
+				accesskey="" 
+				oncommand="carrotMail.makeVendorFolder();" />
+		
+			<menuseparator/>
+	
+			<menuitem id="carrot_garden.thisEmailPopup-vendor" 
+				label="Add Employer" 
+				accesskey="" 
+				oncommand="carrotMail.makeEmployerFolder();" />
+		
+			<menuseparator/>
+	
+			<menuitem id="carrot_garden.thisEmailPopup-test" 
+				label="TEST" 
+				accesskey="" 
+				oncommand="carrotMail.testEmailPopup();" />
+        	
+        </menupopup>
+
+    </menu>
+   	<menuseparator position="2" />
+</menupopup> 
+
+<!-- 
+//############################
+//	messagePaneContext
+//############################
+-->
+
+<menupopup id="messagePaneContext" >
+
+    <menu 
+    	id="carrot_garden.thisMessagePopup-menu"
+		label="Carrot" 
+		class="carrot_garden-icon menu-iconic menuitem-iconic" 
+		accesskey="A"
+	    position="1" 
+		>
+
+        <menupopup id="carrot_garden.thisMessagePopup-menupopup">
+
+			<menuitem id="carrot_garden.thisMessagePopup-copy-name" 
+				label="Copy Name" 
+				accesskey="" 
+				oncommand="carrotMail.copyPopup('name');" />
+
+			<menuitem id="carrot_garden.thisMessagePopup-copy-email" 
+				label="Copy Email" 
+				accesskey="" 
+				oncommand="carrotMail.copyPopup('email');" />
+
+			<menuitem id="carrot_garden.thisMessagePopup-copy-name-and-email" 
+				label="Copy Name and Email" 
+				accesskey="" 
+				oncommand="carrotMail.copyPopup('all');" />
+
+			<menuseparator />
+
+        	<menuitem id="carrot_garden.thisMessagePopup-open-website" 
+				label="Open Web Site" 
+				accesskey=""
+        	    oncommand="carrotMail.openWebSiteFromEmail();" />
+
+			<menuseparator />
+
+        	<menuitem id="carrot_garden.thisMessagePopup-new-account" 
+				label="Add Account Folder" 
+				accesskey="A"
+        	    oncommand="carrotMail.makeCustomerFolder();" />
+
+        	<menuitem id="carrot_garden.thisMessagePopup-account-member" 
+				label="Add Account Member SF" 
+				accesskey="M"
+				oncommand="cmdNewAccountMember();" />
+
+			<menuseparator />
+	
+			<menuitem id="carrot_garden.thisMessagePopup-manager" 
+				label="Add Manager" 
+				accesskey="" 
+				oncommand="carrotMail.makeManagerFolder();" />
+	
+			<menuseparator/>
+	
+			<menuitem id="carrot_garden.thisEmailPopup-list-news-events" 
+				label="Add Mail List" 
+				accesskey="" 
+				oncommand="carrotMail.makeEventsNewsFolder();" />
+		
+			<menuseparator/>
+	
+			<menuitem id="carrot_garden.thisEmailPopup-vendor" 
+				label="Add Vendor" 
+				accesskey="" 
+				oncommand="carrotMail.makeVendorFolder();" />
+		
+			<menuseparator/>
+	
+			<menuitem id="carrot_garden.thisEmailPopup-employer" 
+				label="Add Employer" 
+				accesskey="" 
+				oncommand="carrotMail.makeEmployerFolder();" />
+		
+			<menuseparator/>
+	
+			<menuitem id="carrot_garden.thisMessagePopup-test" 
+				label="TEST" 
+				accesskey="" 
+				oncommand="carrotMail.testEmailPopup();" />
+        	
+        </menupopup>
+
+    </menu>
+
+   	<menuseparator 
+    	id="carrot_garden.thisMessagePopup-menu-sep"
+   		position="2" 
+	/>
+
+	<menuitem 
+    	id="carrot_garden.thisMessagePopup-item"
+		label="emailAddress"
+		disabled="true"
+	    position="3" 
+	/>
+
+   	<menuseparator 
+    	id="carrot_garden.thisMessagePopup-item-sep"
+   		position="4" 
+	/>
+
+
+</menupopup> 
+       
+</overlay>
+

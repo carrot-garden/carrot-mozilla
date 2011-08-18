@@ -1,0 +1,20 @@
+#include "nsISupports.idl"
+#include "nsIVariant.idl"
+
+[scriptable, uuid(4007b844-094a-4c63-999f-3aed7183492f)]
+
+interface cgICarrotGarden : nsISupports {
+
+//	void classAddressBooksDirectoryCommands();
+
+//    const PRUint32 test = 123;
+//    attribute nsIVariant addrBooks;
+
+	readonly attribute AString extensionName;	// = "carrot_garden";
+	readonly attribute AString extensionGuid;	// = '{8a4b2ec4-400b-11db-964b-00e08161165f}';
+	readonly attribute AString extensionContent;	// = 'chrome://' + extensionName + '/content/';
+	readonly attribute AString extensionContentInclude;	// = extensionContent + 'include/';
+	readonly attribute AString extensionContentOverlay;	// = extensionContent + 'overlay/';
+	readonly attribute AString extensionContentWindow;	// = extensionContent + 'window/';
+
+};
