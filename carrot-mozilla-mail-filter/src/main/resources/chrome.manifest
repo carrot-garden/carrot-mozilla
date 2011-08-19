@@ -1,0 +1,7 @@
+###
+### ${project.artifactId}
+###
+
+content	${project.artifactId}	content/
+skin	${project.artifactId}	default		skin/
+
