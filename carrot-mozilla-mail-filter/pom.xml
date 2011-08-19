@@ -15,16 +15,11 @@
 
 		<resources>
 			<resource>
-				<directory>src/main/resources</directory>
+				<directory>src/main/omni</directory>
 				<filtering>false</filtering>
-				<excludes>
-					<exclude>chrome.manifest</exclude>
-					<exclude>install.rdf</exclude>
-					<exclude>**/*.java</exclude>
-				</excludes>
 			</resource>
 			<resource>
-				<directory>src/main/resources</directory>
+				<directory>src/main/omni</directory>
 				<filtering>true</filtering>
 				<includes>
 					<include>chrome.manifest</include>
@@ -37,7 +32,7 @@
 
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.8</version>
+				<version>2.6</version>
 				<configuration>
 					<additionalProjectnatures>
 						<projectnature>org.eclipse.wst.jsdt.core.jsNature</projectnature>
@@ -45,6 +40,21 @@
 					<additionalBuildcommands>
 						<buildcommand>org.eclipse.wst.jsdt.core.javascriptValidator</buildcommand>
 					</additionalBuildcommands>
+					<additionalConfig>
+						<file>
+							<name>.settings/.jsdtscope</name>
+							<content>
+<![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/omni"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
+]]>
+							</content>
+						</file>
+					</additionalConfig>
 				</configuration>
 				<executions>
 					<execution>
