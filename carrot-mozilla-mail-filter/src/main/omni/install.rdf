@@ -26,9 +26,9 @@
 		<em:homepageURL>http://www.carrotgarden.com/${mozillaPath}/</em:homepageURL>
 		<em:updateURL>http://www.carrotgarden.com/${mozillaPath}/update.rdf</em:updateURL>
 
-		<em:optionsURL>chrome://${mozillaPath}/content/options.xul</em:optionsURL>
+		<em:iconURL>chrome://${mozillaPath}/skin/carrot-garden-icon.png</em:iconURL>
 		<em:aboutURL>chrome://${mozillaPath}/content/about.xul</em:aboutURL>
-		<em:iconURL>chrome://${mozillaPath}/skin/carrot_garden_icon.png</em:iconURL>
+		<em:optionsURL>chrome://${mozillaPath}/content/options.xul</em:optionsURL>
 
 	</Description>
 

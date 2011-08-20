@@ -11,7 +11,7 @@
 
 	<artifactId>carrot-mozilla-mail-filter</artifactId>
 
-	<name>Carrot Mozilla Mail Filter</name>
+	<name>Carrot Garden Mail Filter</name>
 	<description>generate mail filters based on templates</description>
 
 	<properties>
