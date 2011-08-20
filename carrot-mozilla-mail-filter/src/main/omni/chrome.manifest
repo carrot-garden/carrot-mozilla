@@ -4,6 +4,6 @@
 # ${project.version}
 #
 
-content	${project.artifactId}	content/
-skin	${project.artifactId}	default		skin/
+content	${mozillaPath}	content/
+skin	${mozillaPath}	default		skin/
 

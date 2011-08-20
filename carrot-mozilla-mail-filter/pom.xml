@@ -11,6 +11,15 @@
 
 	<artifactId>carrot-mozilla-mail-filter</artifactId>
 
+	<name>Carrot Mozilla Mail Filter</name>
+	<description>generate mail filters based on templates</description>
+
+	<properties>
+		<mozillaId>${project.artifactId}@carrotgarden.com</mozillaId>
+		<mozillaPath>${project.artifactId}</mozillaPath>
+		<mozillaVersion>${project.version}</mozillaVersion>
+	</properties>
+
 	<build>
 
 		<resources>

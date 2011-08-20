@@ -17,6 +17,7 @@
 	<modules>
 		<module>carrot-mozilla-tester</module>
 		<module>carrot-mozilla-mail-filter</module>
+		<module>carrot-mozilla-study</module>
 	</modules>
 
 </project>

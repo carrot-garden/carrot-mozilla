@@ -4,8 +4,8 @@
 
 	<Description about="urn:mozilla:install-manifest">
 
-		<em:id>${project.artifactId}</em:id>
-		<em:version>${project.version}</em:version>
+		<em:id>${mozillaId}</em:id>
+		<em:version>${mozillaVersion}</em:version>
 
 		<em:targetApplication>
 			<Description>
@@ -23,17 +23,12 @@
 		<em:translator></em:translator>
 		<em:contributor></em:contributor>
 
-		<em:homepageURL>http://www.carrotgarden.com/${project.artifactId}/
-		</em:homepageURL>
-		<em:updateURL>http://www.carrotgarden.com/${project.artifactId}/update.rdf
-		</em:updateURL>
+		<em:homepageURL>http://www.carrotgarden.com/${mozillaPath}/</em:homepageURL>
+		<em:updateURL>http://www.carrotgarden.com/${mozillaPath}/update.rdf</em:updateURL>
 
-		<em:optionsURL>chrome://${project.artifactId}/content/options.xul
-		</em:optionsURL>
-		<em:aboutURL>chrome://${project.artifactId}/content/about.xul
-		</em:aboutURL>
-		<em:iconURL>chrome://${project.artifactId}/skin/carrot_garden_icon.png
-		</em:iconURL>
+		<em:optionsURL>chrome://${mozillaPath}/content/options.xul</em:optionsURL>
+		<em:aboutURL>chrome://${mozillaPath}/content/about.xul</em:aboutURL>
+		<em:iconURL>chrome://${mozillaPath}/skin/carrot_garden_icon.png</em:iconURL>
 
 	</Description>
 
