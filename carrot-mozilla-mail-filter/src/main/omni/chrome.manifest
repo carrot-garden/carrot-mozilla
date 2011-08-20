@@ -4,6 +4,14 @@
 # ${project.version}
 #
 
-content	${mozillaPath}	content/
-skin	${mozillaPath}	default		skin/
+# ${parsedVersion.majorVersion}
+# ${parsedVersion.minorVersion}
+# ${parsedVersion.incrementalVersion}
+# ${parsedVersion.qualifier}
+# ${parsedVersion.buildNumber}
+# ${parsedVersion.osgiVersion}
 
+content	${thisPath}	content/
+skin	${thisPath}	default		skin/
+
+overlay	chrome://messenger/content/messenger.xul	chrome://${thisPath}/content/overlay/messenger.xul

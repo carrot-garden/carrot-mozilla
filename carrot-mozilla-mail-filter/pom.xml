@@ -15,9 +15,9 @@
 	<description>generate mail filters based on templates</description>
 
 	<properties>
-		<mozillaId>${project.artifactId}@carrotgarden.com</mozillaId>
-		<mozillaPath>${project.artifactId}</mozillaPath>
-		<mozillaVersion>${project.version}</mozillaVersion>
+		<thisId>${project.artifactId}@carrotgarden.com</thisId>
+		<thisPath>${project.artifactId}</thisPath>
+		<thisVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}.${versionTimestamp}</thisVersion>
 	</properties>
 
 	<build>
@@ -33,6 +33,8 @@
 				<includes>
 					<include>chrome.manifest</include>
 					<include>install.rdf</include>
+					<include>**/*.xul</include>
+					<include>**/*.css</include>
 				</includes>
 			</resource>
 		</resources>
@@ -72,6 +74,32 @@
 						<goals>
 							<goal>eclipse</goal>
 						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<id>parse-version</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>parse-version</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>timestamp-property</id>
+						<goals>
+							<goal>timestamp-property</goal>
+						</goals>
+						<configuration>
+							<name>versionTimestamp</name>
+							<pattern>yyyyMMddHHmmss</pattern>
+							<units>second</units>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>

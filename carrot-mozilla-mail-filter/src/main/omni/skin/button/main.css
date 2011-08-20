@@ -1,0 +1,32 @@
+/*  */
+
+#button-main {
+  list-style-image: url("chrome://${thisPath}/skin/button/main_24x72.png");
+  -moz-image-region: rect(0px 24px 24px 0px);
+}
+
+#button-main:hover {
+  -moz-image-region: rect(24px 24px 48px 0px);
+}
+
+#button-main[disabled] {
+  -moz-image-region: rect(48px 24px 72px 0px);
+}
+
+toolbar[iconsize="small"] #button-main {
+  list-style-image: url("chrome://${thisPath}/skin/button/main_16x48.png");
+  -moz-image-region: rect(0px 16px 16px 0px);
+}
+
+toolbar[iconsize="small"] #button-main:hover {
+  -moz-image-region: rect(16px 16px 32px 0px);
+}
+
+toolbar[iconsize="small"] #button-main[disabled] {
+  -moz-image-region: rect(32px 16px 48px 0px);
+}
+
+.main-icon {
+  list-style-image: url("chrome://${thisPath}/skin/button/main_16x48.png");
+  -moz-image-region: rect(16px 16px 32px 0px);
+}

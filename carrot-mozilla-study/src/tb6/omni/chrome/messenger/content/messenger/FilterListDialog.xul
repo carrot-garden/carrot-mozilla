@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://messenger/skin/filterDialog.css" type="text/css"?>
+<?xml-stylesheet href="chrome://messenger/skin/messenger.css" type="text/css"?>
+ <?xml-stylesheet href="chrome://messenger/skin/folderMenus.css" type="text/css"?>
+
+<!DOCTYPE window [
+<!ENTITY % filtersDTD SYSTEM "chrome://messenger/locale/FilterListDialog.dtd">%filtersDTD;
+<!ENTITY % pickerDTD SYSTEM "chrome://messenger/locale/msgFolderPickerOverlay.dtd"> %pickerDTD;
+]>
+
+<window id="filterListDialog"
+  xmlns:nc="http://home.netscape.com/NC-rdf#"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  windowtype="mailnews:filterlist"
+  style="width: 45em; height: 31em;"
+  onload="onLoad();"
+  onunload="onFilterUnload();"
+  onclose="return onFilterClose();"
+  persist="width height screenX screenY"
+  title="&window.title;">
+
+  <script type="application/javascript" src="chrome://messenger/content/FilterListDialog.js"/>
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="bundle_filter" src="chrome://messenger/locale/filter.properties"/>
+  </stringbundleset>
+
+  <keyset id="dialogKeys"/>
+
+  <keyset>
+    <key key="&closeCmd.key;" modifiers="accel" oncommand="if (onFilterClose()) window.close();"/>
+    <key keycode="VK_ESCAPE" oncommand="if (onFilterClose()) window.close();"/>
+  </keyset>
+
+  <hbox align="center">
+    <label value="&filtersForPrefix.label;" 
+           accesskey="&filtersForPrefix.accesskey;" control="serverMenu"/>
+
+      <menulist id="serverMenu"
+                class="folderMenuItem"
+                IsServer="true"
+                IsSecure="false"
+                ServerType="none"
+                oncommand="onFilterFolderClick(event.target._folder);">
+        <menupopup id="serverMenuPopup" type="folder" mode="filters"
+          expandFolders="nntp" headlabels="&choosethisnewsserver.label;" />
+      </menulist>
+      <spacer flex="1"/> 
+      <vbox>
+        <button label="&viewLogButton.label;" accesskey="&viewLogButton.accesskey;" oncommand="viewLog();"/>
+      </vbox>
+  </hbox>
+
+  <grid flex="1">
+    <columns>
+      <column flex="1"/>
+      <column/>
+    </columns>
+    <rows>
+      <row>
+        <separator class="thin"/>
+      </row>
+      <row>
+        <label control="filterTree">&filterHeader.label;</label>
+      </row>
+
+      <row flex="1">
+        <vbox>
+          <listbox id="filterList" flex="1" onselect="updateButtons();"
+                   seltype="multiple"
+                   onkeypress="onFilterListKeyPress(event);">
+            <listhead>
+              <listheader id="nameColumn" label="&nameColumn.label;" flex="1"/>
+              <listheader id="activeColumn" label="&activeColumn.label;" minwidth="40px"/>
+            </listhead>
+          </listbox>
+        </vbox>
+
+        <vbox>
+          <button id="newButton" label="&newButton.label;" accesskey="&newButton.accesskey;"
+                  oncommand="onNewFilter(null);"/>
+          <button id="editButton" label="&editButton.label;" accesskey="&editButton.accesskey;" 
+                  oncommand="onEditFilter();"/>
+          <button id="deleteButton" label="&deleteButton.label;" accesskey="&deleteButton.accesskey;" 
+                  oncommand="onDeleteFilter();"/>
+          <spacer flex="1"/>
+          <button id="reorderUpButton" label="&reorderUpButton.label;" accesskey="&reorderUpButton.accesskey;" 
+                  class="up"
+                  oncommand="onUp(event);"/>
+          <button id="reorderDownButton" label="&reorderDownButton.label;" accesskey="&reorderDownButton.accesskey;" 
+                  class="down"
+                  oncommand="onDown(event);"/>
+          <spacer flex="1"/>
+        </vbox>
+      </row>
+      <row>
+        <vbox>
+          <separator class="thin"/>
+          <hbox align="center">
+            <label id="folderPickerPrefix" value="&folderPickerPrefix.label;" 
+                   accesskey="&folderPickerPrefix.accesskey;"
+                   disabled="true" control="runFiltersFolder"/>
+            <menulist id="runFiltersFolder" disabled="true" flex="1"
+                      oncommand="onTargetSelect(event);">
+              <menupopup id="runFiltersPopup" type="folder"
+                         showFileHereLabel="true"
+                         fileHereLabel="&filemessageschoosethis.label;"/>
+            </menulist>
+          </hbox>
+        </vbox>
+        <vbox>
+          <separator class="thin"/>
+          <button id="runFiltersButton" 
+                  label="&runFilters.label;" 
+                  accesskey="&runFilters.accesskey;" 
+                  runlabel="&runFilters.label;" 
+                  runaccesskey="&runFilters.accesskey;" 
+                  stoplabel="&stopFilters.label;" 
+                  stopaccesskey="&stopFilters.accesskey;"
+                  oncommand="runSelectedFilters();" disabled="true"/>
+        </vbox>
+      </row>
+    </rows>
+  </grid>
+
+  <separator class="thin"/>
+
+  <statusbar class="chromeclass-status" id="status-bar">
+    <statusbarpanel id="statusText" flex="1" crop="right"/>
+    <statusbarpanel class="statusbarpanel-progress" collapsed="true" id="statusbar-progresspanel">
+      <progressmeter class="progressmeter-statusbar" id="statusbar-icon" mode="normal" value="0"/>
+    </statusbarpanel>
+  </statusbar> 
+
+</window>
+

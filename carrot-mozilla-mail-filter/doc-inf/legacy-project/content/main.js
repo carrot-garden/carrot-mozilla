@@ -36,23 +36,23 @@ var gFolderFlags = {
 
 
 //	known folder mask
-var gFolderMask = 
+var gFolderMask =
 	gFolderFlags.MSG_FOLDER_FLAG_VIRTUAL +
 	gFolderFlags.MSG_FOLDER_FLAG_TRASH +
-	gFolderFlags.MSG_FOLDER_FLAG_SENTMAIL + 
+	gFolderFlags.MSG_FOLDER_FLAG_SENTMAIL +
 	gFolderFlags.MSG_FOLDER_FLAG_DRAFTS +
 	gFolderFlags.MSG_FOLDER_FLAG_QUEUE +
 	gFolderFlags.MSG_FOLDER_FLAG_INBOX +
 	gFolderFlags.MSG_FOLDER_FLAG_TEMPLATES +
-	gFolderFlags.MSG_FOLDER_FLAG_JUNK; 
+	gFolderFlags.MSG_FOLDER_FLAG_JUNK;
 
 // preferences
 var carrotPrefs = Components
 	.classes["@mozilla.org/preferences-service;1"]
 	.getService(Components.interfaces.nsIPrefBranch);
 
-var gAccountsFolderURI = carrotPrefs.getCharPref("carrot_garden.accountsFolderURI"); 
-var gAccountsFolderMyResponse = carrotPrefs.getCharPref("carrot_garden.accountsFolderMyResponse"); 
+var gAccountsFolderURI = carrotPrefs.getCharPref("carrot_garden.accountsFolderURI");
+var gAccountsFolderMyResponse = carrotPrefs.getCharPref("carrot_garden.accountsFolderMyResponse");
 var gAccountsContracts = carrotPrefs.getCharPref("carrot_garden.accountsFolderList").split(",");
 var gAccountsVendorDomainList = carrotPrefs.getCharPref("carrot_garden.accountsVendorDomainList").split(",");
 
@@ -61,10 +61,10 @@ var gHomeDomainList = carrotPrefs.getCharPref("carrot_garden.home.domainList").s
 var gHomeEmailPrefix  = carrotPrefs.getCharPref("carrot_garden.home.emailPrefix");
 var gHomeEmailList  = carrotPrefs.getCharPref("carrot_garden.home.emailList").split(",");
 
-var gManagersFolderURI = carrotPrefs.getCharPref("carrot_garden.managersFolderURI"); 
+var gManagersFolderURI = carrotPrefs.getCharPref("carrot_garden.managersFolderURI");
 var gManagersFolderMyResponse = carrotPrefs.getCharPref("carrot_garden.managersFolderMyResponse");
 
-var gVendorsFolderURI = carrotPrefs.getCharPref("carrot_garden.vendorsFolderURI"); 
+var gVendorsFolderURI = carrotPrefs.getCharPref("carrot_garden.vendorsFolderURI");
 var gVendorsFolderMyResponse = carrotPrefs.getCharPref("carrot_garden.vendorsFolderMyResponse");
 
 var gListsURI = carrotPrefs.getCharPref("carrot_garden.listsFolderURI");
@@ -73,7 +73,7 @@ var gAbNotJunkURI = carrotPrefs.getCharPref("carrot_garden.ab.not-junk.uri");
 
 
 // used for "# section=Account: position=1000"
-var XXXgFilterSectionVar = "section"; 
+var XXXgFilterSectionVar = "section";
 var XXXgFilterPositionVar = "position";
 var XXXgFilterSectionVarBase=1000;
 var XXXgFilterSectionVarStep=20;
@@ -111,23 +111,23 @@ var gActMoveToFolder = Components.interfaces.nsMsgFilterAction.MoveToFolder;
 
 
 // global parameters collection about folder, person
-var gNewFolderInfo = { 
-	parentName: "Accounts", 
-	parentURI: "mailbox://nobody@Local%20Folders/Accounts", 
-	folderName: "Company Inc @domain.com", 
-	company: "Company", 
-	domain: "domain.com", 
-	person: "James Doe", 
-	email: "j.doe@domain.com", 
-	project: "Project", 
-	valid: false 
+var gNewFolderInfo = {
+	parentName: "Accounts",
+	parentURI: "mailbox://nobody@Local%20Folders/Accounts",
+	folderName: "Company Inc @domain.com",
+	company: "Company",
+	domain: "domain.com",
+	person: "James Doe",
+	email: "j.doe@domain.com",
+	project: "Project",
+	valid: false
 	};
 //
 
 // currently all features are limited to "server = local folders" only
 function getLocalFolders()
 {
-	var amService = 
+	var amService =
     		Components.classes["@mozilla.org/messenger/account-manager;1"]
 			.getService(Components.interfaces.nsIMsgAccountManager);
 	var lfServer= amService.localFoldersServer;
@@ -145,7 +145,7 @@ var gFilterSections = new Array(); // ( array index ([0]section, [1]position, [2
 
 
 function XXXsortFilterList( msgFilterList ) {
-	
+
 	var myArray = new Array();
 	var myItems = new Array();
 	var myResult = new Array();
@@ -160,11 +160,11 @@ function XXXsortFilterList( msgFilterList ) {
 
 	for ( var n = 0; n < myArray.length; n++ )	//	go through new sections positions
 	{
-		for ( var i = 0; i < gFilterSections.length; i++ )	//	
+		for ( var i = 0; i < gFilterSections.length; i++ )	//
 		{
 			if ( myArray[n] == gFilterSections[i][1] ) // position match
 			{
-				myResult.push( msgFilterList.getFilterAt ( gFilterSections[i][2] ) ) 
+				myResult.push( msgFilterList.getFilterAt ( gFilterSections[i][2] ) )
 
 				getFilterItems ( msgFilterList, gFilterSections[i][0]  ); // mySection
 
@@ -195,7 +195,7 @@ function XXXsortFilterList( msgFilterList ) {
 	//dump2 ( 'myResult ' + myResult.length  );
 	//dump2 ( 'msgFilterList ' + msgFilterList.filterCount  );
 
-	if ( myResult.length != msgFilterList.filterCount ) { 
+	if ( myResult.length != msgFilterList.filterCount ) {
 		throw "can not sort - counts do not match" ;
 	}
 
@@ -203,23 +203,23 @@ function XXXsortFilterList( msgFilterList ) {
 		msgFilterList.setFilterAt ( n, myResult.pop() );
 	}
 
-	// msgFilterList.saveToDefaultFile (); 
+	// msgFilterList.saveToDefaultFile ();
 
 }
 
 function XXXgetFilterItems( msgFilterList, mySection )
 {
-	
+
 	gFilterItems = new Array();
-	
+
 	var myFilter;
-	var myArray;	
-	
+	var myArray;
+
 	for( var i = 0; i < msgFilterList.filterCount; i++ )
 	{
 
 		myFilter = msgFilterList.getFilterAt ( i );
-	
+
 		if ( myFilter.filterName.match(/^#.*$/) ) {
 			continue;
 		}
@@ -231,16 +231,16 @@ function XXXgetFilterItems( msgFilterList, mySection )
 //			gFilterItems.push( new Array ( mySection, myArray.join(" "), i, 0) );
 			gFilterItems.push( new Array ( mySection, myFilter.filterName, i, 0) );
 		}
-	
+
 	}
-	
+
 //	dump2 ( "Section: " + mySection + " Items: " + gFilterItems.length );
 
-} 
+}
 
 function dumpFilterSections ()
 {
-	for ( var n = 0; n < gFilterSections.length; n++ ) 
+	for ( var n = 0; n < gFilterSections.length; n++ )
 	{
 		dump2 ( gFilterSections[n][0] + " " + gFilterSections[n][1] + " " + gFilterSections[n][2] + " " + " " ) ;
 	}
@@ -252,19 +252,19 @@ function XXXsetSectionHeaders ( msgFilterList )
 	var myFilter;
 
 	for( var n = 0; n < gFilterSections.length; n++ ) { // shift scale
-		gFilterSections[n][1] = gFilterSections[n][1] * 2; 
-	} 
+		gFilterSections[n][1] = gFilterSections[n][1] * 2;
+	}
 
 	for( var n = 0; n < gFilterSections.length - 1; n++ ) {// diffirentiate duplicate positions
-		if ( gFilterSections[n][1] ==  gFilterSections[n+1][1] ) { gFilterSections[n+1][1]++; }  
-	} 
+		if ( gFilterSections[n][1] ==  gFilterSections[n+1][1] ) { gFilterSections[n+1][1]++; }
+	}
 
 	for( var n = 0; n < gFilterSections.length; n++ ) { // clone section positions
 		myArray[n] = gFilterSections[n][1];
 	}
 
 	myArray.sort( sortNumber ); // sort existing positions, guaranteed to be unique
-	
+
 	for ( var n = 0; n < myArray.length; n++ )	//	iterate over new section positions
 	{
 		for ( var i = 0; i < gFilterSections.length; i++ )
@@ -280,14 +280,14 @@ function XXXsetSectionHeaders ( msgFilterList )
 		myFilter = msgFilterList.getFilterAt ( gFilterSections[n][2] ); // by filter index
 		myFilter.enabled = false;
 		// todo - set safe actions, terms, etc.
-		myFilter.filterName = 
-			"# " + gFilterSectionVar + 
-			"=" + gFilterSections[n][0] + 
-			" " + gFilterPositionVar + 
+		myFilter.filterName =
+			"# " + gFilterSectionVar +
+			"=" + gFilterSections[n][0] +
+			" " + gFilterPositionVar +
 			"=" + gFilterSections[n][3];	// set new position
 	}
-	
-	// msgFilterList.saveToDefaultFile(); 
+
+	// msgFilterList.saveToDefaultFile();
 }
 
 function XXXgetFilterSections( msgFilterList ) {
@@ -312,13 +312,13 @@ function XXXgetFilterSections( msgFilterList ) {
 				myArray = myFilter.filterName.split(/\s/);
 
 				if ( myArray[1].split(/=/)[0] == gFilterSectionVar ) {
-					mySection = myArray[1].split(/=/)[1] 
+					mySection = myArray[1].split(/=/)[1]
 				} else {
 					throw "section value not found in filter " + i;
 				}
 
 				if ( myArray[2].split(/=/)[0] == gFilterPositionVar ) {
-					myPosition = myArray[2].split(/=/)[1] 
+					myPosition = myArray[2].split(/=/)[1]
 				} else {
 					throw "position value not found in filter " + i;
 				}
@@ -329,15 +329,15 @@ function XXXgetFilterSections( msgFilterList ) {
 
 //				gFilterSections[ n ] = Array( mySection, myPosition, i, 0);
 				gFilterSections.push( new Array( mySection, myPosition, i, 0) );
-				
+
 //				n++;
-				
+
 			}
 
 	}
 
-	if ( foundSections == false) { 
-		throw "no filter sections found" 
+	if ( foundSections == false) {
+		throw "no filter sections found"
 	}
 
 	for( var i = 0; i < msgFilterList.filterCount; i++ ) {
@@ -356,8 +356,8 @@ function XXXgetFilterSections( msgFilterList ) {
 				break;
 			}
 		}
-	
-		if ( foundSections == false ) { 
+
+		if ( foundSections == false ) {
 			throw "unknown section [" + myFilter.filterName.split(/\s/)[0] + "] filter line number [" +  i + "]"
 		};
 
@@ -368,17 +368,17 @@ function XXXgetFilterSections( msgFilterList ) {
 
 function XXXcarrotFilterSort ( filterList )
 {
-	try {	
-		
-		getFilterSections( filterList ); 
-		setSectionHeaders ( filterList ); 
+	try {
+
+		getFilterSections( filterList );
+		setSectionHeaders ( filterList );
 		sortFilterList ( filterList );
-		
+
 		filterList.saveToDefaultFile();
-		
+
 	} catch( e ) {
 		var message =
-			"carrot_garden Error: \n"  
+			"carrot_garden Error: \n"
 			+ e + "\n"
 			+ "Please edit filters and try again."
 		alert( message );
@@ -392,10 +392,10 @@ function emailParser( emailAddress, displayName )
     //var emailAddress = document.popupNode.getAttribute("emailAddress");
 	//var displayName  = document.popupNode.getAttribute("displayName");
 
-	this.emailAddress = emailAddress; 
+	this.emailAddress = emailAddress;
 
 	this.prefix = emailAddress.split(/\@/)[0];
-		
+
 	this.domain = emailAddress.split(/\@/)[1];
 
 	var temp =  this.domain.split(/\./);
@@ -410,13 +410,13 @@ function emailParser( emailAddress, displayName )
 
 	this.lastName = displayName.split(/\s/)[displayName.length];
 
-	return { 
-		displayName: 	this.displayName, 
-		firstName: 		this.firstName, 
-		lastName: 		this.lastName, 
+	return {
+		displayName: 	this.displayName,
+		firstName: 		this.firstName,
+		lastName: 		this.lastName,
 		emailAddress : 	this.emailAddress,
-		prefix: 		this.prefix, 
-		domain: 		this.domain, 
+		prefix: 		this.prefix,
+		domain: 		this.domain,
 		company: 		this.company,
 		tld: 			this.tld};
 }
@@ -424,7 +424,7 @@ function emailParser( emailAddress, displayName )
 
 function personFolderTemplate( person )
 {
-	var temp = person.replace(/[^A-Za-z0-9_\-\s]/g,""); // remove invalid chars 
+	var temp = person.replace(/[^A-Za-z0-9_\-\s]/g,""); // remove invalid chars
 	temp = temp.replace(/(\s+)/g," ");
 	temp = trim ( capitalLetters ( temp ) );
 
@@ -433,8 +433,8 @@ function personFolderTemplate( person )
 
 function accountFolderTemplate( company, domain )
 {
-	company = patternCompany( company ).forEdit;	
-	domain  = patternDomain( domain ).forEdit;	
+	company = patternCompany( company ).forEdit;
+	domain  = patternDomain( domain ).forEdit;
 
 	return company + ' @' + domain;
 }
@@ -447,10 +447,10 @@ function accountFilterTemplate( filterPrefix, folderName )
 function patternMailList( domain )
 {
 	var temp = patternDomain( domain ).forEdit;
-	
+
 	this.forEdit = temp;
 	this.forFilter = temp + "@" + gHomeDomain.toLowerCase();
-	
+
 	return { forEdit: this.forEdit, forFilter: this.forFilter };
 }
 
@@ -458,7 +458,7 @@ function patternXtag ( domain )
 {
 	this.forEdit = domain.replace(/\@/g,"");
 	this.forFilter = "@" + domain;
-	
+
 	return { forEdit: this.forEdit, forFilter: this.forFilter };
 }
 
@@ -466,22 +466,22 @@ function patternDomain ( domain )
 {
 	var temp = domain.replace(/[^\w\_\-\.]/g,""); // remove invalid chars
 	temp = temp.toLowerCase();
-	
+
 	this.forEdit = temp;
 	this.forFilter = "@" + temp;
-	
+
 	return { forEdit: this.forEdit, forFilter: this.forFilter };
 }
 
 function patternCompany ( company )
 {
-	var temp = company.replace(/[^\w\_\-\s]/g,""); // remove invalid chars 
+	var temp = company.replace(/[^\w\_\-\s]/g,""); // remove invalid chars
 	temp = temp.replace(/(\s+)/g," "); // remove mutiple spaces
 	temp = trim ( capitalLetters ( temp ) ); // trim & cap
-	
+
 	this.forEdit = temp;
 	this.forFilter = temp;
-	
+
 	return { forEdit: this.forEdit, forFilter: this.forFilter };
 }
 
@@ -500,9 +500,9 @@ function existsFolderFilter( folder )
 
 	var msgFilterList = parent.getFilterList ( null );
 
-	var myFilter; 
+	var myFilter;
 
-	var myTerms;//   = Components.classes["@mozilla.org/supports-array;1"].createInstance(Components.interfaces.nsISupportsArray); 
+	var myTerms;//   = Components.classes["@mozilla.org/supports-array;1"].createInstance(Components.interfaces.nsISupportsArray);
 
 	var myActions;// = Components.classes["@mozilla.org/supports-array;1"].createInstance(Components.interfaces.nsISupportsArray);
 
@@ -564,21 +564,21 @@ function appendFilterAction ( filter, type, uri )
 }
 
 
-function searchAction( type, uri ) 
+function searchAction( type, uri )
 {
 	this.type = type;
 	this.uri = uri;
-	
+
 	return  {type: this.type, uri: this.uri};
 }
 
-function searchTerm( attrib, str, op, booleanAnd ) 
+function searchTerm( attrib, str, op, booleanAnd )
 {
 	this.attrib=attrib;
 	this.str=str;
 	this.op=op;
 	this.booleanAnd=booleanAnd;
-	
+
 	return { attrib: this.attrib, str: this.str, op: this.op, booleanAnd: this.booleanAnd };
 }
 
@@ -593,56 +593,56 @@ function createAccountFolderFilter ( gNewFolderInfo )
 
 	// base account folder
 	try {
-		var folder = carrotCreateFolder(gNewFolderInfo.parentURI, folderName);		
+		var folder = carrotCreateFolder(gNewFolderInfo.parentURI, folderName);
 	}
 	catch(ex){
-		alert("nikiotova-filter Error: \n"
+		alert("carrot-filter Error: \n"
 			+ "\n"
 			+ ex + "\n"
 			+ "\n"
 			+ "Folder not created. Action Canceled.");
-		return { folder: null, filter: null };		
+		return { folder: null, filter: null };
 	};
-	// base account filter 
+	// base account filter
 	try {
 
 		var domain = patternDomain(gNewFolderInfo.domain).forFilter;
 		var maillist = patternMailList(domain).forFilter;
-		
+
 		filterTerms.push( searchTerm ( gAttribSender, domain, gOpContains, gBooleanOR ));
 		filterTerms.push( searchTerm ( gAttribToOrCC, domain, gOpContains, gBooleanOR ));
 		filterTerms.push( searchTerm ( gAttribToOrCC, maillist, gOpContains, gBooleanOR ));
-		//filterTerms.push( searchTerm ( 
+		//filterTerms.push( searchTerm (
 		 //gAttribOtherHeader, patternXtag(gNewFolderInfo.domain).forFilter, gOpContains, gBooleanOR ));
 
 		filterActions.push( searchAction( gActMoveToFolder, convertToUri(folder.URI) ) );
-		
-		filter = createFilter(folder, filterName, filterTerms, filterActions);		
+
+		filter = createFilter(folder, filterName, filterTerms, filterActions);
 	}
 	catch(ex){
-		alert("nikiotova-filter Error: \n" 
+		alert("carrot-filter Error: \n"
 			+ "\n"
 			+ ex + "\n"
 			+ "\n"
 			+ "Filter not created. Action Canceled");
-			
-		return { folder: null, filter: null };		
+
+		return { folder: null, filter: null };
 	};
-	
+
 	return { folder: folder, filter: filter };
 }
 
 function createFilter ( folder, filterName, filterTerms, filterActions)
 {
-	var filterList = folder.getFilterList( null );	
-	
+	var filterList = folder.getFilterList( null );
+
 	if ( filterList.getFilterNamed ( filterName ) ) {
 		alert ( 'createFilter: \n\n filter exists, will not re-create \n\n' + filterName );
 		return filterList.getFilterNamed ( filterName )
 	}
-	
-	var filter = filterList.createFilter ( filterName ); 
-	
+
+	var filter = filterList.createFilter ( filterName );
+
 	for ( var k = 0; k < filterTerms.length; k++ )	{
 		appendFilterTerm ( filter, filterTerms[k].attrib, filterTerms[k].str , filterTerms[k].op, filterTerms[k].booleanAnd );
 	}
@@ -650,21 +650,21 @@ function createFilter ( folder, filterName, filterTerms, filterActions)
 	for ( var k = 0; k < filterActions.length; k++ )	{
 		appendFilterAction ( filter, filterActions[k].type, filterActions[k].uri );
 	}
-	
+
 	filter.enabled = true;
 	filter.temporary = false;
 	filter.filterDesc = "carrot_garden";
-	
+
 	filterList.insertFilterAt ( 0, filter );
 	filterList.saveToDefaultFile ( );
-	
+
 	return filter;
 }
 
 function carrotMsgFolderFromUri (uri) // borrowed from mozilla::widgetglue.js
 {
 	var resource = carrotResourceFromUri(uri);
-	
+
 	return resource.QueryInterface(Components.interfaces.nsIMsgFolder);
 }
 
@@ -692,61 +692,61 @@ function carrotCreateFolder( parentURI, folderName )
 
 	var parentFolder = carrotMsgFolderFromUri ( parentURI );
 	dump2 ("#1" );
-	
+
 //	SelectFolder(parentURI);
 //	dump2 ("#2" );
 
 	if ( existsFolder ( parentFolder, folderName  ) ){
-		alert ( "carrotCreateFolder: folder already exists\n\n" + decodeURI ( folderURI ) );		
+		alert ( "carrotCreateFolder: folder already exists\n\n" + decodeURI ( folderURI ) );
 		return carrotMsgFolderFromUri ( folderURI );
 	}
-	
+
 	//	from mozilla::mailCommands.js
 	NewFolder( folderName, parentURI)
 	dump2 ("#3" );
-		
+
 	var folder = carrotMsgFolderFromUri ( folderURI );
 	dump2 ("#4 " );
-	
+
 	if ( ! folder ) {
 		alert ("carrotCreateFolder: \n\n could not create\n\n" + folderURI );
 		return null;
 	}
-	
+
 	parentFolder.NotifyItemAdded (folder);
 	dump2 ("#5");
-	
+
 //	parentFolder.updateFolder ( null );
 
-//	XXX this causes ex		
+//	XXX this causes ex
 //	SelectFolder(folder.URI);
 //	dump2 ("carrotCreateFolder: " + folder.name );
-		
-	return folder;		
+
+	return folder;
 }
 
 
-function carrotCreateVirtualFolder( 
+function carrotCreateVirtualFolder(
 	folderName, parentFolder, searchFolderURIs, searchTerms, searchOlnine ) {
 
 	dump2 ("carrotCreateVirtualFolder: " + parentFolder.name + "/" + folderName );
 
-	// from mozilla:: commandglue.js :: 
+	// from mozilla:: commandglue.js ::
 	// function  CreateVirtualFolder(newName, parentFolder, searchFolderURIs, searchTerms, searchOnline)
 
 	CreateVirtualFolder( folderName, parentFolder, searchFolderURIs, searchTerms, searchOlnine );
-	
+
 }
 
 
 
 function cmdNewAccountMember(){
-	
+
 	//existsAccountFolder
 
 	var emailAddress = document.popupNode.getAttribute("emailAddress");
 	var displayName  = document.popupNode.getAttribute("displayName");
-	
+
 	var parser = emailParser ( emailAddress, displayName ) ;
 
 	gNewFolderInfo.parentURI = gAccountsFolderURI;
@@ -758,11 +758,11 @@ function cmdNewAccountMember(){
 
 
 	var parentFolder = carrotMsgFolderFromUri(gAccountsFolderURI);
-	
+
 	var subfolders = carrotGetSubFolders (parentFolder, 0);
 
 	var found = false;
-	
+
 	for ( var k = 0; k < subfolders.length; k++){
 		var temp = subfolders[k].name;
 		 temp = temp.split("@");
@@ -770,10 +770,10 @@ function cmdNewAccountMember(){
 		if ( ( temp != undefined ) && ( temp.toLowerCase() == gNewFolderInfo.domain.toLowerCase() ) ) {
 			found = true;
 			var accountFolder = subfolders[k];
-			break; 			
+			break;
 		}
 	}
-	
+
 	if ( ! found ){
 		alert("could not find parent account folder for this member");
 		return;
@@ -782,18 +782,18 @@ function cmdNewAccountMember(){
 	//alert (temp+ " --- " + targetFolder.name)
 
 	gNewFolderInfo.folderName =  accountFolder.name;
-	 
+
 	gNewFolderInfo.valid = false;
 
 	window.open("chrome://carrot_garden/content/formNewAccountMemberFolder.xul",
 		"carrot_garden", "chrome,modal,dialog,centerscreen,width=350,height=150");
 
 	if ( gNewFolderInfo.valid ) {
-		
+
 		memberSfCreate( accountFolder, gNewFolderInfo.person, gNewFolderInfo.email )
-		
+
 		//alert ("Done with new Account Memebr.");
-	
+
 	}
 }
 
@@ -807,16 +807,16 @@ function memberSfCreate( parentFolder, personName, personEmail ) {
 		//	);
 		return;
 	}
-	
+
 	var searchArray = Array (
 		Array ( gAttribSender, personEmail, gOpContains, gBooleanOR ),
 		Array ( gAttribToOrCC, personEmail, gOpContains, gBooleanOR )
 	);
-	
+
 	createSfForParent ( parentFolder, folderName, searchArray );
 }
 
-	
+
 function createSfForParent ( parentFolder, folderName, fT )
 {
 	// new search terms
@@ -835,10 +835,10 @@ function createSfForParent ( parentFolder, folderName, fT )
 }
 
 
-		
+
 function appendSearchTerm ( collection, attrib, str, op, booleanAnd )
 {
-	//	new seach element - part of terms colletion	
+	//	new seach element - part of terms colletion
 	var searchElement = Components.classes["@mozilla.org/messenger/searchTerm;1"]
 		.createInstance(Components.interfaces.nsIMsgSearchTerm);
 
@@ -846,7 +846,7 @@ function appendSearchTerm ( collection, attrib, str, op, booleanAnd )
 		searchElement.attrib = attrib;
 		searchElement.booleanAnd = booleanAnd;
 		searchElement.op = op;
-			
+
 	// new value object - part of term element
 	var v = searchElement.value
     	.QueryInterface(Components.interfaces.nsIMsgSearchValue);
@@ -856,12 +856,12 @@ function appendSearchTerm ( collection, attrib, str, op, booleanAnd )
 		searchElement.value = v;
 
 	//	collection must be of nsISupportsArray type
-	collection.AppendElement(searchElement); 
+	collection.AppendElement(searchElement);
 }
 
 function appendSearchTerm2 ( collection, attrib, str, op, booleanAnd, beginsGrouping, endsGrouping )
 {
-	//	new seach element - part of terms colletion	
+	//	new seach element - part of terms colletion
 	var searchElement = Components.classes["@mozilla.org/messenger/searchTerm;1"]
 		.createInstance(Components.interfaces.nsIMsgSearchTerm);
 
@@ -870,7 +870,7 @@ function appendSearchTerm2 ( collection, attrib, str, op, booleanAnd, beginsGrou
 		searchElement.booleanAnd = booleanAnd;
 		if (beginsGrouping) {searchElement.beginsGrouping = beginsGrouping;};
 		if (endsGrouping) {searchElement.endsGrouping = endsGrouping};
-			
+
 	// new value object - part of term element
 	var v = searchElement.value
     	.QueryInterface(Components.interfaces.nsIMsgSearchValue);
@@ -879,7 +879,7 @@ function appendSearchTerm2 ( collection, attrib, str, op, booleanAnd, beginsGrou
 		searchElement.value = v;
 
 	//	collection must be of nsISupportsArray type
-	collection.AppendElement(searchElement); 
+	collection.AppendElement(searchElement);
 }
 
 
@@ -900,8 +900,8 @@ function accountsSfProjectCreate ( folder )
 	);
 
 	createSfForParent ( folder, projectFolder, F1 );
-	
-} 
+
+}
 
 
 
@@ -920,9 +920,9 @@ function carrotPrefWindow(showBasic, clientType, selectTab) {
 //	http://www.xulplanet.com/references/xpcomref/ifaces/nsIEnumerator.html
 // MSG_FOLDER_FLAG_VIRTUAL
 function carrotGetSubFolders( folder, flags ) {
-	
+
 	var subfolders = new Array;
-	
+
 	if (folder.hasSubFolders)
 	{
     	var subFolderEnumerator = folder.GetSubFolders();
@@ -931,18 +931,18 @@ function carrotGetSubFolders( folder, flags ) {
     	while (!done)
     	{
       		var next = subFolderEnumerator.currentItem();
-      	
+
       		if (next)
 			{
 		        var nextFolder = next.QueryInterface(Components.interfaces.nsIMsgFolder);
-	
+
 		        if ( nextFolder && ( (nextFolder.flags & gFolderMask) == flags ))
 			        {
-			        	subfolders.push(nextFolder);      
+			        	subfolders.push(nextFolder);
 						///dump2("carrotGetSubFolders: " + nextFolder.name + " flag: " + nextFolder.flags );
 			        }
 			}
-		
+
 			try
 			{
 				subFolderEnumerator.next();
@@ -952,22 +952,22 @@ function carrotGetSubFolders( folder, flags ) {
 	        	done = true;
 			}
 		}
-		
+
 		if ( subfolders.length > 0 ) { subfolders.sort(compareFolderSortKey); }
-		
+
 		return subfolders;
 	}
 }
 
-function compareFolderSortKey(folder1, folder2) 
+function compareFolderSortKey(folder1, folder2)
 {
   return folder1.compareSortKeys(folder2);
 }
 
 
 function accountsSfGenericsCreate ( folder ) {
-		
-	var K; var N; var subfolderName; var searhArray = Array(); var searchElements; 
+
+	var K; var N; var subfolderName; var searhArray = Array(); var searchElements;
 
 	for ( K = 0; K < gAccountsContracts.length; K++){
 
@@ -979,7 +979,7 @@ function accountsSfGenericsCreate ( folder ) {
 
 		if ( existsFolder( folder, subfolderName ) ) { continue; }
 
-		searhArray = Array(); 	//	clear from previous K 
+		searhArray = Array(); 	//	clear from previous K
 
 		for ( N = 0; N < 9; N++){
 
@@ -988,9 +988,9 @@ function accountsSfGenericsCreate ( folder ) {
 					"carrot_garden.accountsFolder." + gAccountsContracts[K] + ".filter." + N)
 					.split(",");
 			}
-			catch(ex){ 
+			catch(ex){
 				if ( ex.message.match(/.*0x8000ffff.*/) ) { // "NS_UNEXPECTED...."
-					continue; // ok for parsing missing preferences 
+					continue; // ok for parsing missing preferences
 				} else {
 					alert ("accountsSfGenericsCreate \n\n error" + "\n \n" + ex);
 					return;
@@ -999,34 +999,34 @@ function accountsSfGenericsCreate ( folder ) {
 
 			if (searchElements[3] == "0") { // for BooleanAnd field
 				searchElements[3] = false;
-			} else { 
+			} else {
 				searchElements[3] = true;
 			}
-				
-			searhArray.push ( searchElements );			
+
+			searhArray.push ( searchElements );
 		}
-		
+
 		try {
 			createSfForParent ( folder, subfolderName, searhArray );
 		}catch (ex) {
 			alert ("accountsSfGenericsCreate \n\n can not create subfolder \n \n" +
 				subfolderName  + "\n \n" + ex);
-			return;		
+			return;
 		}
 	}
 }
 
 function accountsSfGenericsDelete ( folder, deleteFunction ) {
 
-	var subfolders = Array(); var subfolderName = ""; var k; var n;  
+	var subfolders = Array(); var subfolderName = ""; var k; var n;
 
 	if (folder.hasSubFolders){
-	
-		subfolders = carrotGetSubFolders ( folder, 
+
+		subfolders = carrotGetSubFolders ( folder,
 			gFolderFlags.MSG_FOLDER_FLAG_VIRTUAL); // only virtual
-	
+
 	    for ( k=0; k < subfolders.length; k++ ) {
-	    	
+
 			for ( n = 0; n < gAccountsContracts.length; n++ ) {
 				try {
 					subfolderName = carrotPrefs.getCharPref(
@@ -1035,14 +1035,14 @@ function accountsSfGenericsDelete ( folder, deleteFunction ) {
 				catch(ex){dump2(ex); alert("inconsistent preferences #1");  return;}
 
 				if ( subfolders[k].name == subfolderName ){
-		
+
 					dump2("deleting: " + subfolders[k].name);
-					
+
 					deleteFunction ( folder, subfolders[k] );
-				
+
 					saveVirtualFolders();
-					
-				}	
+
+				}
 			}
 		}
     }
@@ -1051,16 +1051,16 @@ function accountsSfGenericsDelete ( folder, deleteFunction ) {
 
 
 function myResponseCreate ( parentURI, folderName ) {
-	
+
 	var parentFolder = carrotMsgFolderFromUri ( parentURI );
 
-	var arrayURI = getFolderTreeURIArray ( parentFolder, 0); 
+	var arrayURI = getFolderTreeURIArray ( parentFolder, 0);
 
 	for ( var k=0; k < arrayURI.length; k++){
 		arrayURI[k] = convertToUri(arrayURI[k]);
 	}
 	var strURI = arrayURI.join("|");
-	
+
 	// new search terms
 	var obj = Components.classes["@mozilla.org/supports-array;1"]
 			.createInstance(Components.interfaces.nsISupportsArray);
@@ -1104,21 +1104,21 @@ function getFolderTreeURIArray(parentFolder, flag){
 	var URI = Array();
 
 	if (parentFolder.hasSubFolders) {
-	
-		var subfolders = carrotGetSubFolders(parentFolder, flag); 
-	
+
+		var subfolders = carrotGetSubFolders(parentFolder, flag);
+
 		for ( var k = 0; k < subfolders.length; k++ ){
 
 			URI.push(subfolders[k].URI);
-			
+
 			var subURI = getFolderTreeURIArray(subfolders[k], flag);
-			
+
 			for ( var n = 0; n < subURI.length; n++ ){
-				URI.push(subURI[n]);				
+				URI.push(subURI[n]);
 			}
 		}
 	}
-	return URI;	
+	return URI;
 }
 
 
@@ -1128,7 +1128,7 @@ function saveVirtualFolders(){
     	.getService(Components.interfaces.nsIMsgAccountManager);
 
     accountManager.saveVirtualFolders();
-	
+
 }
 
 function newSearchTermArray(){
@@ -1145,16 +1145,16 @@ function newSearchTerm(){
 
 
 function accountsSfMembersCreate ( parentFolder, domainIgnoreList ){
-	
+
 	var addressBook = collectEmailAddresses( parentFolder );
 
 	if ( ! addressBook ) { return;};
 
-	
+
 	for (var k = 0; k < addressBook.length; k++  ){
-		
+
 		var personName  = addressBook[k][0].toString();
-		var personEmail = addressBook[k][1].toString(); 
+		var personEmail = addressBook[k][1].toString();
 
 		var domain = personEmail.split(/\@/);
 		domain = domain[1];
@@ -1171,20 +1171,20 @@ function accountsSfMembersDelete( folder, deleteFunction ){
 	var subfolders = Array(); var folderName = "";
 
 	if (folder.hasSubFolders){
-	
-		subfolders = carrotGetSubFolders ( folder, 
+
+		subfolders = carrotGetSubFolders ( folder,
 			gFolderFlags.MSG_FOLDER_FLAG_VIRTUAL); // only virtual
-	
+
 	    for ( var k=0; k < subfolders.length; k++ ) {
-	
+
 			folderName = subfolders[k].name.toString();
-			
+
 			if ( folderName.match( /[\w\.\-\_]*\@[\w\.\-\_]*/ ) ){
-	
+
 		    	deleteFunction ( folder, subfolders[k] );
-	    	
+
     			saveVirtualFolders();
-		    	
+
 			}
 		}
     }
@@ -1192,9 +1192,9 @@ function accountsSfMembersDelete( folder, deleteFunction ){
 
 
 function existsInArray ( member, memberArray ) {
-	
+
 	var found = false;
-	
+
 	for ( var k = 0; k < memberArray.length; k++  ){
 		if ( member.toString().toLowerCase() == memberArray[k].toString().toLowerCase() ){
 			found = true;
@@ -1206,13 +1206,13 @@ function existsInArray ( member, memberArray ) {
 
 
 function collectEmailAddresses( folder ){
-	
+
 	var k = 0;
 	var emailAddress = ""; var displayName = "";
-	var addressTerms = new Array(); 
+	var addressTerms = new Array();
 	var addressBook = new Array();
 	var db = Object; var enumerator = Object; var header = Object;
-	var emailHash = new Object(); 
+	var emailHash = new Object();
 
 	try {
 		//	XXX has known problems if *.msf is invalid
@@ -1222,9 +1222,9 @@ function collectEmailAddresses( folder ){
 	catch (ex){
 		alert ( "error: collectEmailAddresses: \n \n" + ex + "\n\n" +
 		"do not know how to handle this yet. TB will restart."
-		 );  
-		restartApplication(); 
-		return;		
+		 );
+		restartApplication();
+		return;
 	}
 
 	while ( enumerator.hasMoreElements  ){ // iterate through all messages
@@ -1238,31 +1238,31 @@ function collectEmailAddresses( folder ){
 	}
 
 	header = null; enumerator = null; db.Close(true); db = null;
-	
+
 	// find name, email, do cleanup and remove duplicates
 	for ( k = 0; k < addressTerms.length; k++  ){
-		
+
 		if ( ! addressTerms[k].match(regexpCache.emailAddress)) {
 			// 	bad addres, skip; example: "From: Mail Delivery Subsystem <MAILER-DAEMON>"
-				dump2 ("collectEmailAddresses: bad address term: " + addressTerms[k]); 
+				dump2 ("collectEmailAddresses: bad address term: " + addressTerms[k]);
 			continue;
-		}; 
-	
+		};
+
 		emailAddress = emailFromEmailTerm ( addressTerms[k] );
 		//	dump2 ( "collectEmailAddresses: emailAddress " + emailAddress );
-		
+
 		displayName  =  nameFromEmailTerm ( addressTerms[k] );
 		//	dump2 ( "collectEmailAddresses: displayName  " + displayName );
-		
+
 		//	store pairs while removing duplicates emails
-		if (emailHash[ emailAddress ] != 1) {	
+		if (emailHash[ emailAddress ] != 1) {
 			emailHash[ emailAddress ] = 1;
 			addressBook.push( Array ( displayName, emailAddress ) );
 		};
 	};
-	
-	emailHash = null; addressTerms = null; 
-	
+
+	emailHash = null; addressTerms = null;
+
 	return addressBook;
 }
 
@@ -1271,13 +1271,13 @@ function progressMeter( dialogArguments ){
 		"carrot_garden", "chrome,modal,centerscreen",
 		dialogArguments);
 }
-	
+
 function deleteSearchFolders( folder, deleteFunction) {
 
 	var subfolders = Array(); var k = 0;
 
 	if ( folder.hasSubFolders ){
-		var subfolders = carrotGetSubFolders( folder, 
+		var subfolders = carrotGetSubFolders( folder,
 			gFolderFlags.MSG_FOLDER_FLAG_VIRTUAL); // only virtual
 
 	    for ( k=0; k < subfolders.length; k++ ) {
@@ -1303,51 +1303,51 @@ function Alert ( window, text ){
 
 	var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
 		.getService(Components.interfaces.nsIPromptService);
-	
-	promptService.alert (window, "carrot_garden", text);  
-	
+
+	promptService.alert (window, "carrot_garden", text);
+
 }
 
 function Confirm( window, text ){
 
 	var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
 		.getService(Components.interfaces.nsIPromptService);
-	
-	return promptService.confirm (window, "carrot_garden", text);  
-	
+
+	return promptService.confirm (window, "carrot_garden", text);
+
 }
 
 
 	var flagComplete = false;
-	
+
 	var zzzfolderListener = {
 	  OnItemEvent: function( folder, event) {
 	    var eventType = event.toString();
-	    
+
 	    if ( folder instanceof Components.interfaces.nsIMsgFolder ) {};
-	    
+
 	    dump2 ("folderName " + folder.Name +"\n" +
 			   "eventType  " + eventType );
-	    
+
 		if (eventType == "FolderLoaded"){
 			flagComplete = true;
 		}
-	  }   
+	  }
 	}
 
 
 function loadFolder(URI){
-	
+
 
 	var MailSession = Components.classes["@mozilla.org/messenger/services/session;1"]
 		.getService(Components.interfaces.nsIMsgMailSession);
-	
+
     var nsIFolderListener = Components.interfaces.nsIFolderListener;
 
-    var notifyFlags = nsIFolderListener.event ; 
+    var notifyFlags = nsIFolderListener.event ;
 
-	var timerID 
-	
+	var timerID
+
 	function waitLoad () {
 		if (flagComplete){
 			flagComplete = false;
@@ -1367,15 +1367,15 @@ function loadFolder(URI){
 	SelectFolder(URI);
 
 	dump2 ("### 3..");
-	
+
 	timerID = window.setTimeout( waitLoad , 1000 );
 
 	dump2 ("### 4...");
 
-	MailSession.RemoveFolderListener ( zzzfolderListener );	
+	MailSession.RemoveFolderListener ( zzzfolderListener );
 
 	dump2 ("### 5...");
-	
+
 }
 
 
@@ -1384,18 +1384,18 @@ function cmdTEST_X1 () {
 //	var folder = carrotMsgFolderFromUri("mailbox://nobody@Local%20Folders/Accounts/_TEST_");
 	var folder = carrotMsgFolderFromUri("mailbox://nobody@Local%20Folders/Accounts");
 
-	loadFolder( folder.URI ); 
+	loadFolder( folder.URI );
 
 	var subfolders = carrotGetSubFolders( folder, 0 )
 
-		
+
 	for (var k = 0; k < subfolders.length; k++  ){
-		
+
 		dump2 ( subfolders[k].name );
-		
-		loadFolder( subfolders[k].URI );		
+
+		loadFolder( subfolders[k].URI );
 	}
-	
+
 }
 
 
@@ -1404,13 +1404,13 @@ function cmdTEST_X1 () {
 
 
 function TcollectEmailAddresses( folder ){
-	
+
 	var k = 0;
 	var emailAddress = ""; var displayName = "";
-	var addressTerms = new Array(); 
+	var addressTerms = new Array();
 	var addressBook = new Array();
 	var db = Object; var enumerator = Object; var header = Object;
-	var emailHash = new Object(); 
+	var emailHash = new Object();
 
 	try {
 		//	XXX has known problems if *.msf is invalid
@@ -1420,19 +1420,19 @@ function TcollectEmailAddresses( folder ){
 	catch (ex){
 		alert ( "error: collectEmailAddresses: \n \n" + ex + "\n\n" +
 		"do not know how to handle this yet. TB will restart."
-		 );  
-		restartApplication(); 
-		return;		
+		 );
+		restartApplication();
+		return;
 	}
-	
+
 	var enumCount = 0
 
 	while ( enumerator.hasMoreElements  ){ // iterate through all messages
 
 		try { header = enumerator.getNext(); } // workaround for last step
-		catch (ex) { 
+		catch (ex) {
 			dump2("### enumerator.getNext")
-			break; 
+			break;
 		};
 
 		if ( header instanceof Components.interfaces.nsIMsgDBHdr ){ // trick to make type conversion
@@ -1441,17 +1441,17 @@ function TcollectEmailAddresses( folder ){
 	    	addressTerms.push( header.author.toString().toLowerCase() ); // note toLowerCase
 
 
-			var recipients = emailTermsFromHeader ( 
+			var recipients = emailTermsFromHeader (
 				header.recipients.toString().toLowerCase() )
-			
+
 			for ( k = 0; k < recipients.length; k++  ){
 				addressTerms.push( recipients[k] )
 			}
 
 			if ( ( header.ccList ) && ( header.ccList != "" ) ) {
-				var ccList = emailTermsFromHeader ( 
+				var ccList = emailTermsFromHeader (
 					header.ccList.toString().toLowerCase() )
-				
+
 				for ( k = 0; k < ccList.length; k++  ){
 					addressTerms.push( ccList[k] )
 				}
@@ -1465,113 +1465,113 @@ function TcollectEmailAddresses( folder ){
 	}
 	dump2("### enumCount " + enumCount)
 	dump2("### addressTerms " + addressTerms.length )
-	
+
 	header = null; enumerator = null; db.Close(true); db = null;
-	
+
 	// find name, email, do cleanup and remove duplicates
 	for ( k = 0; k < addressTerms.length; k++  ){
-		
+
 		if ( ! addressTerms[k].match(regexpCache.emailAddress)) {
 			// 	bad addres, skip; example: "From: Mail Delivery Subsystem <MAILER-DAEMON>"
-				dump2 ("collectEmailAddresses: bad address term: " + addressTerms[k]); 
+				dump2 ("collectEmailAddresses: bad address term: " + addressTerms[k]);
 			continue;
-		}; 
-	
+		};
+
 		emailAddress = emailFromEmailTerm ( addressTerms[k] );
 		//	dump2 ( "collectEmailAddresses: emailAddress " + emailAddress );
-		
+
 		displayName  =  nameFromEmailTerm ( addressTerms[k] );
 		//	dump2 ( "collectEmailAddresses: displayName  " + displayName );
-		
+
 		//	store pairs while removing duplicates emails
-		if (emailHash[ emailAddress ] != 1) {	
+		if (emailHash[ emailAddress ] != 1) {
 			emailHash[ emailAddress ] = 1;
 			addressBook.push( Array ( displayName, emailAddress ) );
 		};
 	};
-	
-	emailHash = null; addressTerms = null; 
-	
+
+	emailHash = null; addressTerms = null;
+
 	return addressBook;
 }
 
 function XXXbackupFiltersFile () {
-	
+
 	var folder = getLocalFolders()
-	var filters = folder.getFilterList(null);	
+	var filters = folder.getFilterList(null);
 	var nativeFilePath = filters.defaultFile.nativePath
 
 	var args = {
-		sourceNativeFilePath : nativeFilePath, 
-		sourceProfileFilePath: false, 
-		backupDirName: gBackupDirName, 
-		targetFileNamePrefix: "msgFilterRules", 
+		sourceNativeFilePath : nativeFilePath,
+		sourceProfileFilePath: false,
+		backupDirName: gBackupDirName,
+		targetFileNamePrefix: "msgFilterRules",
 		targetFileNameExt: "dat",
-		makePrefixSubDir: true,	
+		makePrefixSubDir: true,
 	}
 
-	backupFileByArgs ( args );	
-	
+	backupFileByArgs ( args );
+
 }
 
 
 function backupVirtualFoldersFile () {
-	
+
 	var args = {
-		sourceNativeFilePath : false, 
-		sourceProfileFilePath: "virtualFolders.dat", 
-		backupDirName: gBackupDirName, 
-		targetFileNamePrefix: "virtualFolders", 
+		sourceNativeFilePath : false,
+		sourceProfileFilePath: "virtualFolders.dat",
+		backupDirName: gBackupDirName,
+		targetFileNamePrefix: "virtualFolders",
 		targetFileNameExt: "dat",
-		makePrefixSubDir: true,	
+		makePrefixSubDir: true,
 	}
 
-	backupFileByArgs ( args );	
+	backupFileByArgs ( args );
 }
 
 function backupVirtualFoldersFile_2 () {
-	
+
 	var args = {
-		sourceNativeFilePath : false, 
-		sourceProfileFilePath: "virtualFolders.dat", 
-		backupDirName: gBackupDirName, 
-		targetFileNamePrefix: "virtualFolders", 
+		sourceNativeFilePath : false,
+		sourceProfileFilePath: "virtualFolders.dat",
+		backupDirName: gBackupDirName,
+		targetFileNamePrefix: "virtualFolders",
 		targetFileNameExt: "dat",
-		makePrefixSubDir: true,	
+		makePrefixSubDir: true,
 	}
 
-	backupFileByArgs_2 ( args );	
+	backupFileByArgs_2 ( args );
 }
 
 
 function getBackupArgsForDirectoryUri ( AbUri ) {
-	
+
     var directory = carrotGetDirectoryFromURI(AbUri);
 	var directoryProperties = directory.directoryProperties;
 	var fileName = directoryProperties.fileName;
-	
+
 	alert( fileName );
-	
+
 	var args = {
-		sourceNativeFilePath : false, 
-		sourceProfileFilePath: fileName, 
-		backupDirName: gBackupDirName, 
-		targetFileNamePrefix: fileName.replace('.mab', ''), 
+		sourceNativeFilePath : false,
+		sourceProfileFilePath: fileName,
+		backupDirName: gBackupDirName,
+		targetFileNamePrefix: fileName.replace('.mab', ''),
 		targetFileNameExt: "mab",
-		makePrefixSubDir: true,	
+		makePrefixSubDir: true,
 	}
 
-	backupFileByArgs ( args );	
+	backupFileByArgs ( args );
 }
 
 
 
 function cmdTEST () {
-	
+
 	//getBackupArgsForDirectoryUri  ( 'moz-abmdbdirectory://ab-system-test.mab' )
 
 	backupVirtualFoldersFile_2 ();
-		
+
 }
 
 function carrotGetDirectoryFromURI(uri)
@@ -1583,23 +1583,23 @@ function carrotGetDirectoryFromURI(uri)
 
 
 function addCardInfoToDirectoryUri( cardInfo, bookUri ){
-	
+
 	var contact = new carrotContact();
 	var abCard = contact.setCard( cardInfo )
 
 	var dir  = carrotGetDirectoryFromURI( bookUri )
 	var newCard = dir.addCard ( abCard )
-	
+
     var mdbCard = newCard.QueryInterface ( Components.interfaces.nsIAbMDBCard );
-		
+
 }
 
 function carrotContact() {
 
 	var fieldId;
-	
+
     var abCardInst = Components.classes["@mozilla.org/addressbook/cardproperty;1"].createInstance();
-    this.abCard = abCardInst.QueryInterface(Components.interfaces.nsIAbCard);	
+    this.abCard = abCardInst.QueryInterface(Components.interfaces.nsIAbCard);
 }
 
 carrotContact.prototype.setCard = function ( cardInfo ){
@@ -1610,7 +1610,7 @@ carrotContact.prototype.setCard = function ( cardInfo ){
             continue;
 		dump2( "setCard: " + fn + " cardInfo: " + cardInfo[fn] )
         this.abCard[this.fields[fn]] = cardInfo[fn];
-    }	
+    }
     return this.abCard;
 }
 
@@ -1624,7 +1624,7 @@ carrotContact.prototype.normalizeCard = function( card ){
 	card.secondEmail = card.secondEmail.toLowerCase();
 
 	return card;
-}	
+}
 
 
 carrotContact.prototype.mergeCards = function ( sourceCard, targetCard ){
@@ -1634,9 +1634,9 @@ carrotContact.prototype.mergeCards = function ( sourceCard, targetCard ){
     	fieldId = this.fields[fn];
 
         //dump2 ( 'fn ' + fn + ' s ' + sourceCard[fieldId] + ' t ' + targetCard[fieldId] );
-        
-        if ( 
-        	( fieldId == 'notes' )  && 
+
+        if (
+        	( fieldId == 'notes' )  &&
         	( targetCard[fieldId].toString != '' )  &&
         	( sourceCard[fieldId] )
         	) {
@@ -1644,8 +1644,8 @@ carrotContact.prototype.mergeCards = function ( sourceCard, targetCard ){
         }
         if (
         	( fieldId == '*IGNORE*') ||
-        	( sourceCard[fieldId] == undefined ) || 
-        	( sourceCard[fieldId] == '' ) || 
+        	( sourceCard[fieldId] == undefined ) ||
+        	( sourceCard[fieldId] == '' ) ||
         	( targetCard[fieldId] != '' )
         	) {
         	continue;
@@ -1653,11 +1653,11 @@ carrotContact.prototype.mergeCards = function ( sourceCard, targetCard ){
 	        targetCard[fieldId] = sourceCard[fieldId];
 			dump2( "mergeCards: " + fn + ": " + targetCard[fieldId] )
         }
-    }	
+    }
 }
 
 carrotContact.prototype.fields = {
-	
+
     PersonalIM            : 'aimScreenName',
 	AssistantName         : '*IGNORE*',
 	AssistantPhone        : '*IGNORE*',
@@ -1668,7 +1668,7 @@ carrotContact.prototype.fields = {
 	PersonalEmail3        : '*IGNORE*',
 	PersonalWebPage       : 'webPage2',
 	PersonalMobilePhone   : 'cellularNumber',
-	
+
 	HomeAddress           : 'homeAddress',
 	HomeAddress2          : 'homeAddress2',
 	HomeCity              : 'homeCity',
@@ -1678,7 +1678,7 @@ carrotContact.prototype.fields = {
 	HomeFax               : '*IGNORE*',
 	HomePhone             : 'homePhone',
 	HomePhone2            : '*IGNORE*',
-	
+
 	DisplayName           : 'displayName',
 	FirstName             : 'firstName',
 	LastName              : 'lastName',
@@ -1687,7 +1687,7 @@ carrotContact.prototype.fields = {
 	NameSuffix            : '*IGNORE*',
 	NameTitle             : '*IGNORE*',
 	NickName              : 'nickName',
-	
+
 	Notes                 : 'notes',
 	OtherAddress          : '*IGNORE*',
 	OtherAddress2         : '*IGNORE*',
@@ -1698,7 +1698,7 @@ carrotContact.prototype.fields = {
 	OtherFax              : '*IGNORE*',
 	OtherPhone            : '*IGNORE*',
 	SpouseName            : 'spouseName',
-	
+
 	WorkPhone             : 'workPhone',
 	WorkPhone2            : '*IGNORE*',
 	BusinessMobilePhone   : '*IGNORE*',
@@ -1719,4 +1719,4 @@ carrotContact.prototype.fields = {
 	WorkState             : 'workState',
 	WorkZipCode           : 'workZipCode',
 }
-    
+

@@ -4,9 +4,16 @@
 
 	<Description about="urn:mozilla:install-manifest">
 
-		<em:id>${mozillaId}</em:id>
-		<em:version>${mozillaVersion}</em:version>
+		<em:id>${thisId}</em:id>
+		<em:version>${thisVersion}</em:version>
 
+		<em:name>${project.name}</em:name>
+		<em:description>${project.description}</em:description>
+
+		<em:iconURL>chrome://${thisPath}/skin/main-icon.png</em:iconURL>
+		<em:optionsURL>chrome://${thisPath}/content/options/options.xul</em:optionsURL>
+
+		<!-- thunderbird -->
 		<em:targetApplication>
 			<Description>
 				<em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
@@ -14,21 +21,6 @@
 				<em:maxVersion>6.*</em:maxVersion>
 			</Description>
 		</em:targetApplication>
-
-		<em:name>${project.name}</em:name>
-		<em:description>${project.description}</em:description>
-
-		<em:creator></em:creator>
-		<em:developer></em:developer>
-		<em:translator></em:translator>
-		<em:contributor></em:contributor>
-
-		<em:homepageURL>http://www.carrotgarden.com/${mozillaPath}/</em:homepageURL>
-		<em:updateURL>http://www.carrotgarden.com/${mozillaPath}/update.rdf</em:updateURL>
-
-		<em:iconURL>chrome://${mozillaPath}/skin/carrot-garden-icon.png</em:iconURL>
-		<em:aboutURL>chrome://${mozillaPath}/content/about.xul</em:aboutURL>
-		<em:optionsURL>chrome://${mozillaPath}/content/options.xul</em:optionsURL>
 
 	</Description>
 

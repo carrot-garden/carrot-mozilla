@@ -1,0 +1,27 @@
+<?xml version="1.0"?> 
+
+
+<?xml-stylesheet href="chrome://messenger/skin/smime/msgReadSMIMEOverlay.css" type="text/css"?> 
+
+<!DOCTYPE overlay SYSTEM "chrome://messenger-smime/locale/msgReadSMIMEOverlay.dtd">
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <script type="application/javascript" src="chrome://messenger-smime/content/msgReadSMIMEOverlay.js"/>
+
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="bundle_read_smime" src="chrome://messenger-smime/locale/msgReadSMIMEOverlay.properties"/>
+    <stringbundle id="bundle_brand" src="chrome://branding/locale/brand.properties"/>
+  </stringbundleset>
+
+  <commandset id="mailViewMenuItems">
+    <command id="cmd_viewSecurityStatus" oncommand="showMessageReadSecurityInfo();" disabled="true"/>
+  </commandset>
+
+  <menupopup id="menu_View_Popup">
+    <menuitem id="menu_securityStatus" insertafter="pageSourceMenuItem"
+              label="&menu_securityStatus.label;" accesskey="&menu_securityStatus.accesskey;"
+              observes="cmd_viewSecurityStatus"/>
+  </menupopup>
+
+</overlay>

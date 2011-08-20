@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/"?>
+<!DOCTYPE prefwindow [
+<!ENTITY % brandDTD SYSTEM "chrome://branding/locale/brand.dtd">
+%brandDTD;
+<!ENTITY % sendOptionsDTD SYSTEM "chrome://messenger/locale/preferences/attachmentReminder.dtd">
+%sendOptionsDTD;
+]>
+
+<prefwindow id="attachmentReminderOptionsDialog" type="child"
+            xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+            dlgbuttons="accept,cancel"
+            title="&attachmentReminderDialog.title;"
+            ondialogaccept="gAttachmentReminderOptionsDialog.saveKeywords();"
+            style="width:38em;">
+
+  <prefpane id="attachmentReminderOptionsDialogPane"
+            onpaneload="gAttachmentReminderOptionsDialog.init();">
+
+    <script type="application/javascript" src="chrome://messenger/content/preferences/attachmentReminder.js"/>
+    <stringbundle id="bundlePreferences" src="chrome://messenger/locale/preferences/preferences.properties"/>
+
+    <groupbox>
+      <label control="keywordList">&attachKeywordText.label;</label>
+      <hbox>
+        <listbox id="keywordList" flex="1" rows="5"
+                 ondblclick="gAttachmentReminderOptionsDialog.editKeyword();"/>
+        <vbox>
+          <button label="&addKeywordButton.label;" accesskey="&addKeywordButton.accesskey;"
+                  oncommand="gAttachmentReminderOptionsDialog.addKeyword();"/>
+          <button label="&editKeywordButton.label;" accesskey="&editKeywordButton.accesskey;"
+                  oncommand="gAttachmentReminderOptionsDialog.editKeyword();"/>
+          <button label="&removeKeywordButton.label;" accesskey="&removeKeywordButton.accesskey;"
+                  oncommand="gAttachmentReminderOptionsDialog.removeKeyword();"/>
+        </vbox>
+      </hbox>
+    </groupbox>
+  </prefpane>
+</prefwindow>
