@@ -7,5 +7,7 @@
 <overlay id="${thisPath}.messenger"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
+	<script type="application/x-javascript" src="chrome://${thisPath}/content/main.js"/>
+
 </overlay>
 

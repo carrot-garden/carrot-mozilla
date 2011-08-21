@@ -14,4 +14,6 @@
 content	${thisPath}	content/
 skin	${thisPath}	default		skin/
 
+resource modules modules/
+
 overlay	chrome://messenger/content/messenger.xul	chrome://${thisPath}/content/overlay/messenger.xul
