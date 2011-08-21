@@ -1,10 +1,23 @@
 Components.utils.reportError("messenger");
 
-let modules = {};
+let gre = {};
+Components.utils.import("resource://gre/modules/Services.jsm", gre);
 
-Components.utils.import("resource://${thisPath}/modules/dependencies.js", modules);
-Components.utils.import("resource://${thisPath}/modules/services.js", modules);
+let ext = {};
+Components.utils.import("resource://${thisHost}/modules/dependencies.js", ext);
+Components.utils.import("resource://${thisHost}/modules/services.js", ext);
 
-modules.dependencies.hello(this);
-modules.services.hello(this);
+//ext.dependencies.hello(this);
 
+let root = this;
+
+let startup = {
+		observe : function(subject, topic, data) {
+			function checkLib() {
+				ext.dependencies.checkJsLib(root);
+			};
+			window.setTimeout(checkLib, 100);
+		}
+};
+
+gre.Services.obs.addObserver(startup, "mail-startup-done", false);

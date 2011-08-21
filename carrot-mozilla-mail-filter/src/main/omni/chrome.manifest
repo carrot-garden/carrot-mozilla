@@ -11,9 +11,9 @@
 # ${parsedVersion.buildNumber}
 # ${parsedVersion.osgiVersion}
 
-resource   ${thisPath}   content/
-content    ${thisPath}   content/
-skin       ${thisPath}   default     skin/
+resource   ${thisHost}   content/
+content    ${thisHost}   content/
+skin       ${thisHost}   default     skin/
 
 
-overlay	chrome://messenger/content/messenger.xul	chrome://${thisPath}/content/messenger/messenger.xul
+overlay	chrome://messenger/content/messenger.xul	chrome://${thisHost}/content/messenger/messenger.xul

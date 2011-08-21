@@ -6,10 +6,10 @@
 <dialog xmlns:html="http://www.w3.org/1999/xhtml"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
         buttons="accept"
-        title="ABOUT ${thisPath}"
+        title="ABOUT ${thisHost}"
         style="width: 499px; height: 480px;">
 
-    <html:iframe style="border: 0px;" src="chrome://${thisPath}/content/about/about.xhtml" flex="1"/>
+    <html:iframe style="border: 0px;" src="chrome://${thisHost}/content/about/about.xhtml" flex="1"/>
 
     <separator class="groove" id="groove"/>
 

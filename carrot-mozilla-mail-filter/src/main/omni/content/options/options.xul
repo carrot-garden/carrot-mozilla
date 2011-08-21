@@ -3,14 +3,14 @@
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://mozapps/content/preferences/preferences.css" type="text/css"?>
 
-<prefwindow id="${thisPath}.prefwindow"
+<prefwindow id="${thisHost}.prefwindow"
             xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
             title="prefwindow">
 
-  <prefpane id="${thisPath}.prefpane" label="pane">
+  <prefpane id="${thisHost}.prefpane" label="pane">
 
     <preferences>
-      <preference id="startup" instantApply="true" name="extensions.${thisPath}.startup" type="file"/>
+      <preference id="startup" instantApply="true" name="extensions.${thisHost}.startup" type="file"/>
     </preferences>
 
     <grid>

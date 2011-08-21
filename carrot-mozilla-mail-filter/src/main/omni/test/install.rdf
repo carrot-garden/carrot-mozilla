@@ -18,12 +18,12 @@
 		<em:name>${project.name}</em:name>
 		<em:description>${project.description}</em:description>
 
-		<em:homepageURL>http://www.carrotgarden.com/${thisPath}/</em:homepageURL>
-		<em:updateURL>http://www.carrotgarden.com/${thisPath}/update.rdf</em:updateURL>
+		<em:homepageURL>http://www.carrotgarden.com/${thisHost}/</em:homepageURL>
+		<em:updateURL>http://www.carrotgarden.com/${thisHost}/update.rdf</em:updateURL>
 
-		<em:iconURL>chrome://${thisPath}/skin/main-icon.png</em:iconURL>
-		<em:aboutURL>chrome://${thisPath}/content/about/about.xul</em:aboutURL>
-		<em:optionsURL>chrome://${thisPath}/content/options/options.xul</em:optionsURL>
+		<em:iconURL>chrome://${thisHost}/skin/main-icon.png</em:iconURL>
+		<em:aboutURL>chrome://${thisHost}/content/about/about.xul</em:aboutURL>
+		<em:optionsURL>chrome://${thisHost}/content/options/options.xul</em:optionsURL>
 
 	</Description>
 
