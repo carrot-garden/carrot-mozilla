@@ -2,12 +2,12 @@
 
 <?xml-stylesheet href="chrome://${thisPath}/skin/button/main.css" type="text/css"?>
 
-<?xul-overlay href="chrome://${thisPath}/content/overlay/messengerMenu.xul"?>
+<?xul-overlay href="chrome://${thisPath}/content/messenger/messengerMenu.xul"?>
 
 <overlay id="${thisPath}.messenger"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-	<script type="application/x-javascript" src="chrome://${thisPath}/content/main.js"/>
+	<script type="application/x-javascript" src="chrome://${thisPath}/content/messenger/messenger.js"/>
 
 </overlay>
 
