@@ -17,6 +17,8 @@
 	<properties>
 		<thisId>${project.artifactId}@carrotgarden.com</thisId>
 		<thisPath>${project.groupId}.${project.artifactId}</thisPath>
+		<thisName>${project.name}</thisName>
+		<thisDescription>${project.description}</thisDescription>
 		<thisVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}.${versionTimestamp}</thisVersion>
 	</properties>
 

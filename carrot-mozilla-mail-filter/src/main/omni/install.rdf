@@ -7,8 +7,8 @@
 		<em:id>${thisId}</em:id>
 		<em:version>${thisVersion}</em:version>
 
-		<em:name>${project.name}</em:name>
-		<em:description>${project.description}</em:description>
+		<em:name>${thisName}</em:name>
+		<em:description>${thisDescription}</em:description>
 
 		<em:iconURL>chrome://${thisPath}/skin/main-icon.png</em:iconURL>
 		<em:optionsURL>chrome://${thisPath}/content/options/options.xul</em:optionsURL>
