@@ -16,7 +16,7 @@
 
 	<properties>
 		<thisId>${project.artifactId}@carrotgarden.com</thisId>
-		<thisPath>${project.artifactId}</thisPath>
+		<thisPath>${project.groupId}.${project.artifactId}</thisPath>
 		<thisVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}.${versionTimestamp}</thisVersion>
 	</properties>
 
