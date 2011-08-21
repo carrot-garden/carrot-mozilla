@@ -1,12 +1,11 @@
 Components.utils.reportError("services");
 
-var EXPORTED_SYMBOLS = [ "services" ];
+let EXPORTED_SYMBOLS = [ "services" ];
 
-var services = {};
+let services = {};
 
 services.hello = function (root) {
 
 	root.window.alert("hello services");
 
 };
-
