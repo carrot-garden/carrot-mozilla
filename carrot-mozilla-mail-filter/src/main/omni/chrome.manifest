@@ -1,19 +1,13 @@
 #
-# ${project.groupId}
-# ${project.artifactId}
-# ${project.version}
-#
-
-# ${parsedVersion.majorVersion}
-# ${parsedVersion.minorVersion}
-# ${parsedVersion.incrementalVersion}
-# ${parsedVersion.qualifier}
-# ${parsedVersion.buildNumber}
-# ${parsedVersion.osgiVersion}
-
 resource   ${thisHost}   content/
 content    ${thisHost}   content/
 skin       ${thisHost}   default     skin/
 
-
+#
 overlay	chrome://messenger/content/messenger.xul	chrome://${thisHost}/content/messenger/messenger.xul
+
+# about page
+component {C5FEF7EA-CC4A-11E0-8538-03004924019B} components/about.js
+contract @mozilla.org/network/protocol/about;1?what=${thisHost} {C5FEF7EA-CC4A-11E0-8538-03004924019B}
+category profile-after-change about @mozilla.org/network/protocol/about;1?what=${thisHost}
+

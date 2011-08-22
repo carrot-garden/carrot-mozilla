@@ -17,6 +17,8 @@ dependencies.checkOK = function() {
 
 dependencies.checkJsLib = function(root) {
 
+	return;
+
 	const url = "https://www.mozdevgroup.com/dropbox/jslib/jslib_current.xpi";
 
 	const msg = "${thisName} requires jsLib. \n"

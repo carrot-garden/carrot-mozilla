@@ -1,0 +1,12 @@
+#
+# groupId = ${project.groupId}
+# artifactId = ${project.artifactId}
+# version = ${project.version}
+#
+
+# majorVersion = ${parsedVersion.majorVersion}
+# minorVersion = ${parsedVersion.minorVersion}
+# incrementalVersion = ${parsedVersion.incrementalVersion}
+# qualifier = ${parsedVersion.qualifier}
+# buildNumber = ${parsedVersion.buildNumber}
+# osgiVersion = ${parsedVersion.osgiVersion}
