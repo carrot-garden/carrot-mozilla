@@ -5,6 +5,11 @@ skin       ${thisHost}   default     skin/
 
 #
 overlay	chrome://messenger/content/messenger.xul	chrome://${thisHost}/content/messenger/messenger.xul
+#
+overlay	chrome://editor/content/EdSpellCheck.xul chrome://${thisHost}/content/editor/EdSpellCheck.xul
+#
+overlay chrome://global/content/viewSource.xul	chrome://${thisHost}/content/global/viewSource.xul
+
 
 # about page
 component {C5FEF7EA-CC4A-11E0-8538-03004924019B} components/about.js

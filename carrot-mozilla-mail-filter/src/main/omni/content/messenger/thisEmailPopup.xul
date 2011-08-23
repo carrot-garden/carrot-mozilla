@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://${thisHost}/skin/button/button.css" type="text/css"?>
+
+<overlay id="${thisHost}.thisEmailPopup"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+
+	<menupopup id="emailAddressPopup">
+
+		<menu id="${thisHost}.emailAddressPopup.menu" class="main-icon menu-iconic menuitem-iconic"
+			label="Carrot" accesskey="A" position="1">
+
+			<menupopup id="${thisHost}.emailAddressPopup.menupopup">
+
+				<menuitem id="${thisHost}.emailAddressPopup.copy-name" label="Copy Name"
+					accesskey="" oncommand="carrotMail.copyPopup('name');" />
+
+				<menuitem id="${thisHost}.emailAddressPopup.copy-email" label="Copy Email"
+					accesskey="" oncommand="carrotMail.copyPopup('email');" />
+
+				<menuitem id="${thisHost}.emailAddressPopup.copy-name-and-email"
+					label="Copy Name and Email" accesskey=""
+					oncommand="carrotMail.copyPopup('all');" />
+
+				<menuseparator />
+
+				<menuitem id="${thisHost}.emailAddressPopup.open-website"
+					label="Open Web Site" accesskey=""
+					oncommand="carrotMail.openWebSiteFromEmail();" />
+
+				<menuseparator />
+
+				<menuitem id="${thisHost}.emailAddressPopup.new-account"
+					label="Add Account Folder" accesskey="A"
+					oncommand="carrotMail.makeCustomerFolder();" />
+
+				<menuitem id="${thisHost}.emailAddressPopup.account-member"
+					label="Add Account Member SF" accesskey="M" oncommand="cmdNewAccountMember();" />
+
+				<menuseparator />
+
+				<menuitem id="${thisHost}.emailAddressPopup.manager" label="Add Manager"
+					accesskey="" oncommand="carrotMail.makeManagerFolder();" />
+
+				<menuseparator />
+
+				<menuitem id="${thisHost}.emailAddressPopup.list-news-events"
+					label="Add Mail List" accesskey=""
+					oncommand="carrotMail.makeEventsNewsFolder();" />
+
+				<menuseparator />
+
+				<menuitem id="${thisHost}.emailAddressPopup.vendor" label="Add Vendor"
+					accesskey="" oncommand="carrotMail.makeVendorFolder();" />
+
+				<menuseparator />
+
+				<menuitem id="${thisHost}.emailAddressPopup.vendor" label="Add Employer"
+					accesskey="" oncommand="carrotMail.makeEmployerFolder();" />
+
+				<menuseparator />
+
+				<menuitem id="${thisHost}.emailAddressPopup.test" label="TEST"
+					accesskey="" oncommand="carrotMail.testEmailPopup();" />
+
+			</menupopup>
+
+		</menu>
+
+		<menuseparator position="2" />
+
+	</menupopup>
+
+</overlay>
+

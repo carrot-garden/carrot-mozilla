@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<overlay id="${thisHost}.viewSource.xul"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<script type="application/x-javascript" src="chrome://${thisHost}/content/global/viewSource.js" />
+
+	<keyset id="viewSourceKeys">
+
+		<key id="${thisHost}.key.close.window" keycode="VK_ESCAPE"
+			oncommand="window.close();" />
+
+	</keyset>
+
+</overlay>
+

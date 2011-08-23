@@ -1,5 +1,7 @@
-const Cc = Components.classes;
-const Ci = Components.interfaces;
+const
+Cc = Components.classes;
+const
+Ci = Components.interfaces;
 
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
@@ -8,33 +10,42 @@ function about() {
 
 about.prototype = {
 
-    classDescription: "about:${thisHost}",
+    classDescription : "about:${thisHost}",
 
-    contractID: "@mozilla.org/network/protocol/about;1?what=${thisHost}",
+    contractID : "@mozilla.org/network/protocol/about;1?what=${thisHost}",
 
-    classID: Components.ID("{C5FEF7EA-CC4A-11E0-8538-03004924019B}"),
+    classID : Components.ID("{C5FEF7EA-CC4A-11E0-8538-03004924019B}"),
 
-    QueryInterface: XPCOMUtils.generateQI([Ci.nsIAboutModule]),
+    QueryInterface : XPCOMUtils
+            .generateQI([ Ci.nsIAboutModule, Ci.nsIObserver ]),
 
-    getURIFlags: function(aURI) {
-        return Ci.nsIAboutModule.ALLOW_SCRIPT;
+    observe : function() {
+
+	    Components.utils.reportError("observe: about");
+
     },
 
-    newChannel: function(aURI) {
+    getURIFlags : function(aURI) {
+	    return Ci.nsIAboutModule.ALLOW_SCRIPT;
+    },
 
-        let ios = Cc["@mozilla.org/network/io-service;1"].getService(Ci.nsIIOService);
+    newChannel : function(aURI) {
 
-        let channel = ios.newChannel("chrome://${thisHost}/content/about/about.xhtml",
-                                     null, null);
-        channel.originalURI = aURI;
+	    let
+	    ios = Cc["@mozilla.org/network/io-service;1"]
+	            .getService(Ci.nsIIOService);
 
-        return channel;
+	    let
+	    channel = ios.newChannel(
+	            "chrome://${thisHost}/content/about/about.xhtml", null, null);
+	    channel.originalURI = aURI;
+
+	    return channel;
 
     }
 
 };
 
-
-var components = [about];
+var components = [ about ];
 
 var NSGetFactory = XPCOMUtils.generateNSGetFactory(components);
