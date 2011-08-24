@@ -4,8 +4,8 @@ var EXPORTED_SYMBOLS = [ "dependencies" ];
 
 var dependencies = {};
 
-dependencies.hello = function (root) {
-			root.window.alert("hello dependencies");
+dependencies.hello = function (window) {
+			window.alert("hello dependencies");
 };
 
 dependencies.checkOK = function() {
@@ -15,7 +15,7 @@ dependencies.checkOK = function() {
 	return true;
 }
 
-dependencies.checkJsLib = function(root) {
+dependencies.checkJsLib = function(window) {
 
 	return;
 
@@ -33,12 +33,12 @@ dependencies.checkJsLib = function(root) {
 
 		Components.utils.reportError("jslib is missing");
 
-		if (root.window.confirm(msg)) {
+		if (window.confirm(msg)) {
 
-			root.openAddonsMgr();
+			window.openAddonsMgr();
 
 			try {
-				 root._content.location = url;
+				window.content.location = url;
 			} catch (e) {
 				Components.utils.reportError(e);
 			};

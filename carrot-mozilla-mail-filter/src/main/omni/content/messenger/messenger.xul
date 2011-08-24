@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 
-<?xml-stylesheet href="chrome://${thisHost}/skin/button/main.css" type="text/css"?>
+<?xml-stylesheet href="chrome://${package}/skin/button/main.css" type="text/css"?>
 
-<?xul-overlay href="chrome://${thisHost}/content/messenger/messengerMenu.xul"?>
-<?xul-overlay href="chrome://${thisHost}/content/messenger/messengerEmailPopup.xul"?>
+<?xul-overlay href="chrome://${package}/content/messenger/messengerMenu.xul"?>
+<?xul-overlay href="chrome://${package}/content/messenger/messengerEmailPopup.xul"?>
 
-<overlay id="${thisHost}.messenger"
+<overlay id="${package}.messenger"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-	<script type="application/x-javascript" src="chrome://${thisHost}/content/messenger/messenger.js"/>
+	<script type="application/x-javascript" src="chrome://${package}/content/messenger/messenger.js"/>
 
 </overlay>
 

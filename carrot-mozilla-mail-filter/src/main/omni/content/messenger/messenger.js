@@ -1,32 +1,26 @@
+"use strict";
+
 Components.utils.reportError("messenger");
 
 try {
 
 	let
-	load = Components.utils.import;
-
-	let
 	gre = {};
-	load("resource://gre/modules/Services.jsm", gre);
+	Components.utils.import("resource://gre/modules/Services.jsm", gre);
 
 	let
 	ext = {};
-	load("resource://${thisHost}/modules/dependencies.js", ext);
-	load("resource://${thisHost}/modules/services.js", ext);
-	load("resource://${thisHost}/modules/mail.js", ext);
-
-	this["${thisPath}"] = ext;
-
-	let
-	root = this;
+	window["${package}"] = ext;
+	Components.utils.import("resource://${package}/modules/dependencies.js", ext);
+	Components.utils.import("resource://${package}/modules/services.js", ext);
+	Components.utils.import("resource://${package}/modules/mail.js", ext);
 
 	let
 	initMail = {
 		observe : function(subject, topic, data) {
 			function checkLib() {
-				ext.dependencies.checkJsLib(root);
+				ext.dependencies.checkJsLib(window);
 			}
-			;
 			window.setTimeout(checkLib, 100);
 		}
 	};
@@ -36,7 +30,7 @@ try {
 	let
 	initWindow = function() {
 		let
-		menu = document.getElementById("${thisHost}.menu");
+		menu = document.getElementById("${package}.menu");
 		menu.disabled = false;
 	};
 

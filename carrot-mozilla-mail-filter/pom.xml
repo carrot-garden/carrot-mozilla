@@ -16,7 +16,7 @@
 
 	<properties>
 		<thisId>${project.artifactId}@carrotgarden.com</thisId>
-		<thisHost>${project.groupId}.${project.artifactId}</thisHost>
+		<package>${project.groupId}.${project.artifactId}</package>
 		<thisName>${project.name}</thisName>
 		<thisDescription>${project.description}</thisDescription>
 		<thisVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}.${versionTimestamp}</thisVersion>

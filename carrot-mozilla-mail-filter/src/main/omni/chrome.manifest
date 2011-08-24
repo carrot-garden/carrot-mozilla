@@ -1,18 +1,18 @@
 #
-resource   ${thisHost}   content/
-content    ${thisHost}   content/
-skin       ${thisHost}   default     skin/
+resource   ${package}   content/
+content    ${package}   content/
+skin       ${package}   default     skin/
 
 #
-overlay	chrome://messenger/content/messenger.xul	chrome://${thisHost}/content/messenger/messenger.xul
+overlay	chrome://messenger/content/messenger.xul	chrome://${package}/content/messenger/messenger.xul
 #
-overlay	chrome://editor/content/EdSpellCheck.xul chrome://${thisHost}/content/editor/EdSpellCheck.xul
+overlay	chrome://editor/content/EdSpellCheck.xul chrome://${package}/content/editor/EdSpellCheck.xul
 #
-overlay chrome://global/content/viewSource.xul	chrome://${thisHost}/content/global/viewSource.xul
+overlay chrome://global/content/viewSource.xul	chrome://${package}/content/global/viewSource.xul
 
 
 # about page
 component {C5FEF7EA-CC4A-11E0-8538-03004924019B} components/about.js
-contract @mozilla.org/network/protocol/about;1?what=${thisHost} {C5FEF7EA-CC4A-11E0-8538-03004924019B}
-category profile-after-change about @mozilla.org/network/protocol/about;1?what=${thisHost}
+contract @mozilla.org/network/protocol/about;1?what=${package} {C5FEF7EA-CC4A-11E0-8538-03004924019B}
+category profile-after-change about @mozilla.org/network/protocol/about;1?what=${package}
 

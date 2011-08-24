@@ -1,9 +1,34 @@
-Components.utils.reportError("mail");
+"use strict";
+
+Components.utils.import("resource://${package}/modules/util.js");
 
 var EXPORTED_SYMBOLS = [ "mail" ];
+var mail = this;
 
-var mail = {};
+function test(window) {
+	window.alert("test");
+	util.report();
+};
 
-mail.test = function(root) {
-	root.window.alert("test");
+function copyPopup(document,portion) {
+
+	var text = '';
+	var input = util.getPopupNodeAttribute(document, "emailAddress",
+			"displayName");
+
+	switch (portion) {
+	case 'email':
+		text = input.emailAddress;
+		break;
+	case 'name':
+		text = util.patternPersonName(input.displayName);
+		break;
+	default:
+		text = util.patternPersonName(input.displayName) + ' <'
+				+ input.emailAddress + '>';
+		break;
+	}
+
+	util.clipboardPaste(text);
+
 }

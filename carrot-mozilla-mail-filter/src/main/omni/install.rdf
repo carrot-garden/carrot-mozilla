@@ -10,8 +10,8 @@
 		<em:name>${thisName}</em:name>
 		<em:description>${thisDescription}</em:description>
 
-		<em:iconURL>chrome://${thisHost}/skin/main-icon.png</em:iconURL>
-		<em:optionsURL>chrome://${thisHost}/content/options/options.xul</em:optionsURL>
+		<em:iconURL>chrome://${package}/skin/main-icon.png</em:iconURL>
+		<em:optionsURL>chrome://${package}/content/options/options.xul</em:optionsURL>
 
 		<!-- thunderbird -->
 		<em:targetApplication>

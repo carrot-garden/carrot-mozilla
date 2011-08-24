@@ -10,9 +10,9 @@ function about() {
 
 about.prototype = {
 
-    classDescription : "about:${thisHost}",
+    classDescription : "about:${package}",
 
-    contractID : "@mozilla.org/network/protocol/about;1?what=${thisHost}",
+    contractID : "@mozilla.org/network/protocol/about;1?what=${package}",
 
     classID : Components.ID("{C5FEF7EA-CC4A-11E0-8538-03004924019B}"),
 
@@ -37,7 +37,7 @@ about.prototype = {
 
 	    let
 	    channel = ios.newChannel(
-	            "chrome://${thisHost}/content/about/about.xhtml", null, null);
+	            "chrome://${package}/content/about/about.xhtml", null, null);
 	    channel.originalURI = aURI;
 
 	    return channel;

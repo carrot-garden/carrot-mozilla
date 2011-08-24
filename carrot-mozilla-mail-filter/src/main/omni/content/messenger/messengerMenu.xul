@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 
-<overlay id="${thisHost}.messengerMenu"
+<overlay id="${package}.messengerMenu"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 	<menubar id="mail-menubar">
 
 		<toolbarseparator />
 
-		<menu id="${thisHost}.menu" class="main-icon menu-iconic menuitem-iconic"
+		<menu id="${package}.menu" class="main-icon menu-iconic menuitem-iconic"
 			disabled="true" label="Carrot" accesskey="A" insertafter="helpMenu">
 
-			<menupopup id="${thisHost}.menupopup" onpopupshowing="">
+			<menupopup id="${package}.menupopup" onpopupshowing="">
 
-				<menu label="Accounts" accesskey="A" id="${thisHost}.menu-accounts">
+				<menu label="Accounts" accesskey="A" id="${package}.menu-accounts">
 					<menupopup>
 
-						<menuitem id="${thisHost}.menuitem.accounts.response"
+						<menuitem id="${package}.menuitem.accounts.response"
 							label="Add 'My Response' SF" accesskey="1"
 							oncommand="alert('hello');" />
 
