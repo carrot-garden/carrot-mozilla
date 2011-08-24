@@ -3,7 +3,7 @@
 <?xml-stylesheet href="chrome://${thisHost}/skin/button/main.css" type="text/css"?>
 
 <?xul-overlay href="chrome://${thisHost}/content/messenger/messengerMenu.xul"?>
-<?xul-overlay href="chrome://${thisHost}/content/messenger/thisEmailPopup.xul"?>
+<?xul-overlay href="chrome://${thisHost}/content/messenger/messengerEmailPopup.xul"?>
 
 <overlay id="${thisHost}.messenger"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">

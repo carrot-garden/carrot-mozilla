@@ -1,8 +1,8 @@
 Components.utils.reportError("dependencies");
 
-let EXPORTED_SYMBOLS = [ "dependencies" ];
+var EXPORTED_SYMBOLS = [ "dependencies" ];
 
-let dependencies = {};
+var dependencies = {};
 
 dependencies.hello = function (root) {
 			root.window.alert("hello dependencies");

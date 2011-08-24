@@ -62,7 +62,7 @@
 				<menuseparator />
 
 				<menuitem id="${thisHost}.emailAddressPopup.test" label="TEST"
-					accesskey="" oncommand="carrotMail.testEmailPopup();" />
+					accesskey="" oncommand="this['${thisPath}'].mail.test(this);" />
 
 			</menupopup>
 

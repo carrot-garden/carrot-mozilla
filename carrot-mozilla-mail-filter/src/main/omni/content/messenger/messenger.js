@@ -1,31 +1,49 @@
 Components.utils.reportError("messenger");
 
-let
-gre = {};
-Components.utils.import("resource://gre/modules/Services.jsm", gre);
+try {
 
-let
-ext = {};
-Components.utils.import("resource://${thisHost}/modules/dependencies.js", ext);
-Components.utils.import("resource://${thisHost}/modules/services.js", ext);
+	let
+	load = Components.utils.import;
 
-// ext.dependencies.hello(this);
+	let
+	gre = {};
+	load("resource://gre/modules/Services.jsm", gre);
 
-let
-root = this;
+	let
+	ext = {};
+	load("resource://${thisHost}/modules/dependencies.js", ext);
+	load("resource://${thisHost}/modules/services.js", ext);
+	load("resource://${thisHost}/modules/mail.js", ext);
 
-let
-startup = {
-	observe : function(subject, topic, data) {
-		function checkLib() {
-			ext.dependencies.checkJsLib(root);
+	this["${thisPath}"] = ext;
+
+	let
+	root = this;
+
+	let
+	initMail = {
+		observe : function(subject, topic, data) {
+			function checkLib() {
+				ext.dependencies.checkJsLib(root);
+			}
+			;
+			window.setTimeout(checkLib, 100);
 		}
-		;
-		window.setTimeout(checkLib, 100);
-	}
-};
+	};
 
-gre.Services.obs.addObserver(startup, "mail-startup-done", false);
+	gre.Services.obs.addObserver(initMail, "mail-startup-done", false);
 
-let
-carrotMail = {};
+	let
+	initWindow = function() {
+		let
+		menu = document.getElementById("${thisHost}.menu");
+		menu.disabled = false;
+	};
+
+	window.addEventListener("load", initWindow, false);
+
+} catch (e) {
+
+	Components.utils.reportError(e);
+
+}
