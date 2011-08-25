@@ -50,3 +50,44 @@ function openPopupWebSiteFromEmail(window) {
 	util.openUrl(url);
 
 }
+
+function makePopupMenuitems(window) {
+
+	var document = window.document;
+
+	// var node = window.findEmailNodeFromPopupNode(document.popupNode,
+	// 'emailAddressPopup');
+
+	// var emailAddress = node.getAttribute("emailAddress");
+	// var displayName = node.getAttribute("displayName");
+
+	var XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+
+	var popupId = "${package}.emailAddressPopup.menupopup";
+
+	var menupopup = document.getElementById(popupId);
+
+	var menuitem = document.createElementNS(XUL_NS, "menuitem");
+
+	var type = "XXX";
+	menuitem.setAttribute("id", popupId + "." + type);
+	menuitem.setAttribute("label", type);
+	menuitem.setAttribute("oncommand",
+	        "window['${package}'].mail.workPopupMenuitems(window,'" + type
+	                + "');");
+
+	menupopup.appendChild(menuitem);
+
+}
+
+function workPopupMenuitems(window, type) {
+
+	window.alert("hello : " + type);
+
+}
+
+function init(window) {
+
+	makePopupMenuitems(window);
+
+}

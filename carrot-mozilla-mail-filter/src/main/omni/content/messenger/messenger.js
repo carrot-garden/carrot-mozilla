@@ -11,7 +11,8 @@ try {
 	let
 	ext = {};
 	window["${package}"] = ext;
-	Components.utils.import("resource://${package}/modules/dependencies.js", ext);
+	Components.utils.import("resource://${package}/modules/dependencies.js",
+	        ext);
 	Components.utils.import("resource://${package}/modules/services.js", ext);
 	Components.utils.import("resource://${package}/modules/mail.js", ext);
 
@@ -29,9 +30,12 @@ try {
 
 	let
 	initWindow = function() {
-		let
-		menu = document.getElementById("${package}.menu");
+
+		var menu = document.getElementById("${package}.menu");
 		menu.disabled = false;
+
+		ext.mail.init(window);
+
 	};
 
 	window.addEventListener("load", initWindow, false);

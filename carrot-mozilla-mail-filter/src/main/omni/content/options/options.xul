@@ -4,32 +4,36 @@
 <?xml-stylesheet href="chrome://mozapps/content/preferences/preferences.css" type="text/css"?>
 
 <prefwindow id="${package}.prefwindow"
-            xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-            title="prefwindow">
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	title="${package} preferences">
 
-  <prefpane id="${package}.prefpane" label="pane">
+	<prefpane id="${package}.prefpane" label="pane">
 
-    <preferences>
-      <preference id="startup" instantApply="true" name="extensions.${package}.startup" type="file"/>
-    </preferences>
+		<preferences>
 
-    <grid>
-      <columns>
-        <column/>
-        <column flex="1"/>
-        <column/>
-      </columns>
+			<preference id="filter" instantApply="true"
+				name="extensions.${package}.filter" type="string" />
 
-      <rows>
-        <row>
-          <label accesskey="A;" control="xuleditstartup" value="aaa"/>
-          <textbox id="startup" preference="startup"/>
-          <button preference="startup" label="browse;" oncommand="alert('hello')"/>
-        </row>
-      </rows>
+		</preferences>
 
-    </grid>
+		<grid>
 
-  </prefpane>
+			<columns>
+				<column />
+				<column flex="1" />
+				<column />
+			</columns>
+
+			<rows>
+				<row>
+					<label accesskey="A" value="Filter" />
+					<textbox preference="filter" multiline="true" />
+					<button preference="filter" label="save" oncommand="alert('hello')" />
+				</row>
+			</rows>
+
+		</grid>
+
+	</prefpane>
 
 </prefwindow>
