@@ -10,25 +10,43 @@ function test(window) {
 	util.report();
 };
 
-function copyPopup(document,portion) {
+function copyPopupNameAndEmail(window, portion) {
+
+	var node = window.findEmailNodeFromPopupNode(window.document.popupNode,
+	        'emailAddressPopup');
+
+	var emailAddress = node.getAttribute("emailAddress");
+	var displayName = node.getAttribute("displayName");
+
+	var personName = util.patternPersonName(displayName);
 
 	var text = '';
-	var input = util.getPopupNodeAttribute(document, "emailAddress",
-			"displayName");
 
 	switch (portion) {
 	case 'email':
-		text = input.emailAddress;
+		text = emailAddress;
 		break;
 	case 'name':
-		text = util.patternPersonName(input.displayName);
+		text = personName;
 		break;
 	default:
-		text = util.patternPersonName(input.displayName) + ' <'
-				+ input.emailAddress + '>';
+		text = personName + ' <' + emailAddress + '>';
 		break;
 	}
 
 	util.clipboardPaste(text);
+
+}
+
+function openPopupWebSiteFromEmail(window) {
+
+	var node = window.findEmailNodeFromPopupNode(window.document.popupNode,
+	        'emailAddressPopup');
+
+	var emailAddress = node.getAttribute("emailAddress");
+
+	var url = 'http://www.' + util.getDomainFromEmailAddress(emailAddress);
+
+	util.openUrl(url);
 
 }

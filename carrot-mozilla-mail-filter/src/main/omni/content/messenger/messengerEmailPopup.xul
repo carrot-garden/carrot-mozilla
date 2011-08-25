@@ -13,23 +13,23 @@
 
 			<menupopup id="${package}.emailAddressPopup.menupopup">
 
-				<menuitem id="${package}.emailAddressPopup.copy-name"
+				<menuitem id="${package}.emailAddressPopup.copy.name"
 					label="Copy Name" accesskey=""
-					oncommand="window['${package}'].mail.copyPopup(document,'name');" />
+					oncommand="window['${package}'].mail.copyPopupNameAndEmail(window,'name');" />
 
-				<menuitem id="${package}.emailAddressPopup.copy-email"
+				<menuitem id="${package}.emailAddressPopup.copy.email"
 					label="Copy Email" accesskey=""
-					oncommand="window['${package}'].mail.copyPopup(document,'email');" />
+					oncommand="window['${package}'].mail.copyPopupNameAndEmail(window,'email');" />
 
-				<menuitem id="${package}.emailAddressPopup.copy-name-and-email"
+				<menuitem id="${package}.emailAddressPopup.copy.name_and_email"
 					label="Copy Name and Email" accesskey=""
-					oncommand="window['${package}'].mail.copyPopup(document,'all');" />
+					oncommand="window['${package}'].mail.copyPopupNameAndEmail(window,'all');" />
 
 				<menuseparator />
 
 				<menuitem id="${package}.emailAddressPopup.open-website"
 					label="Open Web Site" accesskey=""
-					oncommand="carrotMail.openWebSiteFromEmail();" />
+					oncommand="window['${package}'].mail.openPopupWebSiteFromEmail(window);" />
 
 				<menuseparator />
 

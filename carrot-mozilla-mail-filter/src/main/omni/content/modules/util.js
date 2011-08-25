@@ -13,10 +13,12 @@ function report() {
 	Components.utils.reportError("report");
 }
 
-function getPopupNodeAttribute(document) {
+function getNodeAttribute(node) {
+
 	var value = new Object();
+
 	for ( var k = 1; k < arguments.length; k++) {
-		value[arguments[k]] = document.popupNode.getAttribute(arguments[k]);
+		value[arguments[k]] = node.getAttribute(arguments[k]);
 	}
 	// for( prop in document.popupNode ){
 	// log.debug( 'document.popupNode ' + prop )
@@ -54,7 +56,7 @@ function capitalLetters(sentence) {
 			firtsLetter = words[i].substring(0, 1);
 			remaningLetters = words[i].substring(1);
 			words[i] = firtsLetter.toUpperCase()
-					+ remaningLetters.toLowerCase();
+			        + remaningLetters.toLowerCase();
 		}
 	}
 
@@ -76,11 +78,34 @@ function trim(value) {
 	return trimLeft(trimRight(value));
 }
 
-function clipboardPaste(strValue) {
+function clipboardPaste(text) {
 
 	var helper = Components.classes["@mozilla.org/widget/clipboardhelper;1"]
-			.getService(Components.interfaces.nsIClipboardHelper);
+	        .getService(Components.interfaces.nsIClipboardHelper);
 
-	helper.copyString(strValue);
+	helper.copyString(text);
 
+}
+
+function openUrl(url) {
+
+	try {
+
+		var ios = Components.classes["@mozilla.org/network/io-service;1"]
+		        .getService(Components.interfaces.nsIIOService);
+
+		var uri = ios.newURI(url, null, null);
+
+		var eps = Components.classes["@mozilla.org/uriloader/external-protocol-service;1"]
+		        .getService(Components.interfaces.nsIExternalProtocolService);
+
+		eps.loadUrl(uri);
+
+	} catch (ex) {
+	}
+
+}
+
+function getDomainFromEmailAddress(emailAddress) {
+	return emailAddress.split('@')[1];
 }
