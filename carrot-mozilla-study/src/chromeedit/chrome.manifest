@@ -1,0 +1,10 @@
+overlay	chrome://browser/content/browser.xul	chrome://chromedit/content/chromeditMenuOverlay.xul
+overlay	chrome://messenger/content/mailWindowOverlay.xul	chrome://chromedit/content/chromeditTBMenuOverlay.xul
+content	chromedit	jar:chrome/chromedit.jar!/content/
+skin	chromedit	classic/1.0	jar:chrome/chromedit.jar!/skin/
+style	chrome://global/content/customizeToolbar.xul	chrome://chromedit/skin/chromedit.css
+style	chrome://browser/content/browser.xul	chrome://chromedit/skin/chromedit.css
+style	chrome://messenger/content/mailWindowOverlay.xul	chrome://chromedit/skin/chromedit.css
+locale	chromedit	en-US	jar:chrome/chromedit.jar!/locale/en-US/
+
+

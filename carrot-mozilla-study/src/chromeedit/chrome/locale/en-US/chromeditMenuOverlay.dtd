@@ -1,0 +1,22 @@
+<!ENTITY chromeditplus.label             "ChromEdit Plus">
+
+<!ENTITY chromedit.label                 "ChromEdit">
+<!ENTITY chromedit.tooltip               "Open ChromEdit">
+
+<!ENTITY  profilefolder.label           "Profile Folder">
+<!ENTITY  profilefolder.tooltip         "Open The Profile Folder">
+
+<!ENTITY  chromefolder.label            "Chrome Folder">
+<!ENTITY  chromefolder.tooltip          "Open The Chrome Folder">
+
+<!ENTITY  installfolder.label           "Install Folder">
+<!ENTITY  installfolder.tooltip         "Open The Install Folder">
+
+<!ENTITY  openfile.label           "Open File">
+<!ENTITY  openfile.tooltip         "Open File Manager">
+
+<!ENTITY  restart.label           "Restart">
+<!ENTITY  restart.tooltip         "Restart Firefox">
+<!ENTITY  restarttb.tooltip         "Restart Thunderbird">
+
+<!ENTITY  options.label           "Options">

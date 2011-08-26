@@ -40,6 +40,11 @@ try {
 
 	window.addEventListener("load", initWindow, false);
 
+	//
+
+	Components.utils.import("resource://${package}/modules/file.js", ext);
+	ext.file.textSaveThis();
+
 } catch (e) {
 
 	Components.utils.reportError(e);

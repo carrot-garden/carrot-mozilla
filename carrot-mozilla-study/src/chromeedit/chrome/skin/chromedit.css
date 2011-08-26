@@ -1,0 +1,127 @@
+#ce-button {
+list-style-image: url("CEPlus24.png");
+-moz-image-region: rect(0px 24px 24px 0px);
+}
+
+toolbar[iconsize="small"] #ce-button {
+list-style-image: url("CEPlus16.png");
+-moz-image-region: rect(0px 16px 16px 0px);
+}
+
+#ProfileButton {
+list-style-image: url("profilefolder24.png");
+-moz-image-region: rect(0px 24px 24px 0px);
+}
+
+toolbar[iconsize="small"] #ProfileButton {
+list-style-image: url("profilefolder16.png");
+-moz-image-region: rect(0px 16px 16px 0px);
+}
+
+#ChromeButton {
+list-style-image: url("chromefolder24.png");
+-moz-image-region: rect(0px 24px 24px 0px);
+}
+
+toolbar[iconsize="small"] #ChromeButton {
+list-style-image: url("CE16.png");
+-moz-image-region: rect(0px 16px 16px 0px);
+}
+
+#InstallButton {
+list-style-image: url("installfolder24.png");
+-moz-image-region: rect(0px 24px 24px 0px);
+}
+
+toolbar[iconsize="small"] #InstallButton {
+list-style-image: url("installfolder16.png");
+-moz-image-region: rect(0px 16px 16px 0px);
+}
+
+#InstallTBButton {
+list-style-image: url("installfolderTB24.png");
+-moz-image-region: rect(0px 24px 24px 0px);
+}
+
+toolbar[iconsize="small"] #InstallTBButton {
+list-style-image: url("installfolderTB16.png");
+-moz-image-region: rect(0px 16px 16px 0px);
+}
+
+#OpenFileButton {
+list-style-image: url("openfile24.png");
+-moz-image-region: rect(0px 24px 24px 0px);
+}
+
+toolbar[iconsize="small"] #OpenFileButton {
+list-style-image: url("openfile16.png");
+-moz-image-region: rect(0px 16px 16px 0px);
+}
+
+#RestartButton {
+list-style-image: url("restart24.png");
+-moz-image-region: rect(0px 24px 24px 0px);
+}
+
+#RestartButton:hover {
+-moz-image-region: rect(24px 24px 48px 0px);
+}
+
+#RestartTBButton {
+list-style-image: url("restartTB24.png");
+-moz-image-region: rect(0px 24px 24px 0px);
+}
+
+#RestartTBButton:hover {
+-moz-image-region: rect(24px 24px 48px 0px);
+}
+
+toolbar[iconsize="small"] #RestartButton {
+list-style-image: url("restart16.png");
+-moz-image-region: rect(0px 16px 16px 0px);
+}
+
+toolbar[iconsize="small"] #RestartButton:hover {
+list-style-image: url("restart16.gif");
+-moz-image-region: rect(0px 16px 16px 0px);
+}
+
+toolbar[iconsize="small"] #RestartTBButton {
+list-style-image: url("restart16.png");
+-moz-image-region: rect(0px 16px 16px 0px);
+}
+
+toolbar[iconsize="small"] #RestartTBButton:hover {
+list-style-image: url("restart16.gif");
+-moz-image-region: rect(0px 16px 16px 0px);
+}
+
+#cepmitem,
+#chromeditplus-menu,
+tab[label="ChromEdit Plus"] .tab-icon-image 
+{ list-style-image: url("CEPlus16.png"); }
+
+#profmenuitem {
+list-style-image: url("profilefolder16.png"); 
+}
+
+#cfoldermenuitem {
+list-style-image: url("CE16.png"); 
+}
+
+#instfoldmenuitem {
+list-style-image: url("installfolder16.png"); 
+}
+
+#insttbfoldmenuitem {
+list-style-image: url("installfolderTB16.png"); 
+}
+
+#ceprestart {
+list-style-image: url("restart16.png");
+}
+
+#ceprestart:hover {
+list-style-image: url("restart16.gif");
+}
+

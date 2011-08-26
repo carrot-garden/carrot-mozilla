@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://chromedit/locale/chromeditMenuOverlay.dtd">
+
+<?xml-stylesheet href="chrome://chromedit/skin/chromedit.css" type="text/css"?>
+
+<overlay id="ceTasksOverlay"
+      xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<script type="application/x-javascript" src="chrome://chromedit/content/chromedit.js" />
+<script type="application/x-javascript" src="chrome://chromedit/content/HideToolsEntry.js"/>
+
+<script type="application/x-javascript">
+<![CDATA[
+    var openCEPInATab = Components.classes["@mozilla.org/preferences-service;1"].
+                          getService(Components.interfaces.nsIPrefService).
+                          getBranch("chromedit.");
+
+    function showChromEdit() {
+      var getthetab;
+      try {
+        getthetab = openCEPInATab.getBoolPref("openintab");
+      } catch(ex) {
+        getthetab = false;
+      }
+      if(getthetab) {
+        openCEPInTab();
+      } else {
+        openCEPFloat();
+      }
+    }
+
+    function openCEPFloat() {
+        var floater = getCEPWinByType("chromedit:mainwindow");
+        if (floater) {
+        floater.focus();
+        } else {
+        window.open("chrome://chromedit/content/ChromEdit.xul","_blank","chrome,resizable,centerscreen");
+        closeCEPInTab();
+        }
+      }
+
+    function openCEPInTab() {
+  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+                     .getService(Components.interfaces.nsIWindowMediator);
+  var browserEnumerator = wm.getEnumerator("navigator:browser");
+  var url = "chrome://chromedit/content/ChromEdit.xul";
+  var found = false;
+  while (!found && browserEnumerator.hasMoreElements()) {
+    var browserWin = browserEnumerator.getNext();
+    var tabbrowser = browserWin.getBrowser();
+    var numTabs = tabbrowser.browsers.length;
+    for(var index=0; index<numTabs; index++) {
+      var currentBrowser = tabbrowser.getBrowserAtIndex(index);
+      if (url == currentBrowser.currentURI.spec) {
+        tabbrowser.selectedTab = tabbrowser.mTabs[index];
+        browserWin.focus();
+        found = true;
+        break;
+      }
+    }
+  }
+  if (!found) {
+    var recentWindow = wm.getMostRecentWindow("navigator:browser");
+    if (recentWindow) {
+      recentWindow.delayedOpenTab(url, null, null, null, null);
+      closeCEPFloat();
+    }
+    else {
+      window.open(url);
+    }
+  }
+}
+
+    function closeCEPFloat() {
+        var floater = getCEPWinByType("chromedit:mainwindow");
+        if (floater) {
+         floater.close();
+        }
+      }
+
+    function closeCEPInTab() {
+  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+                     .getService(Components.interfaces.nsIWindowMediator);
+  var browserEnumerator = wm.getEnumerator("navigator:browser");
+  var url = "chrome://chromedit/content/ChromEdit.xul";
+  var found = false;
+  while (!found && browserEnumerator.hasMoreElements()) {
+    var browserWin = browserEnumerator.getNext();
+    var tabbrowser = browserWin.getBrowser();
+    var numTabs = tabbrowser.browsers.length;
+    for(var index=0; index<numTabs; index++) {
+      var currentBrowser = tabbrowser.getBrowserAtIndex(index);
+      if (url == currentBrowser.currentURI.spec) {
+        tabbrowser.removeTab(tabbrowser.mTabs[index]);
+        found = true;
+      }
+    }
+  }
+}
+
+  var ceCommands = {
+  openChromEdit: function(e) {
+    if(e.button!=1) return;
+    openCEPInTab();
+  }
+}
+
+function getCEPWinByType(type) {
+  var windowmanager;
+  if(!windowmanager)
+  {
+    windowmanager = Components.classes['@mozilla.org/appshell/window-mediator;1'].getService();
+    windowmanager = windowmanager.QueryInterface( Components.interfaces.nsIWindowMediator);
+  }
+  return windowmanager.getMostRecentWindow(type);
+}
+]]></script>
+
+ <menupopup id="menu_ToolsPopup">
+<menu id="chromeditplus-menu" hidden="false" label="&chromeditplus.label;" insertbefore="menu_preferences" class="menu-iconic">
+<menupopup>
+<menuitem id="cepmitem" label="&chromedit.label;" oncommand="showChromEdit()" class="menuitem-iconic" />
+<menuseparator />
+<menuitem id="profmenuitem" label="&profilefolder.label;" oncommand="cepFolders.openSpecialFolder('ProfD');" class="menuitem-iconic" />
+<menuitem id="cfoldermenuitem" label="&chromefolder.label;" oncommand="cepFolders.openSpecialFolder('UChrm');" class="menuitem-iconic" />
+<menuitem id="instfoldmenuitem" label="&installfolder.label;" oncommand="cepFolders.openSpecialFolder('CurProcD');" class="menuitem-iconic" />
+<menuitem id="ceprestart" label="&restart.label;" oncommand="restartFireFox();" class="menuitem-iconic" />
+<menuseparator />
+<menuitem id="opsmenuitem" label="&options.label;" oncommand="openCEPOptions();" class="menuitem-iconic" />
+</menupopup>
+</menu>
+</menupopup>
+
+  <toolbarpalette id="BrowserToolbarPalette">
+    <toolbarbutton
+        class="toolbarbutton-1"
+        id="ce-button"
+        label="&chromedit.label;"
+        oncommand="showChromEdit();"
+        onclick="ceCommands.openChromEdit(event);"
+        tooltiptext="&chromedit.tooltip;"/>
+
+   <toolbarbutton class="Profile-button toolbarbutton-1" 
+       id="ProfileButton"
+        oncommand="cepFolders.openSpecialFolder('ProfD');"
+        label="&profilefolder.label;" 
+        tooltiptext="&profilefolder.tooltip;" />
+
+       <toolbarbutton class="Chrome-button toolbarbutton-1" 
+       id="ChromeButton"
+        oncommand="cepFolders.openSpecialFolder('UChrm');"
+        label="&chromefolder.label;" 
+        tooltiptext="&chromefolder.tooltip;" />
+
+       <toolbarbutton class="Install-button toolbarbutton-1" 
+       id="InstallButton"
+        oncommand="cepFolders.openSpecialFolder('CurProcD');"
+        label="&installfolder.label;" 
+        tooltiptext="&installfolder.tooltip;" />
+
+       <toolbarbutton class="openfile-button toolbarbutton-1"
+	 id="OpenFileButton"
+         label="&openfile.label;"
+         tooltiptext="&openfile.tooltip;"
+         oncommand="BrowserOpenFileWindow();" />
+
+        <toolbarbutton class="restart-button toolbarbutton-1"
+	 id="RestartButton"
+         label="&restart.label;"
+         tooltiptext="&restart.tooltip;"
+         oncommand="restartFireFox();" />
+  </toolbarpalette>
+
+</overlay>

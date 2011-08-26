@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://chromedit/locale/chromeditMenuOverlay.dtd">
+
+<?xml-stylesheet href="chrome://chromedit/skin/chromedit.css" type="text/css"?>
+
+<overlay id="ceTasksOverlay"
+      xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<script type="application/x-javascript" src="chrome://chromedit/content/chromedit.js" />
+<script type="application/x-javascript" src="chrome://chromedit/content/HideToolsEntry.js"/>
+
+  <script type="application/x-javascript">
+  <![CDATA[
+    function showChromEdit() {
+        var floater = getCEPWinByType("chromedit:mainwindow");
+        if (floater) {
+        floater.focus();
+        } else {
+        window.open("chrome://chromedit/content/ChromEdit.xul","_blank","chrome,resizable,centerscreen");
+        }
+      }
+
+function getCEPWinByType(type) {
+  var windowmanager;
+  if(!windowmanager)
+  {
+    windowmanager = Components.classes['@mozilla.org/appshell/window-mediator;1'].getService();
+    windowmanager = windowmanager.QueryInterface( Components.interfaces.nsIWindowMediator);
+  }
+  return windowmanager.getMostRecentWindow(type);
+}
+  ]]>
+  </script>
+
+ <menupopup id="taskPopup">
+<menu id="chromeditplus-menu" hidden="false" label="&chromeditplus.label;" insertbefore="prefSep" class="menu-iconic">
+<menupopup>
+<menuitem id="cepmitem" label="&chromedit.label;" oncommand="showChromEdit()" class="menuitem-iconic" />
+<menuseparator />
+<menuitem id="profmenuitem" label="&profilefolder.label;" oncommand="cepFolders.openSpecialFolder('ProfD');" class="menuitem-iconic" />
+<menuitem id="cfoldermenuitem" label="&chromefolder.label;" oncommand="cepFolders.openSpecialFolder('UChrm');" class="menuitem-iconic" />
+<menuitem id="insttbfoldmenuitem" label="&installfolder.label;" oncommand="cepFolders.openSpecialFolder('CurProcD');" class="menuitem-iconic" />
+<menuitem id="ceprestart" label="&restart.label;" oncommand="restartFireFox();" class="menuitem-iconic" />
+<menuseparator />
+<menuitem id="opsmenuitem" label="&options.label;" oncommand="openCEPOptions();" class="menuitem-iconic" />
+</menupopup>
+</menu>
+</menupopup>
+
+  <toolbarpalette id="MailToolbarPalette">
+    <toolbarbutton
+        class="toolbarbutton-1"
+        id="ce-button"
+        label="&chromedit.label;"
+        oncommand="showChromEdit()"
+        tooltiptext="&chromedit.tooltip;"/>
+
+   <toolbarbutton class="Profile-button toolbarbutton-1" 
+       id="ProfileButton"
+        oncommand="cepFolders.openSpecialFolder('ProfD');"
+        label="&profilefolder.label;" 
+        tooltiptext="&profilefolder.tooltip;" />
+
+       <toolbarbutton class="Chrome-button toolbarbutton-1" 
+       id="ChromeButton"
+        oncommand="cepFolders.openSpecialFolder('UChrm');"
+        label="&chromefolder.label;" 
+        tooltiptext="&chromefolder.tooltip;" />
+
+       <toolbarbutton class="Install-button toolbarbutton-1" 
+       id="InstallTBButton"
+        oncommand="cepFolders.openSpecialFolder('CurProcD');"
+        label="&installfolder.label;" 
+        tooltiptext="&installfolder.tooltip;" />
+
+        <toolbarbutton class="restart-button toolbarbutton-1"
+	 id="RestartTBButton"
+         label="&restart.label;"
+         tooltiptext="&restarttb.tooltip;"
+         oncommand="restartFireFox();" />
+  </toolbarpalette>
+
+</overlay>

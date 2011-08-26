@@ -1,0 +1,14 @@
+<!ENTITY window.title                   "ChromEdit Plus">
+
+<!ENTITY opOptions.label                "Open Options">
+
+<!-- Tab Labels -->
+<!ENTITY tab.chrome.label               "userChrome.css">
+<!ENTITY tab.content.label              "userContent.css">
+<!ENTITY tab.js.label                   "user.js">
+<!ENTITY tab.prefs.label                "prefs.js">
+
+<!ENTITY saveBtn.label                  "Save">
+<!ENTITY restart.label                  "Restart">
+<!ENTITY openintab.label                "Open In A Tab">
+

@@ -1,0 +1,23 @@
+<!ENTITY opswindow.title                   "ChromEdit Plus Options">
+
+<!ENTITY tabgen.label                      "General">
+
+<!ENTITY custnote.label                     "Customize">
+
+<!ENTITY cepinatab.label                    "Open ChromEdit In A Tab">
+
+<!ENTITY hidetools.label                    "Hide The Tools Menu Entry">
+
+<!ENTITY autosave.label                     "Auto Save The Files Content">
+
+<!ENTITY hideprefstab.label                 "Hide The prefs.js Tab (Read Only)">
+
+<!ENTITY opchrfolderBtn.label               "Open The Chrome Folder">
+
+
+<!ENTITY capstyle.label                  "Style The User Files">
+
+<!ENTITY butstyle.label                  "Set New Styles">
+
+<!ENTITY restorestyles.label                  "Restore Default Styles">
+
