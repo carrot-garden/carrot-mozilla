@@ -47,24 +47,12 @@
 
 				<menuseparator />
 
-				<menuitem id="${package}.emailAddressPopup.list-news-events"
-					label="Add Mail List" accesskey=""
-					oncommand="carrotMail.makeEventsNewsFolder();" />
-
-				<menuseparator />
-
-				<menuitem id="${package}.emailAddressPopup.vendor" label="Add Vendor"
-					accesskey="" oncommand="carrotMail.makeVendorFolder();" />
-
-				<menuseparator />
-
-				<menuitem id="${package}.emailAddressPopup.vendor" label="Add Employer"
-					accesskey="" oncommand="carrotMail.makeEmployerFolder();" />
-
 				<menuseparator />
 
 				<menuitem id="${package}.emailAddressPopup.test" label="TEST"
 					accesskey="" oncommand="window['${package}'].mail.test(window);" />
+
+				<menuseparator />
 
 			</menupopup>
 
