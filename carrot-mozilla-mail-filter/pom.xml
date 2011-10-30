@@ -83,13 +83,13 @@
 					</additionalConfig>
 				</configuration>
 				<executions>
-					<execution>
-						<id>validate</id>
-						<phase>validate</phase>
-						<goals>
-							<goal>eclipse</goal>
-						</goals>
-					</execution>
+					<!-- <execution> -->
+					<!-- <id>validate</id> -->
+					<!-- <phase>validate</phase> -->
+					<!-- <goals> -->
+					<!-- <goal>eclipse</goal> -->
+					<!-- </goals> -->
+					<!-- </execution> -->
 				</executions>
 			</plugin>
 
