@@ -1,0 +1,26 @@
+<project name="mozilla-thunderbird-restart.ant" default="restart" basedir=".">
+
+	<target name="restart">
+
+		<echo message="init" />
+
+		<exec executable="bash">
+			<arg value="-c" />
+			<arg value="echo 'hello'" />
+		</exec>
+
+		<exec executable="bash">
+			<arg value="-c" />
+			<arg value="killall thunderbird-bin" />
+		</exec>
+
+		<exec executable="bash">
+			<arg value="-c" />
+			<arg value="thunderbird &amp;" />
+		</exec>
+
+		<echo message="done" />
+
+	</target>
+
+</project>
