@@ -1,20 +1,21 @@
 "use strict";
 
-Components.utils.reportError("messenger");
-
 try {
 
 	let
+	Cu = Components.utils;
+
+	let
 	gre = {};
-	Components.utils.import("resource://gre/modules/Services.jsm", gre);
+	Cu.import("resource://gre/modules/Services.jsm", gre);
 
 	let
 	ext = {};
 	window["${package}"] = ext;
-	Components.utils.import("resource://${package}/modules/dependencies.js",
-	        ext);
-	Components.utils.import("resource://${package}/modules/services.js", ext);
-	Components.utils.import("resource://${package}/modules/mail.js", ext);
+	Cu.import("resource://${package}/modules/dependencies.js", ext);
+	Cu.import("resource://${package}/modules/services.js", ext);
+	Cu.import("resource://${package}/modules/mail.js", ext);
+	// Cu.import("resource://${package}/modules/log.js", ext);
 
 	let
 	initMail = {
@@ -42,8 +43,10 @@ try {
 
 	//
 
-	Components.utils.import("resource://${package}/modules/file.js", ext);
+	Cu.import("resource://${package}/modules/file.js", ext);
 	ext.file.textSaveThis();
+
+	// ext.log.logger("mail", "Debug").debug("hello mail logger");
 
 } catch (e) {
 

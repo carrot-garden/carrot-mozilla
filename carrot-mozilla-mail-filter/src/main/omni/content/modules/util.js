@@ -6,12 +6,17 @@ var EXPORTED_SYMBOLS = [ "util" ];
 var util = this;
 
 function test(window) {
-	window.alert("test util");
+
+	const a = 10;
+
+	window.alert("test util = " + a);
+	
+	
 }
 
-function report() {
-	Components.utils.reportError("report");
-}
+//function report() {
+//	Components.utils.reportError("report");
+//}
 
 function getNodeAttribute(node) {
 

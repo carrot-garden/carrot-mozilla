@@ -1,5 +1,12 @@
 "use strict";
 
+Components.utils.import("resource://${package}/modules/log.js");
+const
+logger = log.makeLogger("file.js", "Debug");
+logger.debug("init");
+
+//
+
 /**
  * https://developer.mozilla.org/en/Code_snippets/File_I%2F%2FO
  */

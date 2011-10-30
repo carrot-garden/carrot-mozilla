@@ -1,19 +1,34 @@
 "use strict";
 
+Components.utils.import("resource://${package}/modules/log.js");
+const
+logger = log.makeLogger("mail.js", "Debug");
+logger.debug("init");
+
+//
+
 Components.utils.import("resource://${package}/modules/util.js");
 
 var EXPORTED_SYMBOLS = [ "mail" ];
-var mail = this;
+
+const
+mail = this;
 
 function test(window) {
-	window.alert("test");
-	util.report();
+
+	const
+	a = 10;
+
+	window.alert("test mail = " + a);
+
+	logger.debug("hello logger");
+
 };
 
 function copyPopupNameAndEmail(window, portion) {
 
 	var node = window.findEmailNodeFromPopupNode(window.document.popupNode,
-	        'emailAddressPopup');
+			'emailAddressPopup');
 
 	var emailAddress = node.getAttribute("emailAddress");
 	var displayName = node.getAttribute("displayName");
@@ -41,7 +56,7 @@ function copyPopupNameAndEmail(window, portion) {
 function openPopupWebSiteFromEmail(window) {
 
 	var node = window.findEmailNodeFromPopupNode(window.document.popupNode,
-	        'emailAddressPopup');
+			'emailAddressPopup');
 
 	var emailAddress = node.getAttribute("emailAddress");
 
@@ -73,8 +88,8 @@ function makePopupMenuitems(window) {
 	menuitem.setAttribute("id", popupId + "." + type);
 	menuitem.setAttribute("label", type);
 	menuitem.setAttribute("oncommand",
-	        "window['${package}'].mail.workPopupMenuitems(window,'" + type
-	                + "');");
+			"window['${package}'].mail.workPopupMenuitems(window,'" + type
+					+ "');");
 
 	menupopup.appendChild(menuitem);
 

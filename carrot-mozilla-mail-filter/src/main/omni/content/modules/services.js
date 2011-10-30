@@ -1,11 +1,18 @@
-Components.utils.reportError("services");
+//
+
+Components.utils.import("resource://${package}/modules/log.js");
+const
+logger = log.makeLogger("services.js", "Debug");
+logger.debug("init");
+
+//
 
 let EXPORTED_SYMBOLS = [ "services" ];
 
-let services = {};
+const services = this;
 
-services.hello = function (root) {
+function hello (window) {
 
-	root.window.alert("hello services");
+	window.alert("hello services");
 
 };

@@ -1,31 +1,41 @@
-Components.utils.reportError("dependencies");
+//
+
+Components.utils.import("resource://${package}/modules/log.js");
+const
+logger = log.makeLogger("dependencies.js", "Debug");
+logger.debug("init");
+
+//
 
 var EXPORTED_SYMBOLS = [ "dependencies" ];
 
-var dependencies = {};
+const
+dependencies = this;
 
-dependencies.hello = function (window) {
-			window.alert("hello dependencies");
+function hello (window) {
+	window.alert("hello dependencies");
 };
 
-dependencies.checkOK = function() {
-	if ( typeof(jslib) != "object" ) {
+function checkOK () {
+	if (typeof (jslib) != "object") {
 		return false;
 	}
 	return true;
 }
 
-dependencies.checkJsLib = function(window) {
+function checkJsLib (window) {
 
-	return;
+	return; // XXX
 
-	const url = "https://www.mozdevgroup.com/dropbox/jslib/jslib_current.xpi";
+	const
+	url = "https://www.mozdevgroup.com/dropbox/jslib/jslib_current.xpi";
 
-	const msg = "${thisName} requires jsLib. \n"
+	const
+	msg = "${thisName} requires jsLib. \n"
 			+ "Would you like to install jsLib now? \n" + url + "\n"
 			+ " (restart required) \n";
 
-	if ( typeof(jslib) == "object" ) {
+	if (typeof (jslib) == "object") {
 
 		Components.utils.reportError("jslib is present");
 
@@ -41,7 +51,8 @@ dependencies.checkJsLib = function(window) {
 				window.content.location = url;
 			} catch (e) {
 				Components.utils.reportError(e);
-			};
+			}
+			;
 
 		} else {
 
@@ -49,7 +60,8 @@ dependencies.checkJsLib = function(window) {
 
 		// throw "Stopping any further code execution ...";
 
-	};
+	}
+	;
 
 };
 

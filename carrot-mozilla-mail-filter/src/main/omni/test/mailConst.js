@@ -1,4 +1,12 @@
-//
+/**
+ * 
+ * http://mxr.mozilla.org/mozilla/source/mailnews/public/MailNewsTypes2.idl
+ * 
+ * http://mxr.mozilla.org/mozilla/source/mailnews/base/search/public/nsMsgFilterCore.idl
+ * 
+ * http://mxr.mozilla.org/mozilla/source/mailnews/base/search/public/nsMsgSearchCore.idl 
+ */
+
 
 // nsMsgFilterType
 var MsgFilterType = {
@@ -140,4 +148,5 @@ var MsgFilterAction = {
 	'addtag' : 17,
 	'killsubthread' : 18,	
 }
+
 
