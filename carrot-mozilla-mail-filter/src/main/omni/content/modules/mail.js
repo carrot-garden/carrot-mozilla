@@ -9,6 +9,7 @@ logger.debug("init");
 
 Components.utils.import("resource://${package}/modules/util.js");
 Components.utils.import("resource://${package}/modules/mailStore.js");
+Components.utils.import("resource://${package}/modules/mailFilter.js");
 
 var EXPORTED_SYMBOLS = [ "mail" ];
 
