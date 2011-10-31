@@ -8,20 +8,31 @@ logger.debug("init");
 //
 
 Components.utils.import("resource://${package}/modules/util.js");
+Components.utils.import("resource://${package}/modules/mailStore.js");
 
 var EXPORTED_SYMBOLS = [ "mail" ];
 
 const
 mail = this;
 
+const
+XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+
 function test(window) {
 
-	const
-	a = 10;
+	logger.debug("hello mail");
 
-	window.alert("test mail = " + a);
+	var root = mailStore.getLocalRootFolder();
 
-	logger.debug("hello logger");
+	logger.debug("hello mail : " + root.containsChildNamed("Inbox"));
+
+	var folder = mailStore
+			.ensureLocalFolderPath("Inbox/Employer Folder/IBM Inc. @ibm.com");
+
+	logger.debug("hello mail folderURL : " + folder.folderURL);
+
+	window.gFolderTreeView.selectFolder(folder);
+	// window.gFolderDisplay.show(folder);
 
 };
 
@@ -80,52 +91,52 @@ TYPE = {
 	employer : 'Add Employer',
 };
 
+function makePopupMenuitems(window) {
+	for (type in TYPE) {
+		makePopupMenuitem(window, type);
+	}
+}
+
 function makePopupMenuitem(window, type) {
 
 	var document = window.document;
-	var XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
-	var popupId = "${package}.emailAddressPopup.menupopup";
-	var menupopup = document.getElementById(popupId);
 
 	var menuitem = document.createElementNS(XUL_NS, "menuitem");
 
 	menuitem.setAttribute("id", popupId + "." + type);
 	menuitem.setAttribute("label", TYPE[type]);
-	menuitem.setAttribute("oncommand",
-			"window['${package}'].mail.workPopupMenuitems(window,'" + type
-					+ "');");
+	menuitem.setAttribute("oncommand", "window['${package}'].mail."
+			+ "workPopupMenuitems(window,'" + type + "');");
 
+	var popupId = "${package}.emailAddressPopup.menupopup";
+	var menupopup = document.getElementById(popupId);
 	menupopup.appendChild(menuitem);
-	
+
 	return menuitem;
-
-}
-
-function makePopupMenuitems(window) {
-
-	for (type in TYPE) {
-		makePopupMenuitem(window, type);
-	}
 
 }
 
 function workPopupMenuitems(window, type) {
 
-	const
-	document = window.document;
+	var document = window.document;
 
 	window.alert("hello : " + type);
+
+	switch (type) {
+	case TYPE.news:
+		break;
+	case TYPE.employer:
+		break;
+	case TYPE.vendor:
+		break;
+	default:
+		break;
+	}
 
 }
 
 function init(window) {
 
 	makePopupMenuitems(window);
-
-}
-
-function makeEmployer(window) {
-
-	window.alert("hello employer ");
 
 }

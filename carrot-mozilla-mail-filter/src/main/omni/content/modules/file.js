@@ -15,8 +15,8 @@ logger.debug("init");
 Components.utils.import("resource://gre/modules/NetUtil.jsm");
 Components.utils.import("resource://gre/modules/FileUtils.jsm");
 
-var EXPORTED_SYMBOLS = [ "file" ];
-var file = this;
+const EXPORTED_SYMBOLS = [ "file" ];
+const file = this;
 
 function textLoad(file) {
 
