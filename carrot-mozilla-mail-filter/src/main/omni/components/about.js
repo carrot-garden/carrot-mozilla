@@ -23,7 +23,7 @@ about.prototype = {
 
 	contractID : "@mozilla.org/network/protocol/about;1?what=${package}",
 
-	classID : Components.ID("{C5FEF7EA-CC4A-11E0-8538-03004924019B}"),
+	classID : Components.ID("${guidAbout}"),
 
 	QueryInterface : XPCOMUtils
 			.generateQI([ Ci.nsIAboutModule, Ci.nsIObserver ]),

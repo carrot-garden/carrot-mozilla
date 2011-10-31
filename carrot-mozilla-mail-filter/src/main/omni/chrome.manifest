@@ -12,7 +12,7 @@ overlay chrome://global/content/viewSource.xul	chrome://${package}/content/globa
 
 
 # about page
-component {C5FEF7EA-CC4A-11E0-8538-03004924019B} components/about.js
-contract @mozilla.org/network/protocol/about;1?what=${package} {C5FEF7EA-CC4A-11E0-8538-03004924019B}
+component ${guidAbout} components/about.js
+contract @mozilla.org/network/protocol/about;1?what=${package} ${guidAbout}
 category profile-after-change about @mozilla.org/network/protocol/about;1?what=${package}
 

@@ -10,16 +10,26 @@
 	</parent>
 
 	<artifactId>carrot-mozilla-mail-filter</artifactId>
+	<version>1.0.2-SNAPSHOT</version>
 
 	<name>Carrot Garden Mail Filter</name>
 	<description>generate mail filters based on templates</description>
 
 	<properties>
+
+		<baseVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}</baseVersion>
+
 		<thisId>${project.artifactId}@carrotgarden.com</thisId>
 		<package>${project.groupId}.${project.artifactId}</package>
 		<thisName>${project.name}</thisName>
 		<thisDescription>${project.description}</thisDescription>
-		<thisVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}.${versionTimestamp}</thisVersion>
+		<thisVersion>${baseVersion}.${versionTimestamp}</thisVersion>
+
+		<minVersion>7.0</minVersion>
+		<maxVersion>7.*</maxVersion>
+
+		<guidAbout>{18bf4730-920a-4d88-8503-8868692f93b1}</guidAbout>
+
 	</properties>
 
 	<build>
