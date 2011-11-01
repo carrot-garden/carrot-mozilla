@@ -9,7 +9,7 @@ logger.debug("init");
 
 Components.utils.import("resource://${package}/modules/util.js");
 Components.utils.import("resource://${package}/modules/mailStore.js");
-Components.utils.import("resource://${package}/modules/mailFilter.js");
+Components.utils.import("resource://${package}/modules/mailFinder.js");
 
 var EXPORTED_SYMBOLS = [ "mail" ];
 
@@ -34,6 +34,21 @@ function test(window) {
 
 	window.gFolderTreeView.selectFolder(folder);
 	// window.gFolderDisplay.show(folder);
+
+	var json1 = {
+		key1 : "value2",
+	};
+
+	logger.debug("json1 : \n" + JSON.stringify(json1));
+
+	var json2 = JSON.parse(' { "key2" : "value2"} ');
+
+	logger.debug("json2 : \n" + JSON.stringify(json2));
+
+	//
+
+	var filter = mailFinder.makeMessageFilter(mailFinder.TEMPLATE);
+	mailFinder.saveMessageFilter(filter);
 
 };
 

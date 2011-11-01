@@ -295,6 +295,7 @@ function newSearchTerm ( termString )
 //	action="Move to folder"
 //	actionValue="mailbox://nobody@Local%20Folders/Inbox"
 //	=> (Move to folder, mailbox://nobody@Local%20Folders/Inbox)
+
 //	action="JunkScore"
 //	actionValue="100"
 //	=> (Junk Score, 100)
