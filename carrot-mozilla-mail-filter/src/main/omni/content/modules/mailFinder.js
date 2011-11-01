@@ -212,8 +212,13 @@ TEMPLATE = {
 	name : "Test Filter",
 	comment : "Test Filter Description",
 	searchTerms : [ {
-		booleanAnd : "BooleanAND", // nsMsgSearchBooleanOp
+		booleanAnd : "BooleanOR", // nsMsgSearchBooleanOp
 		attrib : "Sender", // nsMsgSearchAttrib
+		op : "Contains", // nsMsgSearchOp
+		value : "Carrot.Garden@ibm.com", // String
+	}, {
+		booleanAnd : "BooleanOR", // nsMsgSearchBooleanOp
+		attrib : "ToOrCC", // nsMsgSearchAttrib
 		op : "Contains", // nsMsgSearchOp
 		value : "Carrot.Garden@ibm.com", // String
 	} ],

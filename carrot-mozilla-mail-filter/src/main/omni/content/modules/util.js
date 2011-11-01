@@ -7,16 +7,16 @@ var util = this;
 
 function test(window) {
 
-	const a = 10;
+	const
+	a = 10;
 
 	window.alert("test util = " + a);
-	
-	
+
 }
 
-//function report() {
-//	Components.utils.reportError("report");
-//}
+// function report() {
+// Components.utils.reportError("report");
+// }
 
 function getNodeAttribute(node) {
 
@@ -61,7 +61,7 @@ function capitalLetters(sentence) {
 			firtsLetter = words[i].substring(0, 1);
 			remaningLetters = words[i].substring(1);
 			words[i] = firtsLetter.toUpperCase()
-			        + remaningLetters.toLowerCase();
+					+ remaningLetters.toLowerCase();
 		}
 	}
 
@@ -86,7 +86,7 @@ function trim(value) {
 function clipboardPaste(text) {
 
 	var helper = Components.classes["@mozilla.org/widget/clipboardhelper;1"]
-	        .getService(Components.interfaces.nsIClipboardHelper);
+			.getService(Components.interfaces.nsIClipboardHelper);
 
 	helper.copyString(text);
 
@@ -97,12 +97,12 @@ function openUrl(url) {
 	try {
 
 		var ios = Components.classes["@mozilla.org/network/io-service;1"]
-		        .getService(Components.interfaces.nsIIOService);
+				.getService(Components.interfaces.nsIIOService);
 
 		var uri = ios.newURI(url, null, null);
 
 		var eps = Components.classes["@mozilla.org/uriloader/external-protocol-service;1"]
-		        .getService(Components.interfaces.nsIExternalProtocolService);
+				.getService(Components.interfaces.nsIExternalProtocolService);
 
 		eps.loadUrl(uri);
 
@@ -113,4 +113,29 @@ function openUrl(url) {
 
 function getDomainFromEmailAddress(emailAddress) {
 	return emailAddress.split('@')[1];
+}
+
+/**
+ * @param object :
+ *            Object
+ * @param visitor :
+ *            Function(name : String, object : Object)
+ * @returns void
+ */
+function visitProperty(object, visitor) {
+
+	function apply(object, index, array) {
+		visitProperty(object, visitor);
+	}
+
+	for (name in object) {
+		const
+		property = object[name];
+		if (Array.isArray(property)) {
+			property.forEach(apply);
+		} else {
+			visitor(name, property);
+		}
+	}
+
 }

@@ -50,6 +50,14 @@ function test(window) {
 	var filter = mailFinder.makeMessageFilter(mailFinder.TEMPLATE);
 	mailFinder.saveMessageFilter(filter);
 
+	//
+
+	function visitor(name, object) {
+		logger.debug(name + " : " + object);
+	}
+
+	util.visitProperty(mailFinder.TEMPLATE, visitor);
+
 };
 
 function findEmailNode(window) {
