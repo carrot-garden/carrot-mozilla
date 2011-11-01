@@ -5,6 +5,7 @@ const
 logger = log.makeLogger("mailFinder.js", "Debug");
 logger.debug("init");
 
+Components.utils.import("resource://${package}/modules/util.js");
 Components.utils.import("resource://${package}/modules/mailStore.js");
 
 const
@@ -209,21 +210,35 @@ function saveMessageFilter(filter) {
 
 const
 TEMPLATE = {
-	name : "Test Filter",
+	name : "(TYPE) : (FOLDER)/(NAME) @(DOMAIN)",
 	comment : "Test Filter Description",
 	searchTerms : [ {
 		booleanAnd : "BooleanOR", // nsMsgSearchBooleanOp
 		attrib : "Sender", // nsMsgSearchAttrib
 		op : "Contains", // nsMsgSearchOp
-		value : "Carrot.Garden@ibm.com", // String
+		value : "(DOMAIN)", // String
 	}, {
 		booleanAnd : "BooleanOR", // nsMsgSearchBooleanOp
-		attrib : "ToOrCC", // nsMsgSearchAttrib
+		attrib : "To", // nsMsgSearchAttrib
 		op : "Contains", // nsMsgSearchOp
-		value : "Carrot.Garden@ibm.com", // String
+		value : "(DOMAIN)", // String
 	} ],
 	filterActions : [ {
 		action : "MoveToFolder", // nsMsgFilterAction
-		value : "Inbox/Employer Folder/IBM Inc. @ibm.com", // String
+		value : "(FOLDER)/(NAME) @(DOMAIN)", // String
 	} ],
 };
+
+function apply(template, parameter) {
+
+	function visitor(root, name) {
+		if (util.is('String', root[name])) {
+			for (field in parameter) {
+				root[name] = root[name].replace(field, parameter[field], "gm");
+			}
+		}
+	}
+
+	util.visitProperty(template, visitor);
+
+}

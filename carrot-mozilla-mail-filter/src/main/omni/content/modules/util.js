@@ -116,26 +116,43 @@ function getDomainFromEmailAddress(emailAddress) {
 }
 
 /**
- * @param object :
+ * @param root :
  *            Object
  * @param visitor :
- *            Function(name : String, object : Object)
+ *            Function(root: Object, name : String, value : Object)
  * @returns void
  */
-function visitProperty(object, visitor) {
+function visitProperty(root, visitor) {
 
 	function apply(object, index, array) {
 		visitProperty(object, visitor);
 	}
 
-	for (name in object) {
+	for (name in root) {
 		const
-		property = object[name];
-		if (Array.isArray(property)) {
-			property.forEach(apply);
+		value = root[name];
+		if (is("Array", value)) {
+			value.forEach(apply);
 		} else {
-			visitor(name, property);
+			visitor(root, name, value);
 		}
 	}
+
+}
+
+/**
+ * @param typeName :
+ *            String
+ * @param object :
+ *            Object
+ * 
+ * @returns boolean
+ */
+function is(typeName, object) {
+
+	const
+	klazName = Object.prototype.toString.call(object).slice(8, -1);
+
+	return object !== undefined && object !== null && klazName === typeName;
 
 }

@@ -47,16 +47,31 @@ function test(window) {
 
 	//
 
-	var filter = mailFinder.makeMessageFilter(mailFinder.TEMPLATE);
-	mailFinder.saveMessageFilter(filter);
+	var template = Object.create(mailFinder.TEMPLATE);
+
+	var parameter = {
+		"(TYPE)" : "Employer",
+		"(FOLDER)" : "Inbox/Employers",
+		"(NAME)" : "IBM Corp.",
+		"(DOMAIN)" : "ibm.com",
+	};
+
+	mailFinder.apply(template, parameter);
 
 	//
 
-	function visitor(name, object) {
-		logger.debug(name + " : " + object);
+	function visitor(root, name, value) {
+		logger.debug(name + " : " + value);
 	}
 
-	util.visitProperty(mailFinder.TEMPLATE, visitor);
+	util.visitProperty(template, visitor);
+
+	//
+
+	var filter = mailFinder.makeMessageFilter(template);
+	mailFinder.saveMessageFilter(filter);
+
+	//
 
 };
 
