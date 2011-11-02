@@ -1,8 +1,7 @@
 "use strict";
 
 Components.utils.import("resource://${package}/modules/log.js");
-const
-logger = log.makeLogger("file.js", "Debug");
+var logger = log.makeLogger("file.js", "Debug");
 logger.debug("init");
 
 //
@@ -15,16 +14,20 @@ logger.debug("init");
 Components.utils.import("resource://gre/modules/NetUtil.jsm");
 Components.utils.import("resource://gre/modules/FileUtils.jsm");
 
-const EXPORTED_SYMBOLS = [ "file" ];
-const file = this;
+var EXPORTED_SYMBOLS = [ "file" ];
+var file = this;
 
+/**
+ * @param file :
+ *            String
+ */
 function textLoad(file) {
 
 	var input = Components.classes["@mozilla.org/network/file-input-stream;1"]
-	        .createInstance(Components.interfaces.nsIFileInputStream);
+			.createInstance(Components.interfaces.nsIFileInputStream);
 
 	var convert = Components.classes["@mozilla.org/intl/converter-input-stream;1"]
-	        .createInstance(Components.interfaces.nsIconverterInputStream);
+			.createInstance(Components.interfaces.nsIconverterInputStream);
 
 	input.init(file, -1, 0, 0);
 
@@ -45,15 +48,19 @@ function textLoad(file) {
 
 }
 
+/**
+ * @param file :
+ *            String
+ */
 function textSave(file, text) {
 
 	var output = Components.classes["@mozilla.org/network/file-output-stream;1"]
-	        .createInstance(Components.interfaces.nsIFileOutputStream);
+			.createInstance(Components.interfaces.nsIFileOutputStream);
 
 	output.init(file, -1, -1, 0);
 
 	var convert = Components.classes["@mozilla.org/intl/converter-output-stream;1"]
-	        .createInstance(Components.interfaces.nsIConverterOutputStream);
+			.createInstance(Components.interfaces.nsIConverterOutputStream);
 
 	convert.init(output, "UTF-8", 0, 0);
 
@@ -63,11 +70,15 @@ function textSave(file, text) {
 
 }
 
+/**
+ * @param path :
+ *            String - path relative to profile
+ */
 function textSaveThis(path, text) {
 
-	var file = FileUtils.getFile("ProfD", [ "ZZZ", "data.txt" ]);
+	var pathArray = path.split("/");
 
-	var text = "hello";
+	var file = FileUtils.getFile("ProfD", pathArray); // nsIFile
 
 	textSave(file, text);
 

@@ -1,37 +1,28 @@
 "use strict";
 
 Components.utils.import("resource://${package}/modules/log.js");
-const
-logger = log.makeLogger("mailFinder.js", "Debug");
+var logger = log.makeLogger("mailFinder.js", "Debug");
 logger.debug("init");
 
 Components.utils.import("resource://${package}/modules/util.js");
 Components.utils.import("resource://${package}/modules/mailStore.js");
 
-const
-EXPORTED_SYMBOLS = [ "mailFinder" ];
-const
-mailFinder = this;
+var EXPORTED_SYMBOLS = [ "mailFinder" ];
+var mailFinder = this;
 
 //
 
-const
-nsMsgFilterAction = Components.interfaces.nsMsgFilterAction;
+var nsMsgFilterAction = Components.interfaces.nsMsgFilterAction;
 logger.debug("nsMsgFilterAction \n" + JSON.stringify(nsMsgFilterAction));
-const
-nsMsgSearchOp = Components.interfaces.nsMsgSearchOp;
+var nsMsgSearchOp = Components.interfaces.nsMsgSearchOp;
 logger.debug("nsMsgSearchOp \n" + JSON.stringify(nsMsgSearchOp));
-const
-nsMsgFilterType = Components.interfaces.nsMsgFilterType;
+var nsMsgFilterType = Components.interfaces.nsMsgFilterType;
 logger.debug("nsMsgFilterType \n" + JSON.stringify(nsMsgFilterType));
-const
-nsMsgSearchAttrib = Components.interfaces.nsMsgSearchAttrib;
+var nsMsgSearchAttrib = Components.interfaces.nsMsgSearchAttrib;
 logger.debug("nsMsgSearchAttrib \n" + JSON.stringify(nsMsgSearchAttrib));
-const
-nsMsgSearchBooleanOp = Components.interfaces.nsMsgSearchBooleanOp;
+var nsMsgSearchBooleanOp = Components.interfaces.nsMsgSearchBooleanOp;
 logger.debug("nsMsgSearchBooleanOp \n" + JSON.stringify(nsMsgSearchBooleanOp));
-const
-nsMsgPriority = Components.interfaces.nsMsgPriority;
+var nsMsgPriority = Components.interfaces.nsMsgPriority;
 logger.debug("nsMsgPriority \n" + JSON.stringify(nsMsgPriority));
 
 //
@@ -61,8 +52,7 @@ function makeSearchTerm(bean) {
 	 */
 	function makeSearchValue() {
 
-		const
-		value = searchTerm.value
+		var value = searchTerm.value
 				.QueryInterface(Components.interfaces.nsIMsgSearchValue);
 
 		switch (nsMsgSearchAttrib[bean.attrib]) {
@@ -82,8 +72,7 @@ function makeSearchTerm(bean) {
 
 	}
 
-	const
-	searchTerm = Components.classes["@mozilla.org/messenger/searchTerm;1"]
+	var searchTerm = Components.classes["@mozilla.org/messenger/searchTerm;1"]
 			.createInstance(Components.interfaces.nsIMsgSearchTerm);
 
 	searchTerm.booleanAnd = nsMsgSearchBooleanOp[bean.booleanAnd];
@@ -112,17 +101,14 @@ function FilterActionBean() {
  */
 function makeFilterAction(bean) {
 
-	const
-	filterService = Components.classes["@mozilla.org/messenger/services/filters;1"]
+	var filterService = Components.classes["@mozilla.org/messenger/services/filters;1"]
 			.getService(Components.interfaces.nsIMsgFilterService);
 
-	const
-	filterList = filterService.getTempFilterList(null); // nsIMsgFilterList
-	const
-	filter = filterList.createFilter(null); // nsIMsgFilter
-	const
-	action = filter.createAction(); // nsIMsgRuleAction
+	var filterList = filterService.getTempFilterList(null); // nsIMsgFilterList
+	var filter = filterList.createFilter(null); // nsIMsgFilter
+	var action = filter.createAction(); // nsIMsgRuleAction
 
+	/** set type first */
 	action.type = nsMsgFilterAction[bean.action];
 
 	switch (nsMsgFilterAction[bean.action]) { // nsMsgFilterAction
@@ -159,13 +145,13 @@ function MessageFilterBean() {
  */
 function makeMessageFilter(bean) {
 
-	const // nsIMsgFolder
+	var // nsIMsgFolder
 	folder = mailStore.getLocalRootFolder();
 
-	const // nsIMsgFilterList
+	var // nsIMsgFilterList
 	filterList = folder.getFilterList(null);
 
-	const // nsIMsgFilter
+	var // nsIMsgFilter
 	filter = filterList.createFilter(null);
 
 	filter.filterName = bean.name;
@@ -196,49 +182,14 @@ function makeMessageFilter(bean) {
  */
 function saveMessageFilter(filter) {
 
-	const // nsIMsgFolder
+	var // nsIMsgFolder
 	folder = mailStore.getLocalRootFolder();
 
-	const // nsIMsgFilterList
+	var // nsIMsgFilterList
 	filterList = folder.getFilterList(null);
 
 	filterList.insertFilterAt(0, filter);
 
 	filterList.saveToDefaultFile();
-
-}
-
-const
-TEMPLATE = {
-	name : "(TYPE) : (FOLDER)/(NAME) @(DOMAIN)",
-	comment : "Test Filter Description",
-	searchTerms : [ {
-		booleanAnd : "BooleanOR", // nsMsgSearchBooleanOp
-		attrib : "Sender", // nsMsgSearchAttrib
-		op : "Contains", // nsMsgSearchOp
-		value : "(DOMAIN)", // String
-	}, {
-		booleanAnd : "BooleanOR", // nsMsgSearchBooleanOp
-		attrib : "To", // nsMsgSearchAttrib
-		op : "Contains", // nsMsgSearchOp
-		value : "(DOMAIN)", // String
-	} ],
-	filterActions : [ {
-		action : "MoveToFolder", // nsMsgFilterAction
-		value : "(FOLDER)/(NAME) @(DOMAIN)", // String
-	} ],
-};
-
-function apply(template, parameter) {
-
-	function visitor(root, name) {
-		if (util.is('String', root[name])) {
-			for (field in parameter) {
-				root[name] = root[name].replace(field, parameter[field], "gm");
-			}
-		}
-	}
-
-	util.visitProperty(template, visitor);
 
 }

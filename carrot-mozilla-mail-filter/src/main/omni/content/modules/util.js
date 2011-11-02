@@ -1,5 +1,11 @@
 "use strict";
 
+Components.utils.import("resource://${package}/modules/log.js");
+var logger = log.makeLogger("util.js", "Debug");
+logger.debug("init");
+
+//
+
 Components.utils.import("resource://${package}/modules/regexp.js");
 
 var EXPORTED_SYMBOLS = [ "util" ];
@@ -13,10 +19,6 @@ function test(window) {
 	window.alert("test util = " + a);
 
 }
-
-// function report() {
-// Components.utils.reportError("report");
-// }
 
 function getNodeAttribute(node) {
 
@@ -111,8 +113,52 @@ function openUrl(url) {
 
 }
 
+function getCompanyFromEmailAddress(emailAddress) {
+
+	var domain = getDomainFromEmailAddress(emailAddress);
+
+	var termArray = domain.split(".");
+
+	var tld = termArray.pop();
+
+	return capitalLetters(termArray.join(" "));
+}
+
 function getDomainFromEmailAddress(emailAddress) {
-	return emailAddress.split('@')[1];
+
+	return emailAddress.split("@")[1];
+
+}
+
+function getPersonFromEmailAddress(emailAddress) {
+
+	var emailName = emailAddress.split("@")[0];
+
+	return getPersonFromEmailName(emailName);
+
+}
+
+function getPersonFromEmailName(emailName) {
+
+	var name = emailName;
+	name = name.replace(",", " ", "g");
+	name = name.replace(".", " ", "g");
+	name = name.replace("-", " ", "g");
+	name = name.replace("_", " ", "g");
+	name = name.replace('"', " ", "g");
+	name = name.replace("'", " ", "g");
+	name = name.replace("?", " ", "g");
+	name = name.replace("/", " ", "g");
+	name = name.replace("\\", " ", "g");
+	// name = name.replace(/^(the ).*/, " ", "i");
+	// name = name.replace(/^(a .)*/, " ", "i");
+	name = trim(name);
+	name = capitalLetters(name);
+
+	logger.debug("name=" + name);
+
+	return name;
+
 }
 
 /**
@@ -155,4 +201,25 @@ function is(typeName, object) {
 
 	return object !== undefined && object !== null && klazName === typeName;
 
+}
+
+/**
+ * 
+ */
+function substitute(template, parameter) {
+
+	function visitor(root, name) {
+		if (is('String', root[name])) {
+			for (field in parameter) {
+				root[name] = root[name].replace(field, parameter[field], "gm");
+			}
+		}
+	}
+
+	visitProperty(template, visitor);
+
+}
+
+function clone(object) {
+	return eval(uneval(object));
 }

@@ -1,16 +1,13 @@
 "use strict";
 
 Components.utils.import("resource://${package}/modules/log.js");
-const
-logger = log.makeLogger("mailStore.js", "Debug");
+var logger = log.makeLogger("mailStore.js", "Debug");
 logger.debug("init");
 
 //
 
-const
-EXPORTED_SYMBOLS = [ "mailStore" ];
-const
-mailStore = this;
+var EXPORTED_SYMBOLS = [ "mailStore" ];
+var mailStore = this;
 
 function existsParentFolderChildName(parentFolder, folderName) {
 	return parentFolder.containsChildNamed(folderName);
@@ -65,7 +62,8 @@ function ensureFolderPath(rootFolder, folderPath) {
 		var array = folderPath.split("/");
 		var folderName = array.shift();
 		ensureFolder(rootFolder, folderName);
-		return ensureFolderPath(rootFolder.getChildNamed(folderName), array.join("/"));
+		return ensureFolderPath(rootFolder.getChildNamed(folderName), array
+				.join("/"));
 	} else {
 		return ensureFolder(rootFolder, folderPath);
 	}

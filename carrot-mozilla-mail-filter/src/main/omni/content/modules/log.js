@@ -4,8 +4,7 @@ Components.utils.import("resource://${package}/modules/log4moz.js");
 
 var EXPORTED_SYMBOLS = [ "log" ];
 
-const
-log = this;
+var log = this;
 
 function logger(level) {
 

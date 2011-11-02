@@ -3,6 +3,8 @@
 var EXPORTED_SYMBOLS = [ "regexp" ];
 var regexp = this;
 
+//
+
 var baseAddress = '([\\w\\.\\-\\_]+\\@[\\w\.\\-\\_]+)';
 
 var baseTerm = //
@@ -43,3 +45,9 @@ var nonDomainChars = new RegExp("[^\\w\\_\\-\\.]", "g");
 var nonPersonChars = new RegExp("[^\\w\\_\\-\\s]", "g");
 
 var nonFileNameChars = new RegExp("([^\\w]|[_])+", "g");
+
+//
+
+function isEmail(text) {
+	return (text || "").match(emailAddress) != null;
+}
