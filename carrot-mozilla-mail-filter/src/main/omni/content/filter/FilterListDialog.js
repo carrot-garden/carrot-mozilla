@@ -1,0 +1,35 @@
+"use strict";
+
+try {
+
+	let
+	Cu = Components.utils;
+
+	let
+	ext = {};
+	window["${package}"] = ext;
+	Cu.import("resource://${package}/modules/log.js", ext);
+	Cu.import("resource://${package}/modules/filter.js", ext);
+
+	let
+	logger = ext.log.makeLogger("FilterListDialog.js", "Debug");
+
+	let
+	initWindow = function() {
+
+		window["${package}.FilterDialogController"] = //
+		new ext.filter.FilterDialogController(window);
+
+	};
+
+	window.addEventListener("load", initWindow, false);
+
+	//
+
+	logger.debug("init");
+
+} catch (e) {
+
+	Components.utils.reportError(e);
+
+}

@@ -6,13 +6,17 @@ skin       ${package}   default     skin/
 #
 overlay	chrome://messenger/content/messenger.xul	chrome://${package}/content/messenger/messenger.xul
 #
+overlay chrome://messenger/content/FilterListDialog.xul chrome://${package}/content/filter/FilterListDialog.xul
+# 
 overlay	chrome://editor/content/EdSpellCheck.xul chrome://${package}/content/editor/EdSpellCheck.xul
 #
 overlay chrome://global/content/viewSource.xul	chrome://${package}/content/global/viewSource.xul
-
+#
 
 # about page
 component ${guidAbout} components/about.js
 contract @mozilla.org/network/protocol/about;1?what=${package} ${guidAbout}
 category profile-after-change about @mozilla.org/network/protocol/about;1?what=${package}
 
+component ${filterGuid} components/filter.js
+contract ${filterContract} ${filterGuid}

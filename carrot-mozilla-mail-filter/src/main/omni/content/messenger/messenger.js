@@ -44,7 +44,7 @@ try {
 	//
 
 	Cu.import("resource://${package}/modules/file.js", ext);
-	ext.file.textSaveThis();
+	// ext.file.textSaveThis();
 
 	// ext.log.logger("mail", "Debug").debug("hello mail logger");
 

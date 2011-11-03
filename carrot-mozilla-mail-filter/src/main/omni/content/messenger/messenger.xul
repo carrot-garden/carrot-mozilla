@@ -11,4 +11,3 @@
 	<script type="application/x-javascript" src="chrome://${package}/content/messenger/messenger.js"/>
 
 </overlay>
-

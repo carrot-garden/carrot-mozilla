@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://${package}/skin/button/button.css" type="text/css"?>
+
+<overlay id="${package}.thisFilterListDialog"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<script type="application/x-javascript"
+		src="chrome://${package}/content/filter/FilterListDialog.js" />
+
+
+</overlay>

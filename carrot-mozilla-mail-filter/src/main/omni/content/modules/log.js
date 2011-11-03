@@ -6,10 +6,6 @@ var EXPORTED_SYMBOLS = [ "log" ];
 
 var log = this;
 
-function logger(level) {
-
-}
-
 function makeLogger(name, level) {
 
 	let
