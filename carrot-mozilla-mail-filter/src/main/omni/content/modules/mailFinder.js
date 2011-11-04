@@ -4,6 +4,8 @@ Components.utils.import("resource://${package}/modules/log.js");
 var logger = log.makeLogger("mailFinder.js", "Debug");
 logger.debug("init");
 
+Components.utils.import("resource://gre/modules/FileUtils.jsm");
+
 Components.utils.import("resource://${package}/modules/util.js");
 Components.utils.import("resource://${package}/modules/mailStore.js");
 
@@ -39,6 +41,18 @@ function SearchTermBean() {
 	this.attrib; // nsMsgSearchAttrib
 }
 
+function isCustomAttrib(name) {
+	return nsMsgSearchAttrib[name] === undefined;
+}
+
+function getAttribIndex(name) {
+	if (isCustomAttrib(name)) {
+		return ensureCustomHeader(name);
+	} else {
+		return nsMsgSearchAttrib[name];
+	}
+}
+
 /**
  * @param bean :
  *            SearchTermBean
@@ -46,6 +60,9 @@ function SearchTermBean() {
  * @returns searchTerm : nsIMsgSearchTerm
  */
 function makeSearchTerm(bean) {
+
+	var searchTerm = Components.classes["@mozilla.org/messenger/searchTerm;1"]
+			.createInstance(Components.interfaces.nsIMsgSearchTerm);
 
 	/**
 	 * http://doxygen.db48x.net/mozilla/html/interfacensIMsgSearchValue.html
@@ -55,25 +72,26 @@ function makeSearchTerm(bean) {
 		var value = searchTerm.value
 				.QueryInterface(Components.interfaces.nsIMsgSearchValue);
 
-		switch (nsMsgSearchAttrib[bean.attrib]) {
-		case nsMsgSearchAttrib.Subject:
-		case nsMsgSearchAttrib.Sender:
-		case nsMsgSearchAttrib.To:
-		case nsMsgSearchAttrib.CC:
-		case nsMsgSearchAttrib.ToOrCC:
-		case nsMsgSearchAttrib.AnyText:
+		if (isCustomAttrib(bean.attrib)) {
 			value.str = bean.value;
-			break;
-		default:
-			throw "TODO bean.attrib : " + bean.attrib;
+		} else {
+			switch (nsMsgSearchAttrib[bean.attrib]) {
+			case nsMsgSearchAttrib.Subject:
+			case nsMsgSearchAttrib.Sender:
+			case nsMsgSearchAttrib.To:
+			case nsMsgSearchAttrib.CC:
+			case nsMsgSearchAttrib.ToOrCC:
+			case nsMsgSearchAttrib.AnyText:
+				value.str = bean.value;
+				break;
+			default:
+				throw "TODO bean.attrib : " + bean.attrib;
+			}
 		}
 
 		return value;
 
 	}
-
-	var searchTerm = Components.classes["@mozilla.org/messenger/searchTerm;1"]
-			.createInstance(Components.interfaces.nsIMsgSearchTerm);
 
 	searchTerm.booleanAnd = nsMsgSearchBooleanOp[bean.booleanAnd];
 
@@ -81,7 +99,7 @@ function makeSearchTerm(bean) {
 
 	searchTerm.op = nsMsgSearchOp[bean.op];
 
-	searchTerm.attrib = nsMsgSearchAttrib[bean.attrib];
+	searchTerm.attrib = getAttribIndex(bean.attrib);
 
 	return searchTerm;
 
@@ -177,10 +195,13 @@ function makeMessageFilter(bean) {
  * @param filter :
  *            nsIMsgFilter
  * 
+ * @param filename
+ *            String
+ * 
  * @returns void
  * 
  */
-function saveMessageFilter(filter) {
+function saveMessageFilter(filter, filename) {
 
 	var // nsIMsgFolder
 	folder = mailStore.getLocalRootFolder();
@@ -188,8 +209,60 @@ function saveMessageFilter(filter) {
 	var // nsIMsgFilterList
 	filterList = folder.getFilterList(null);
 
-	filterList.insertFilterAt(0, filter);
+	if (filter !== undefined) {
 
-	filterList.saveToDefaultFile();
+		filterList.insertFilterAt(0, filter);
+
+	}
+
+	if (filename === undefined) {
+
+		filterList.saveToDefaultFile();
+
+	} else {
+
+		var file = FileUtils.getFile("ProfD", [ "${package}", filename ]); // nsIFile
+
+		var output = Components.classes["@mozilla.org/network/file-output-stream;1"]
+				.createInstance(Components.interfaces.nsIFileOutputStream);
+
+		output.init(file, -1, -1, 0);
+
+		filterList.saveToFile(output);
+
+	}
+
+}
+
+/**
+ * 
+ */
+function ensureCustomHeader(name) {
+
+	var pref = Components.classes["@mozilla.org/preferences-service;1"]
+			.getService(Components.interfaces.nsIPrefBranch);
+
+	var prefName = "mailnews.customHeaders";
+
+	var headerString = pref.getCharPref(prefName);
+
+	if (headerString.toLowerCase().indexOf(name.toLowerCase()) == -1) {
+		headerString += " " + name + ":";
+		pref.setCharPref(prefName, headerString);
+	}
+
+	headerString = headerString.replace(/\s+/g, "");
+
+	var headerArray = headerString.match(/[^:]+/g);
+
+	var index = nsMsgSearchAttrib.OtherHeader + 1;
+
+	for ( var k = 0; k < headerArray.length; k++) {
+		if (headerArray[k].toLowerCase() == name.toLowerCase()) {
+			return index;
+		} else {
+			index++;
+		}
+	}
 
 }

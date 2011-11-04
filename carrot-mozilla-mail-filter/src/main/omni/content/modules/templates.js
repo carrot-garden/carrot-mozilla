@@ -15,7 +15,7 @@ var templates = this;
 var COMMENT = "{ id : '(ID)',  name : '(NAME)', email: '(EMAIL)', subject : '(SUBJECT)' }";
 
 var FILTER_FROM_OR_TOCC = {
-	name : "(TYPE) : (FOLDER)/(NAME) (EMAIL)",
+	name : "(TYPE): (NAME) (EMAIL)",
 	comment : COMMENT,
 	searchTerms : [ {
 		booleanAnd : "BooleanOR", // nsMsgSearchBooleanOp
@@ -34,8 +34,33 @@ var FILTER_FROM_OR_TOCC = {
 	} ],
 };
 
+var FILTER_FROM_OR_TOCC_OR_REPL = {
+	name : "(TYPE): (NAME) (EMAIL)",
+	comment : COMMENT,
+	searchTerms : [ {
+		booleanAnd : "BooleanOR", // nsMsgSearchBooleanOp
+		attrib : "Sender", // nsMsgSearchAttrib
+		op : "Contains", // nsMsgSearchOp
+		value : "(EMAIL)", // String
+	}, {
+		booleanAnd : "BooleanOR", // nsMsgSearchBooleanOp
+		attrib : "ToOrCC", // nsMsgSearchAttrib
+		op : "Contains", // nsMsgSearchOp
+		value : "(EMAIL)", // String
+	}, {
+		booleanAnd : "BooleanOR", // nsMsgSearchBooleanOp
+		attrib : "Reply-To", // nsMsgSearchAttrib
+		op : "Contains", // nsMsgSearchOp
+		value : "(EMAIL)", // String
+	} ],
+	filterActions : [ {
+		action : "MoveToFolder", // nsMsgFilterAction
+		value : "(FOLDER)/(NAME) (EMAIL)", // String
+	} ],
+};
+
 var FILTER_FROM_OR_TO = {
-	name : "(TYPE) : (FOLDER)/(NAME) (EMAIL)",
+	name : "(TYPE): (NAME) (EMAIL)",
 	comment : COMMENT,
 	searchTerms : [ {
 		booleanAnd : "BooleanOR", // nsMsgSearchBooleanOp
@@ -55,7 +80,7 @@ var FILTER_FROM_OR_TO = {
 };
 
 var FILTER_FROM_DOMAIN = {
-	name : "(TYPE) : (FOLDER)/(COMPANY) @(DOMAIN)",
+	name : "(TYPE): (COMPANY) @(DOMAIN)",
 	comment : COMMENT,
 	searchTerms : [ {
 		booleanAnd : "BooleanOR", // nsMsgSearchBooleanOp
@@ -70,7 +95,7 @@ var FILTER_FROM_DOMAIN = {
 };
 
 var FILTER_FROM_DOMAIN_2 = {
-	name : "(TYPE) : (FOLDER)/(NAME) @(DOMAIN)",
+	name : "(TYPE): (NAME) @(DOMAIN)",
 	comment : COMMENT,
 	searchTerms : [ {
 		booleanAnd : "BooleanOR", // nsMsgSearchBooleanOp
@@ -85,7 +110,7 @@ var FILTER_FROM_DOMAIN_2 = {
 };
 
 var FILTER_FROM_EMAIL = {
-	name : "(TYPE) : (FOLDER)/(NAME) (EMAIL)",
+	name : "(TYPE): (NAME) (EMAIL)",
 	comment : COMMENT,
 	searchTerms : [ {
 		booleanAnd : "BooleanOR", // nsMsgSearchBooleanOp
@@ -100,7 +125,7 @@ var FILTER_FROM_EMAIL = {
 };
 
 var FILTER_COMPANY_PERSON = {
-	name : "(TYPE) : (FOLDER)/(COMPANY) @(DOMAIN) : (EMAIL)",
+	name : "(TYPE): (COMPANY) @(DOMAIN) : (EMAIL)",
 	comment : COMMENT,
 	searchTerms : [ {
 		booleanAnd : "BooleanOR", // nsMsgSearchBooleanOp
@@ -120,7 +145,7 @@ var FILTER_COMPANY_PERSON = {
 };
 
 var FILTER_NAME_AND_DOMAIN = {
-	name : "(TYPE) : (FOLDER)/(NAME) @(DOMAIN)",
+	name : "(TYPE): (NAME) @(DOMAIN)",
 	comment : COMMENT,
 	searchTerms : [ {
 		booleanAnd : "BooleanAND", // nsMsgSearchBooleanOp
@@ -159,7 +184,7 @@ var LIST = [ {
 	menu : "News Group",
 	type : "EventsNews",
 	folder : "News",
-	template : FILTER_FROM_OR_TOCC,
+	template : FILTER_FROM_OR_TOCC_OR_REPL,
 }, {
 	id : "blogger-1",
 	menu : "Blogger",

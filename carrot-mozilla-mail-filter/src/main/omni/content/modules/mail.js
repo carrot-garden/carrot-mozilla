@@ -22,58 +22,6 @@ function test(window) {
 
 	logger.debug("hello mail");
 
-	var root = mailStore.getLocalRootFolder();
-
-	logger.debug("hello mail : " + root.containsChildNamed("Inbox"));
-
-	var folder = mailStore
-			.ensureLocalFolderPath("Inbox/Employer Folder/IBM Inc. @ibm.com");
-
-	logger.debug("hello mail folderURL : " + folder.folderURL);
-
-	window.gFolderTreeView.selectFolder(folder);
-	// window.gFolderDisplay.show(folder);
-
-	var json1 = {
-		key1 : "value2",
-	};
-
-	logger.debug("json1 : \n" + JSON.stringify(json1));
-
-	var json2 = JSON.parse(' { "key2" : "value2"} ');
-
-	logger.debug("json2 : \n" + JSON.stringify(json2));
-
-	//
-
-	var template = util.clone(templates.FILTER_COMPANY);
-
-	logger.debug("hello template : \n" + JSON.stringify(template));
-
-	var parameter = {
-		"(TYPE)" : "Employer",
-		"(FOLDER)" : "Inbox/Employers",
-		"(COMPANY)" : "IBM Corp.",
-		"(DOMAIN)" : "ibm.com",
-	};
-
-	util.substitute(template, parameter);
-
-	//
-
-	function visitor(root, name, value) {
-		logger.debug(name + " : " + value);
-	}
-
-	util.visitProperty(template, visitor);
-
-	//
-
-	var filter = mailFinder.makeMessageFilter(template);
-	mailFinder.saveMessageFilter(filter);
-
-	//
-
 };
 
 function findEmailNode(window) {
@@ -207,14 +155,26 @@ function HeaderBean(header) {
 
 function workPopupMenuitem(window, entryId) {
 
+	var header = window.gFolderDisplay.selectedMessage; // nsIMsgDBHdr
+
+	var node = findEmailNode(window);
+
+	var name = node.getAttribute("displayName");
+	var email = node.getAttribute("emailAddress");
+
+	var company = util.getCompanyFromEmailAddress(email);
+	var domain = util.getDomainFromEmailAddress(email);
+
+	var subject = header.subject;
+
+	if (name == null || name == "") {
+		name = util.getPersonFromEmailAddress(email);
+	} else {
+		name = util.getPersonFromEmailName(name);
+	}
+
 	function apply(entry) {
 		if (entry.id == entryId) {
-
-			var header = window.gFolderDisplay.selectedMessage; // nsIMsgDBHdr
-
-			var bean = new HeaderBean(header);
-
-			logger.debug("header = " + bean);
 
 			var template = util.clone(entry.template);
 
@@ -226,11 +186,11 @@ function workPopupMenuitem(window, entryId) {
 				"(TYPE)" : entry.type,
 				"(FOLDER)" : entry.folder,
 				//
-				"(NAME)" : bean.author.name,
-				"(EMAIL)" : bean.author.email,
-				"(COMPANY)" : bean.company,
-				"(DOMAIN)" : bean.domain,
-				"(SUBJECT)" : bean.subject,
+				"(NAME)" : name,
+				"(EMAIL)" : email,
+				"(COMPANY)" : company,
+				"(DOMAIN)" : domain,
+				"(SUBJECT)" : subject,
 			};
 
 			util.substitute(template, parameter);

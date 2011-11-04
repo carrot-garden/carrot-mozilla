@@ -11,9 +11,9 @@ const Cu = Components.utils;
   
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");  
   
-const CLASS_NAME = "Filter Auto Complete";  
-const CLASS_ID = Components.ID("${filterGuid}");  
-const CONTRACT_ID = "${filterContract}";  
+const CLASS_NAME = "${compFilterName}";  
+const CLASS_ID = Components.ID("${compFilterGuid}");  
+const CONTRACT_ID = "${compFilterContract}";  
  
 /**
  * @constructor
@@ -25,9 +25,11 @@ const CONTRACT_ID = "${filterContract}";
  * @param {number}
  *            searchResult
  * @param {number}
- *            defaultIndex
+ *            defaultIndex : Index of the default item that should be entered if
+ *            none is selected
  * @param {string}
- *            errorDescription
+ *            errorDescription : A string describing the cause of a search
+ *            failure
  * @param {Array.
  *            <string>} results
  * @param {Array.
@@ -130,7 +132,7 @@ ProviderAutoCompleteResult.prototype = {
 	 * @return {string} the URI to the image to display
 	 */  
   getImageAt : function (index) {  
-    return '';  
+    return "";  
   },  
   
   /**
@@ -184,21 +186,40 @@ ProviderAutoCompleteSearch.prototype = {
 	 */  
   startSearch: function(searchString, searchParam, previousResult, listener) {  
 	  
-	logger.debut("START");
-	  
-    var results = ['Mary', 'John', "hello"];
-    
-    var autocomplete_result = new ProviderAutoCompleteResult(searchString,  
-        Ci.nsIAutoCompleteResult.RESULT_SUCCESS, 0, "", results, null);
-  
-    listener.onSearchResult(this, autocomplete_result);
-    
+	  try {
+
+			logger.debug("start");
+			
+			var controller = searchParam;
+
+			for(name in controller){
+				logger.debug("name=" + name + " value=" + controller[name]);
+			}
+
+		    var resultArray = controller.makeResultArray(searchString);
+
+			logger.debug("resultArray="+resultArray);
+
+		    var autocompResult = new ProviderAutoCompleteResult(searchString,  
+		        Ci.nsIAutoCompleteResult.RESULT_SUCCESS, 0, "", resultArray, null);
+		  
+		    listener.onSearchResult(this, autocompResult);
+
+		} catch (e) {
+
+			Components.utils.reportError(e);
+
+		};
+
   },  
   
   /**
 	 * Stops an asynchronous search that is in progress
 	 */  
   stopSearch: function() {  
+	  
+	logger.debug("finish");
+
   },  
   
   QueryInterface: XPCOMUtils.generateQI([ Ci.nsIAutoCompleteSearch ])
@@ -207,5 +228,4 @@ ProviderAutoCompleteSearch.prototype = {
   
 // The following line is what XPCOM uses to create components
 const NSGetFactory = XPCOMUtils.generateNSGetFactory([ ProviderAutoCompleteSearch ]);
-
 

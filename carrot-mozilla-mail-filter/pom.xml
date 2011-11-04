@@ -29,10 +29,10 @@
 		<maxVersion>7.*</maxVersion>
 
 		<guidAbout>{18bf4730-920a-4d88-8503-8868692f93b1}</guidAbout>
-		
-		<filterName>carrot-filter-auto-complete</filterName>
-		<filterGuid>{deb7b253-f024-4690-b5cf-4bf1949f22b2}</filterGuid>
-		<filterContract>@mozilla.org/autocomplete/search;1?name=${filterName}</filterContract>
+
+		<compFilterName>carrot-filter</compFilterName>
+		<compFilterGuid>{deb7b253-f024-4690-b5cf-4bf1949f22b2}</compFilterGuid>
+		<compFilterContract>@mozilla.org/autocomplete/search;1?name=${compFilterName}</compFilterContract>
 
 	</properties>
 

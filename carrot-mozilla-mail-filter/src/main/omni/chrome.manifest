@@ -18,5 +18,5 @@ component ${guidAbout} components/about.js
 contract @mozilla.org/network/protocol/about;1?what=${package} ${guidAbout}
 category profile-after-change about @mozilla.org/network/protocol/about;1?what=${package}
 
-component ${filterGuid} components/filter.js
-contract ${filterContract} ${filterGuid}
+component ${compFilterGuid} components/filter.js
+contract ${compFilterContract} ${compFilterGuid}

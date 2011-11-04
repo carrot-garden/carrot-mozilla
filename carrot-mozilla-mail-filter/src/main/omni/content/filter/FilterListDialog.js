@@ -17,7 +17,7 @@ try {
 	let
 	initWindow = function() {
 
-		window["${package}.FilterDialogController"] = //
+		window[ext.filter.CONTROLLER] = //
 		new ext.filter.FilterDialogController(window);
 
 	};
