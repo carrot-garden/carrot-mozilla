@@ -11,7 +11,7 @@
 
 		<exec executable="bash">
 			<arg value="-c" />
-			<arg value="killall thunderbird-bin" />
+			<arg value="killall -s 9 thunderbird-bin" />
 		</exec>
 
 		<exec executable="bash">
