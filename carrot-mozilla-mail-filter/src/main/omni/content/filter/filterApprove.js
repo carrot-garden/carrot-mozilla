@@ -69,14 +69,20 @@ function formClose() {
 
 function formUpdate() {
 
+	copyDocIntoArg();
+
 	logger.debug("formUpdate");
 
 	var parameter = window.arguments[0];
 
 	var template = util.clone(window.arguments[1]);
 
+	// logger.debug("formUpdate template : " + JSON.stringify(template));
+
 	util.substitute(template, parameter);
 
-	setDoc("result", JSON.stringify(template));
+	// logger.debug("formUpdate template : " + JSON.stringify(template));
+
+	setDoc("result", JSON.stringify(template, null, 3));
 
 }

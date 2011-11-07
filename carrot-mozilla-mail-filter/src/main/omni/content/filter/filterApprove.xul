@@ -35,7 +35,7 @@
 
 	<vbox>
 
-		<textbox id="result" value="result" multiline="true" readonly="true" />
+		<textbox id="result" multiline="true" rows="15" readonly="true" />
 
 	</vbox>
 
