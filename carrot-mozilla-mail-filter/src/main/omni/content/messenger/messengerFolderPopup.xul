@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://${package}/skin/button/button.css" type="text/css"?>
+
+<overlay id="${package}.thisEmailPopup"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<menupopup id="folderPaneContext">
+
+		<menu id="${package}.folderPopup.menu" class="main-icon menu-iconic menuitem-iconic"
+			label="${menuName}" accesskey="A" position="1">
+
+			<menupopup id="${package}.folderPopup.menupopup"
+				onpopupshowing="window['${package}'].mail.makeFolderPopup(window,this);"
+				onpopuphiding="window['${package}'].mail.killFolderPopup(window,this);">
+
+				<menuitem id="${package}.folderPopup.menuitem.test" label="Test"
+					accesskey="" oncommand="window['${package}'].mail.testFolder(window);" />
+
+				<menuseparator />
+
+				<menuitem id="${package}.folderPopup.menuitem.filters"
+					label="Filters" disabled="true" />
+
+			</menupopup>
+
+		</menu>
+
+		<menuseparator position="2" />
+
+	</menupopup>
+
+</overlay>

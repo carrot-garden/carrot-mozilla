@@ -7,16 +7,16 @@
 
 		<toolbarseparator />
 
-		<menu id="${package}.menu" class="main-icon menu-iconic menuitem-iconic"
-			disabled="true" label="Carrot" accesskey="A" insertafter="helpMenu">
+		<menu id="${package}.mail.menubar.menu" class="main-icon menu-iconic menuitem-iconic"
+			disabled="true" label="${menuName}" accesskey="A" insertafter="helpMenu">
 
-			<menupopup id="${package}.menupopup" onpopupshowing="">
+			<menupopup id="${package}.mail.menubar.menupopup" onpopupshowing="">
 
 				<menu label="Accounts" accesskey="A" id="${package}.menu-accounts">
 					<menupopup>
 
-						<menuitem id="${package}.menuitem.accounts.response"
-							label="Add 'My Response' SF" accesskey="1"
+						<menuitem id="${package}.mail.menubar.menuitem.test"
+							label="Test" accesskey="1"
 							oncommand="alert('hello');" />
 
 						<menuseparator />

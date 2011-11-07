@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://messenger/skin/messenger.css" type="text/css"?>
+<?xml-stylesheet href="chrome://${package}/skin/button/button.css" type="text/css"?>
+
+<window id="${package}.filterApprove"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	title="Filter Approve" persist="width height screenX screenY sizemode"
+	onload="formLoad();" onunload="formUnload();">
+
+	<script type="application/x-javascript"
+		src="chrome://${package}/content/filter/filterApprove.js" />
+
+	<vbox>
+
+		<label control="(TYPE)" value="(TYPE)" />
+		<textbox id="(TYPE)" oninput="formUpdate();" />
+
+		<label control="(FOLDER)" value="(FOLDER)" />
+		<textbox id="(FOLDER)" oninput="formUpdate();" />
+
+		<label control="(NAME)" value="(NAME)" />
+		<textbox id="(NAME)" oninput="formUpdate();" />
+
+		<label control="(EMAIL)" value="(EMAIL)" />
+		<textbox id="(EMAIL)" oninput="formUpdate();" />
+
+		<label control="(COMPANY)" value="(COMPANY)" />
+		<textbox id="(COMPANY)" oninput="formUpdate();" />
+
+		<label control="(DOMAIN)" value="(DOMAIN)" />
+		<textbox id="(DOMAIN)" oninput="formUpdate();" />
+
+	</vbox>
+
+	<vbox>
+
+		<textbox id="result" value="result" multiline="true" readonly="true" />
+
+	</vbox>
+
+	<hbox>
+
+		<button id="button.accept" style="width: 80px; height: 10px;"
+			label="Accept" oncommand="setArg('accept', true); close();" />
+		<spacer />
+
+		<button id="button.cancel" style="width: 80px; height: 10px;"
+			label="Cancel" oncommand="close();" />
+		<spacer />
+
+	</hbox>
+
+	<keyset>
+		<key keycode="VK_ESCAPE" xulkey="false" oncommand="close();" />
+	</keyset>
+
+</window>

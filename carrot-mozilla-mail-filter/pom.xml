@@ -25,6 +25,8 @@
 		<thisDescription>${project.description}</thisDescription>
 		<thisVersion>${baseVersion}.${versionTimestamp}</thisVersion>
 
+		<menuName>Carrot</menuName>
+	
 		<minVersion>7.0</minVersion>
 		<maxVersion>7.*</maxVersion>
 

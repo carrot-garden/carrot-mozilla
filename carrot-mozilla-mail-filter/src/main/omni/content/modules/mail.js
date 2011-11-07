@@ -24,6 +24,126 @@ function test(window) {
 
 };
 
+function testFolder(window) {
+
+	var folder = window.gFolderDisplay.displayedFolder;
+
+	logger.debug("hello mail folder : " + folder);
+
+};
+
+//
+
+// var ID_FODER_POPUP = "${package}.folderPopup.menupopup";
+
+function killFolderPopup(window, menupopup) {
+
+	var childNodes = menupopup.childNodes; // NodeList
+
+	for ( var index = 0; index < childNodes.length; index++) {
+
+		var element = childNodes[index];
+
+		// logger.debug("menuitem id=" + menuitem.getAttribute("id"));
+		// logger.debug("menuitem dynamic=" + menuitem.getAttribute("dynamic"));
+
+		if (element.getAttribute("dynamic") == "true") {
+			menupopup.removeChild(element);
+		}
+
+	}
+
+}
+
+function makeFolderPopup(window, menupopup) {
+
+	logger.debug("makeFolderPopup popup : " + menupopup.id);
+
+	var folder = window.gFolderDisplay.displayedFolder; // nsIMsgFolder
+
+	logger.debug("makeFolderPopup folder : " + folder);
+
+	var filterArray = mailFinder.getFiltersUsingFolder(folder);
+
+	logger.debug("makeFolderPopup filterArray : " + filterArray);
+
+	function apply(filter) {
+		makeFolderPopupItem(window, menupopup, filter);
+	}
+
+	filterArray.forEach(apply);
+
+	return true;
+
+}
+
+function makeFolderPopupItem(window, menupopup, filter) {
+
+	var document = window.document;
+
+	var menuitem = document.createElementNS(XUL_NS, "menuitem");
+
+	var name = filter.filterName;
+
+	logger.debug("name=" + name);
+
+	menuitem.setAttribute("id", menupopup.id + "." + name);
+	menuitem.setAttribute("dynamic", "true");
+	menuitem.setAttribute("label", name);
+	menuitem.setAttribute("oncommand", "window['${package}'].mail."
+			+ "workFolderPupupItem(window,'" + name + "');");
+
+	menupopup.appendChild(menuitem);
+
+	return menuitem;
+
+}
+
+function workFolderPupupItem(window, name) {
+
+	logger.debug("workFolderPupupItem : " + name);
+
+	var folder = mailStore.getLocalRootFolder(); // nsIMsgFolder
+
+	var filterList = folder.getFilterList(null); // nsIMsgFilterList
+
+	var count = filterList.filterCount;
+
+	logger.debug("workFolderPupupItem count=" + count);
+
+	var filter = null; // nsIMsgFilter
+
+	for ( var index = 0; index < count; index++) {
+		var lookup = filterList.getFilterAt(index);
+		if (lookup.filterName == name) {
+			filter = lookup;
+			break;
+		}
+	}
+
+	if (filter == null) {
+		window.alert("filter not found; name=" + name);
+		return;
+	}
+
+	var args = {
+		filter : filter,
+		filterList : filterList,
+		refresh : false,
+	};
+
+	window.openDialog("chrome://messenger/content/FilterEditor.xul",
+			"FilterEditor", "chrome,modal,titlebar,resizable,centerscreen",
+			args);
+
+	if (args.refresh) {
+		mailFinder.saveMessageFilter();
+	}
+
+}
+
+//
+
 function findEmailNode(window) {
 
 	var node = window.findEmailNodeFromPopupNode(window.document.popupNode,
@@ -72,14 +192,14 @@ function openPopupWebSiteFromEmail(window) {
 
 }
 
-function makePopupMenuitems(window) {
+function makeEmailPopupMenu(window) {
 	function apply(entry) {
-		makePopupMenuitem(window, entry);
+		makeEmailPopupItem(window, entry);
 	}
 	templates.LIST.forEach(apply);
 }
 
-function makePopupMenuitem(window, entry) {
+function makeEmailPopupItem(window, entry) {
 
 	logger.debug(entry);
 
@@ -92,7 +212,7 @@ function makePopupMenuitem(window, entry) {
 	menuitem.setAttribute("id", popupId + "." + entry.id);
 	menuitem.setAttribute("label", entry.menu);
 	menuitem.setAttribute("oncommand", "window['${package}'].mail."
-			+ "workPopupMenuitem(window,'" + entry.id + "');");
+			+ "workEmailPopupItem(window,'" + entry.id + "');");
 
 	var menupopup = document.getElementById(popupId);
 	menupopup.appendChild(menuitem);
@@ -100,6 +220,7 @@ function makePopupMenuitem(window, entry) {
 	return menuitem;
 
 }
+
 //
 
 function PersonBean(entry) {
@@ -153,7 +274,9 @@ function HeaderBean(header) {
 
 }
 
-function workPopupMenuitem(window, entryId) {
+function workEmailPopupItem(window, entryId) {
+
+	var folder = getSelectedMessageFolder(window); // nsIMsgFolder
 
 	var header = window.gFolderDisplay.selectedMessage; // nsIMsgDBHdr
 
@@ -176,10 +299,6 @@ function workPopupMenuitem(window, entryId) {
 	function apply(entry) {
 		if (entry.id == entryId) {
 
-			var template = util.clone(entry.template);
-
-			logger.debug("template = " + JSON.stringify(template))
-
 			var parameter = {
 				//
 				"(ID)" : entry.id,
@@ -191,36 +310,47 @@ function workPopupMenuitem(window, entryId) {
 				"(COMPANY)" : company,
 				"(DOMAIN)" : domain,
 				"(SUBJECT)" : subject,
+				//
+				accept : false,
 			};
+
+			var template = util.clone(entry.template);
+
+			window.openDialog(
+					"chrome://${package}/content/filter/filterApprove.xul", "",
+					"chrome,modal,resizable,centerscreen,dialog=yes",
+					parameter, template);
+
+			if (!parameter.accept) {
+				return;
+			}
+
+			var template = util.clone(entry.template);
+
+			logger.debug("template = " + JSON.stringify(template));
 
 			util.substitute(template, parameter);
 
-			// util.visitProperty(template, function(root, name, value) {
-			// logger.debug("### " + name + "=" + value);
-			// });
+			logger.debug("template = " + JSON.stringify(template));
 
-			logger.debug("template = " + JSON.stringify(template))
-
-			var folder = getSelectedMessageFolder(window); // nsIMsgFolder
-
-			logger.debug("folder = " + folder);
+			//
 
 			var filter = mailFinder.makeMessageFilter(template); // nsIMsgFilter
 			var filterList = folder.getEditableFilterList(null);
 
-			var args = {
+			var argument = {
 				filter : filter,
 				filterList : filterList,
 				refresh : false,
 			};
 
 			window.openDialog("chrome://messenger/content/FilterEditor.xul",
-					"", "chrome, modal, resizable,centerscreen,dialog=yes",
-					args);
+					"", "chrome,modal,resizable,centerscreen,dialog=yes",
+					argument);
 
-			logger.debug("refresh = " + JSON.stringify(args.refresh));
+			logger.debug("refresh = " + JSON.stringify(argument.refresh));
 
-			if (args.refresh) {
+			if (argument.refresh) {
 
 				mailFinder.saveMessageFilter(filter);
 
@@ -228,9 +358,9 @@ function workPopupMenuitem(window, entryId) {
 
 				var action = filter.getActionAt(0); // nsIMsgRuleAction
 				var targetFolderUri = action.targetFolderUri; // String
-				var actionFilder = mailStore.getFolderFromUri(targetFolderUri); // nsIMsgFolder
+				var actionFolder = mailStore.getFolderFromUri(targetFolderUri); // nsIMsgFolder
 
-				window.gFolderTreeView.selectFolder(actionFilder);
+				window.gFolderTreeView.selectFolder(actionFolder);
 
 			}
 
@@ -273,6 +403,6 @@ function applyFilter(window, folder, filterList) {
 
 function init(window) {
 
-	makePopupMenuitems(window);
+	makeEmailPopupMenu(window);
 
 }

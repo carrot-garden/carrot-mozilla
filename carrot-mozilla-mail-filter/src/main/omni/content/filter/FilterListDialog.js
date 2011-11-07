@@ -9,7 +9,7 @@ try {
 	ext = {};
 	window["${package}"] = ext;
 	Cu.import("resource://${package}/modules/log.js", ext);
-	Cu.import("resource://${package}/modules/filter.js", ext);
+	Cu.import("chrome://${package}/content/filter/filter.js", ext);
 
 	let
 	logger = ext.log.makeLogger("FilterListDialog.js", "Debug");

@@ -232,6 +232,8 @@ function saveMessageFilter(filter, filename) {
 
 	}
 
+	logger.debug("saveMessageFilter : done");
+
 }
 
 /**
@@ -264,5 +266,82 @@ function ensureCustomHeader(name) {
 			index++;
 		}
 	}
+
+}
+
+/**
+ * @param actionList
+ *            nsISupportsArray
+ * 
+ * @param folder
+ *            nsIMsgFolder
+ * 
+ */
+function hasActionUsingFolder(actionList, folder) {
+
+	var folderURI = folder.URI;
+
+	var count = actionList.Count();
+
+	// logger.debug("count=" + count);
+
+	for ( var index = 0; index < count; index++) {
+
+		var action = actionList.GetElementAt(index).QueryInterface(
+				Components.interfaces.nsIMsgRuleAction);
+
+		// logger.debug("action=" + action);
+
+		var type = action.type;
+
+		// logger.debug("type=" + type);
+
+		switch (type) {
+		case nsMsgFilterAction.MoveToFolder:
+		case nsMsgFilterAction.CopyToFolder:
+			var targetFolderUri = action.targetFolderUri;
+			if (folderURI == targetFolderUri) {
+				return true;
+			}
+			continue;
+		default:
+			continue;
+		}
+
+	}
+
+	return false;
+
+}
+
+/**
+ * @param folder
+ *            nsIMsgFolder
+ * 
+ * @returns Array(nsIMsgFilter)
+ */
+function getFiltersUsingFolder(folder) {
+
+	var filterList = folder.getFilterList(null); // nsIMsgFilterList
+
+	var count = filterList.filterCount;
+
+	var result = new Array();
+
+	for ( var index = 0; index < count; index++) {
+
+		var filter = filterList.getFilterAt(index); // nsIMsgFilter
+
+		var actionList = filter.actionList; // nsISupportsArray
+
+		// logger.debug("actionList=" + actionList);
+
+		if (hasActionUsingFolder(actionList, folder)) {
+			result.push(filter);
+		}
+
+	}
+
+	return result;
 
 }

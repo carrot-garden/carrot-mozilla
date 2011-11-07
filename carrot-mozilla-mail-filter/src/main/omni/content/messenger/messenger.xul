@@ -4,6 +4,7 @@
 
 <?xul-overlay href="chrome://${package}/content/messenger/messengerMenu.xul"?>
 <?xul-overlay href="chrome://${package}/content/messenger/messengerEmailPopup.xul"?>
+<?xul-overlay href="chrome://${package}/content/messenger/messengerFolderPopup.xul"?>
 
 <overlay id="${package}.messenger"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">

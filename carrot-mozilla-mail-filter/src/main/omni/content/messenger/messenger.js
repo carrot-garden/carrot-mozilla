@@ -15,7 +15,7 @@ try {
 	Cu.import("resource://${package}/modules/dependencies.js", ext);
 	Cu.import("resource://${package}/modules/services.js", ext);
 	Cu.import("resource://${package}/modules/mail.js", ext);
-	// Cu.import("resource://${package}/modules/log.js", ext);
+	Cu.import("resource://${package}/modules/log.js", ext);
 
 	let
 	initMail = {
@@ -32,7 +32,7 @@ try {
 	let
 	initWindow = function() {
 
-		var menu = document.getElementById("${package}.menu");
+		var menu = document.getElementById("${package}.mail.menubar.menu");
 		menu.disabled = false;
 
 		ext.mail.init(window);

@@ -2,7 +2,7 @@
 
 <?xml-stylesheet href="chrome://${package}/skin/button/button.css" type="text/css"?>
 
-<overlay id="${package}.thisFilterListDialog"
+<overlay id="${package}.FilterListDialog"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 	<script type="application/x-javascript"

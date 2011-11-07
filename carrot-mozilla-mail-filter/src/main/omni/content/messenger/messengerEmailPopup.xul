@@ -2,14 +2,14 @@
 
 <?xml-stylesheet href="chrome://${package}/skin/button/button.css" type="text/css"?>
 
-<overlay id="${package}.thisEmailPopup"
+<overlay id="${package}.emailAddressPopup"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 
 	<menupopup id="emailAddressPopup">
 
 		<menu id="${package}.emailAddressPopup.menu" class="main-icon menu-iconic menuitem-iconic"
-			label="Carrot" accesskey="A" position="1">
+			label="${menuName}" accesskey="A" position="1">
 
 			<menupopup id="${package}.emailAddressPopup.menupopup">
 
@@ -27,25 +27,9 @@
 
 				<menuseparator />
 
-				<menuitem id="${package}.emailAddressPopup.open-website"
+				<menuitem id="${package}.emailAddressPopup.open_website"
 					label="Open Web Site" accesskey=""
 					oncommand="window['${package}'].mail.openPopupWebSiteFromEmail(window);" />
-
-				<menuseparator />
-
-				<menuitem id="${package}.emailAddressPopup.new-account"
-					label="Add Account Folder" accesskey="A"
-					oncommand="carrotMail.makeCustomerFolder();" />
-
-				<menuitem id="${package}.emailAddressPopup.account-member"
-					label="Add Account Member SF" accesskey="M" oncommand="cmdNewAccountMember();" />
-
-				<menuseparator />
-
-				<menuitem id="${package}.emailAddressPopup.manager" label="Add Manager"
-					accesskey="" oncommand="carrotMail.makeManagerFolder();" />
-
-				<menuseparator />
 
 				<menuseparator />
 
@@ -53,6 +37,8 @@
 					accesskey="" oncommand="window['${package}'].mail.test(window);" />
 
 				<menuseparator />
+
+				<!-- insert dynamic menu here -->
 
 			</menupopup>
 
