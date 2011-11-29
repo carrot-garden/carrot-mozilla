@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>carrot-mozilla-mail-filter</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>1.0.3-SNAPSHOT</version>
 
 	<name>Carrot Garden Mail Filter</name>
 	<description>generate mail filters based on templates</description>
@@ -27,8 +27,8 @@
 
 		<menuName>Carrot</menuName>
 	
-		<minVersion>7.0</minVersion>
-		<maxVersion>7.*</maxVersion>
+		<minVersion>8.0</minVersion>
+		<maxVersion>8.*</maxVersion>
 
 		<guidAbout>{18bf4730-920a-4d88-8503-8868692f93b1}</guidAbout>
 
