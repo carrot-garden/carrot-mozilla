@@ -174,9 +174,8 @@ function visitProperty(root, visitor) {
 		visitProperty(object, visitor);
 	}
 
-	for (name in root) {
-		const
-		value = root[name];
+	for ( var name in root) {
+		var value = root[name];
 		if (is("Array", value)) {
 			value.forEach(apply);
 		} else {
@@ -210,7 +209,7 @@ function substitute(template, parameter) {
 
 	function visitor(root, name) {
 		if (is('String', root[name])) {
-			for (field in parameter) {
+			for ( var field in parameter) {
 				root[name] = root[name].replace(field, parameter[field], "gm");
 			}
 		}
