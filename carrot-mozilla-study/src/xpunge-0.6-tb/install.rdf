@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+    <Description about="urn:mozilla:install-manifest">
+
+        <!-- Target applications this extension can install into, with minimum and maximum supported versions. -->
+        <em:targetApplication>
+            <!-- Thunderbird -->
+            <Description>
+                <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
+                <em:minVersion>5.0</em:minVersion>
+                <em:maxVersion>24.*</em:maxVersion>
+            </Description>
+        </em:targetApplication>
+
+
+        <!-- Information about this extension -->
+        <em:id>{786abda0-fd14-d247-bf69-38b2fc18491b}</em:id>
+        <em:type>2</em:type>
+        <em:name>Xpunge</em:name>
+        <em:version>0.6</em:version>
+        <em:description>Empties the Trash and Junk folders, and compacts folders in multiple Thunderbird accounts.</em:description>
+        <em:creator>Theodore Tegos</em:creator>
+        <em:translator>Dagobert_78 (French Translation)</em:translator>
+        <em:translator>Joergen (Danish Translation)</em:translator>
+        <em:translator>kiki (Japanese Translation)</em:translator>
+        <em:translator>Marky Mark DE (German Translation)</em:translator>
+        <em:translator>Пирятинский Виталий (Russian Translation — Русский перевод)</em:translator>
+        <em:optionsURL>chrome://xpunge/content/xpunge_options.xul</em:optionsURL>
+        <em:homepageURL>http://www.theodoretegos.net/mozilla/tb/index.html</em:homepageURL>
+
+    </Description>
+
+</RDF>
