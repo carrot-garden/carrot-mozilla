@@ -1,0 +1,378 @@
+component {5c124537-adca-4456-b2b5-641ab687d1f6} newsblog.js
+contract @mozilla.org/newsblog-feed-downloader;1 {5c124537-adca-4456-b2b5-641ab687d1f6}
+component {E109C05F-D304-4ca5-8C44-6DE1BFAF1F74} newsblog.js
+contract @mozilla.org/accountmanager/extension;1?name=newsblog {E109C05F-D304-4ca5-8C44-6DE1BFAF1F74}
+category mailnews-accountmanager-extensions newsblog @mozilla.org/accountmanager/extension;1?name=newsblog
+interfaces interfaces.xpt
+component {B2C036A3-F7CE-401C-95EE-9C21505167FD} nsActivity.js
+contract @mozilla.org/activity-process;1 {B2C036A3-F7CE-401C-95EE-9C21505167FD}
+component {87AAEB20-89D9-4B95-9542-3BF72405CAB2} nsActivity.js
+contract @mozilla.org/activity-event;1 {87AAEB20-89D9-4B95-9542-3BF72405CAB2}
+component {968BAC9E-798B-4952-B384-86B21B8CC71E} nsActivity.js
+contract @mozilla.org/activity-warning;1 {968BAC9E-798B-4952-B384-86B21B8CC71E}
+component {8aa5972e-19cb-41cc-9696-645f8a8d1a06} nsActivityManager.js
+contract @mozilla.org/activity-manager;1 {8aa5972e-19cb-41cc-9696-645f8a8d1a06}
+component {5fa5974e-09cb-40cc-9696-643f8a8d9a06} nsActivityManagerUI.js
+contract @mozilla.org/activity-manager-ui;1 {5fa5974e-09cb-40cc-9696-643f8a8d9a06}
+component {dd2bce44-ca71-42ce-b806-6fa4e073919c} nsHightail.js
+contract @mozilla.org/mail/hightail;1 {dd2bce44-ca71-42ce-b806-6fa4e073919c}
+category cloud-files YouSendIt @mozilla.org/mail/hightail;1
+component {c06a8707-7463-416c-8b39-e85044a4ff6e} nsBox.js
+contract @mozilla.org/mail/box;1 {c06a8707-7463-416c-8b39-e85044a4ff6e}
+category cloud-files Box @mozilla.org/mail/box;1
+component {d1258011-f391-44fd-992e-c6f4b461a42f} mimeJSComponents.js
+component {96bd8769-2d0e-4440-963d-22b97fb3ba77} mimeJSComponents.js
+component {93f8c049-80ed-4dda-9000-94ad8daba44c} mimeJSComponents.js
+component {c560806a-425f-4f0f-bf69-397c58c599a7} mimeJSComponents.js
+contract @mozilla.org/messenger/mimeheaders;1 {d1258011-f391-44fd-992e-c6f4b461a42f}
+contract @mozilla.org/messenger/mimeconverter;1 {93f8c049-80ed-4dda-9000-94ad8daba44c}
+contract @mozilla.org/messenger/headerparser;1 {96bd8769-2d0e-4440-963d-22b97fb3ba77}
+contract @mozilla.org/messenger/structuredheaders;1 {c560806a-425f-4f0f-bf69-397c58c599a7}
+category custom-mime-encoder A-extra resource:///modules/extraMimeParsers.jsm
+component {49b04761-23dd-45d7-903d-619418a4d319} msgAsyncPrompter.js
+contract @mozilla.org/messenger/msgAsyncPrompter;1 {49b04761-23dd-45d7-903d-619418a4d319}
+component {2f86d554-f9d9-4e76-8eb7-243f047333ee} nsMailNewsCommandLineHandler.js
+contract @mozilla.org/commandlinehandler/general-startup;1?type=mail {2f86d554-f9d9-4e76-8eb7-243f047333ee}
+category command-line-handler m-mail @mozilla.org/commandlinehandler/general-startup;1?type=mail
+component {740880E6-E299-4165-B82F-DF1DCAB3AE22} newMailNotificationService.js
+contract @mozilla.org/newMailNotificationService;1 {740880E6-E299-4165-B82F-DF1DCAB3AE22}
+category profile-after-change NewMailNotificationService @mozilla.org/newMailNotificationService;1
+component {a30be08c-afc8-4fed-9af7-79778a23db23} folderLookupService.js
+contract @mozilla.org/mail/folder-lookup;1 {a30be08c-afc8-4fed-9af7-79778a23db23}
+component {b63d8e4c-bf60-439b-be0e-7c9f67291042} msgOAuth2Module.js
+contract @mozilla.org/mail/oauth2-module;1 {b63d8e4c-bf60-439b-be0e-7c9f67291042}
+component {6f46b6f4-c8b1-4bd4-a4fa-9ebbed0753ea} XULStore.js
+contract @mozilla.org/xul/xulstore;1 {6f46b6f4-c8b1-4bd4-a4fa-9ebbed0753ea}
+component {f9798742-4f7b-4188-86ba-48b116412b29} messageWakeupService.js
+contract @mozilla.org/content/messagewakeupservice;1 {f9798742-4f7b-4188-86ba-48b116412b29}
+category profile-after-change messageWakeupService @mozilla.org/content/messagewakeupservice;1
+component {5b259db2-e451-4de9-8a6f-cfba91402973} nsAbAutoCompleteMyDomain.js
+contract @mozilla.org/autocomplete/search;1?name=mydomain {5b259db2-e451-4de9-8a6f-cfba91402973}
+component {2f946df9-114c-41fe-8899-81f10daf4f0c} nsAbAutoCompleteSearch.js
+contract @mozilla.org/autocomplete/search;1?name=addrbook {2f946df9-114c-41fe-8899-81f10daf4f0c}
+component {127b341a-bdda-4270-85e1-edff569a9b85} nsAbLDAPAttributeMap.js
+contract @mozilla.org/addressbook/ldap-attribute-map;1 {127b341a-bdda-4270-85e1-edff569a9b85}
+component {4ed7d5e1-8800-40da-9e78-c4f509d7ac5e} nsAbLDAPAttributeMap.js
+contract @mozilla.org/addressbook/ldap-attribute-map-service;1 {4ed7d5e1-8800-40da-9e78-c4f509d7ac5e}
+component {227e6482-fe9f-441f-9b7d-7b60375e7449} nsAbLDAPAutoCompleteSearch.js
+contract @mozilla.org/autocomplete/search;1?name=ldap {227e6482-fe9f-441f-9b7d-7b60375e7449}
+component {e9bb3330-ac7e-11de-8a39-0800200c9a66} nsNewsAutoCompleteSearch.js
+contract @mozilla.org/autocomplete/search;1?name=news {e9bb3330-ac7e-11de-8a39-0800200c9a66}
+component {3bbe4d77-3f70-4252-9500-bc00c26f476d} glautocomp.js
+contract @mozilla.org/autocomplete/search;1?name=gloda {3bbe4d77-3f70-4252-9500-bc00c26f476d}
+component {8cddbbbc-7ced-46b0-a936-8cddd1928c24} jsmimeemitter.js
+contract @mozilla.org/gloda/jsmimeemitter;1 {8cddbbbc-7ced-46b0-a936-8cddd1928c24}
+category mime-emitter @mozilla.org/messenger/mimeemitter;1?type=application/x-js-mime-message @mozilla.org/gloda/jsmimeemitter;1
+component {8cc51368-6aa0-43e8-b762-bde9b9fd828c} aboutRedirector.js
+contract @mozilla.org/network/protocol/about;1?what=rights {8cc51368-6aa0-43e8-b762-bde9b9fd828c}
+contract @mozilla.org/network/protocol/about;1?what=support {8cc51368-6aa0-43e8-b762-bde9b9fd828c}
+contract @mozilla.org/network/protocol/about;1?what=preferences {8cc51368-6aa0-43e8-b762-bde9b9fd828c}
+contract @mozilla.org/network/protocol/about;1?what=downloads {8cc51368-6aa0-43e8-b762-bde9b9fd828c}
+component {44346520-c5d2-44e5-a1ec-034e04d7fac4} nsMailDefaultHandler.js
+contract @mozilla.org/mail/clh;1 {44346520-c5d2-44e5-a1ec-034e04d7fac4}
+category command-line-handler x-default @mozilla.org/mail/clh;1
+category command-line-validator b-default @mozilla.org/mail/clh;1
+component {1c73f03a-b817-4640-b984-18c3478a9ae3} mailContentHandler.js
+contract @mozilla.org/uriloader/content-handler;1?type=text/html {1c73f03a-b817-4640-b984-18c3478a9ae3}
+contract @mozilla.org/uriloader/content-handler;1?type=text/plain {1c73f03a-b817-4640-b984-18c3478a9ae3}
+component {eb239c82-fac9-431e-98d7-11cacd0f71b8} mailGlue.js
+contract @mozilla.org/mail/mailglue;1 {eb239c82-fac9-431e-98d7-11cacd0f71b8}
+category app-startup MailGlue service,@mozilla.org/mail/mailglue;1
+component {a93f0d6f-02a3-4486-a662-8f49b8c1de48} DownloadsStartup.js
+contract @mozilla.org/mail/downloadsstartup;1 {a93f0d6f-02a3-4486-a662-8f49b8c1de48}
+category profile-after-change DownloadsStartup @mozilla.org/mail/downloadsstartup;1
+component {ED117D0A-F6C2-47d8-8A71-0E15BABD2554} nsSetDefaultMail.js
+contract @mozilla.org/mail/default-mail-clh;1 {ED117D0A-F6C2-47d8-8A71-0E15BABD2554}
+category command-line-handler m-setdefaultmail @mozilla.org/mail/default-mail-clh;1
+component {3028a3c8-2165-42a4-b878-398da5d32736} offlineStartup.js
+contract @mozilla.org/offline-startup;1 {3028a3c8-2165-42a4-b878-398da5d32736}
+category app-startup Offline-startup @mozilla.org/offline-startup;1
+component {f265021a-7f1d-4b4b-bdc6-9aedca4d8f13} steelApplication.js
+contract @mozilla.org/steel/application;1 {f265021a-7f1d-4b4b-bdc6-9aedca4d8f13}
+category JavaScript-global-privileged-property Application @mozilla.org/steel/application;1
+component {e007d92e-1dd1-11b2-a61e-dc962c9b8571} mdn-service.js
+contract @mozilla.org/accountmanager/extension;1?name=mdn {e007d92e-1dd1-11b2-a61e-dc962c9b8571}
+category mailnews-accountmanager-extensions mdn-account-manager-extension @mozilla.org/accountmanager/extension;1?name=mdn
+component {f2809796-1dd1-11b2-8c1b-8f15f007c699} smime-service.js
+contract @mozilla.org/accountmanager/extension;1?name=smime {f2809796-1dd1-11b2-8c1b-8f15f007c699}
+category mailnews-accountmanager-extensions smime-account-manager-extension @mozilla.org/accountmanager/extension;1?name=smime
+component {a94b5427-cd8d-40cf-b47e-b67671953e70} imAccounts.js
+contract @mozilla.org/chat/accounts-service;1 {a94b5427-cd8d-40cf-b47e-b67671953e70}
+component {7cb20c68-ccc8-4a79-b6f1-0b4771ed6c23} imCommands.js
+contract @mozilla.org/chat/commands-service;1 {7cb20c68-ccc8-4a79-b6f1-0b4771ed6c23}
+component {8c3725dd-ee26-489d-8135-736015af8c7f} imContacts.js
+contract @mozilla.org/chat/contacts-service;1 {8c3725dd-ee26-489d-8135-736015af8c7f}
+component {1fa92237-4303-4384-b8ac-4e65b50810a5} imContacts.js
+contract @mozilla.org/chat/tags-service;1 {1fa92237-4303-4384-b8ac-4e65b50810a5}
+component {b2397cd5-c76d-4618-8410-f344c7c6443a} imConversations.js
+contract @mozilla.org/chat/conversations-service;1 {b2397cd5-c76d-4618-8410-f344c7c6443a}
+component {073f5953-853c-4a38-bd81-255510c31c2e} imCore.js
+contract @mozilla.org/chat/core-service;1 {073f5953-853c-4a38-bd81-255510c31c2e}
+component {1d1d0bc5-610c-472f-b2cb-4b89857d80dc} facebook.js
+contract @mozilla.org/chat/facebook;1 {1d1d0bc5-610c-472f-b2cb-4b89857d80dc}
+category im-protocol-plugin prpl-facebook @mozilla.org/chat/facebook;1
+component {38a224c1-6748-49a9-8ab2-efc362b1000d} gtalk.js
+contract @mozilla.org/chat/gtalk;1 {38a224c1-6748-49a9-8ab2-efc362b1000d}
+category im-protocol-plugin prpl-gtalk @mozilla.org/chat/gtalk;1
+component {31082ff6-1de8-422b-ab60-ca0ac0b2af13} twitter.js
+contract @mozilla.org/chat/twitter;1 {31082ff6-1de8-422b-ab60-ca0ac0b2af13}
+category im-protocol-plugin prpl-twitter @mozilla.org/chat/twitter;1
+component {607b2c0b-9504-483f-ad62-41de09238aec} irc.js
+contract @mozilla.org/chat/irc;1 {607b2c0b-9504-483f-ad62-41de09238aec}
+category im-protocol-plugin prpl-irc @mozilla.org/chat/irc;1
+component {dde786d1-6f59-43d0-9bc8-b505a757fb30} xmpp.js
+contract @mozilla.org/chat/xmpp;1 {dde786d1-6f59-43d0-9bc8-b505a757fb30}
+category im-protocol-plugin prpl-jabber @mozilla.org/chat/xmpp;1
+component {50ea817e-5d79-4657-91ae-aa0a52bdb98c} yahoo.js
+contract @mozilla.org/chat/yahoo;1 {50ea817e-5d79-4657-91ae-aa0a52bdb98c}
+category im-protocol-plugin prpl-yahoo @mozilla.org/chat/yahoo;1
+component {04e58eae-dfbc-4c9e-8130-6d9ef19cbff4} smileProtocolHandler.js
+contract @mozilla.org/network/protocol;1?name=smile {04e58eae-dfbc-4c9e-8130-6d9ef19cbff4}
+component {fb0dc220-2c7a-4216-9f19-6b8f3480eae9} logger.js
+contract @mozilla.org/chat/logger;1 {fb0dc220-2c7a-4216-9f19-6b8f3480eae9}
+category profile-after-change Logger @mozilla.org/chat/logger;1
+component {13118758-dad2-418c-a03d-1acbfed0cd01} imProtocolInfo.js
+contract @mozilla.org/messenger/protocol/info;1?type=im {13118758-dad2-418c-a03d-1acbfed0cd01}
+component {9dd7f36b-5960-4f0a-8789-f5f516bd083d} imIncomingServer.js
+contract @mozilla.org/messenger/server;1?type=im {9dd7f36b-5960-4f0a-8789-f5f516bd083d}
+component {b3de9249-b0e5-4c12-8d91-c9a434fd80f5} nsLDAPProtocolHandler.js
+contract @mozilla.org/network/protocol;1?name=ldap {b3de9249-b0e5-4c12-8d91-c9a434fd80f5}
+component {c85a5ef2-9c56-445f-b029-76889f2dd29b} nsLDAPProtocolHandler.js
+contract @mozilla.org/network/protocol;1?name=ldaps {c85a5ef2-9c56-445f-b029-76889f2dd29b}
+component {cb9e0de8-3598-4ed7-857b-827f011ad5d8} nsLoginManager.js
+contract @mozilla.org/login-manager;1 {cb9e0de8-3598-4ed7-857b-827f011ad5d8}
+component {749e62f4-60ae-4569-a8a2-de78b649660e} nsLoginManagerPrompter.js
+contract @mozilla.org/passwordmanager/authpromptfactory;1 {749e62f4-60ae-4569-a8a2-de78b649660e}
+component {8aa66d77-1bbb-45a6-991e-b8f47751c291} nsLoginManagerPrompter.js
+contract @mozilla.org/login-manager/prompter;1 {8aa66d77-1bbb-45a6-991e-b8f47751c291}
+component {0f2f347c-1e4f-40cc-8efd-792dea70a85e} nsLoginInfo.js
+contract @mozilla.org/login-manager/loginInfo;1 {0f2f347c-1e4f-40cc-8efd-792dea70a85e}
+component {c00c432d-a0c9-46d7-bef6-9c45b4d07341} storage-json.js
+contract @mozilla.org/login-manager/storage/json;1 {c00c432d-a0c9-46d7-bef6-9c45b4d07341}
+component {dc6c2976-0f73-4f1f-b9ff-3d72b4e28309} crypto-SDR.js
+contract @mozilla.org/login-manager/crypto/SDR;1 {dc6c2976-0f73-4f1f-b9ff-3d72b4e28309}
+category healthreport-js-provider-default PasswordsMetricsProvider resource://gre/modules/LoginManagerParent.jsm
+component {F68578EB-6EC2-4169-AE19-8C6243F0ABE1} nsHelperAppDlg.js
+contract @mozilla.org/helperapplauncherdialog;1 {F68578EB-6EC2-4169-AE19-8C6243F0ABE1}
+component {e35d5067-95bc-4029-8432-e8f1e431148d} nsContentDispatchChooser.js
+contract @mozilla.org/content-dispatch-chooser;1 {e35d5067-95bc-4029-8432-e8f1e431148d}
+component {32314cc8-22f7-4f7f-a645-1a45453ba6a6} nsHandlerService.js
+contract @mozilla.org/uriloader/handler-service;1 {32314cc8-22f7-4f7f-a645-1a45453ba6a6}
+component {8b1ae382-51a9-4972-b930-56977a57919d} nsWebHandlerApp.js
+contract @mozilla.org/uriloader/web-handler-app;1 {8b1ae382-51a9-4972-b930-56977a57919d}
+component {b14c2b67-8680-4c11-8d63-9403c7d4f757} nsSMTPProtocolHandler.js
+contract @mozilla.org/network/protocol;1?name=smtp {b14c2b67-8680-4c11-8d63-9403c7d4f757}
+component {057d0997-9e3a-411e-b4ee-2602f53fe05f} nsSMTPProtocolHandler.js
+contract @mozilla.org/network/protocol;1?name=smtps {057d0997-9e3a-411e-b4ee-2602f53fe05f}
+component {26a4a019-2827-4a89-a85c-5931a678823a} nsUrlClassifierLib.js
+contract @mozilla.org/url-classifier/jslib;1 {26a4a019-2827-4a89-a85c-5931a678823a}
+component {ca168834-cc00-48f9-b83c-fd018e58cae3} nsUrlClassifierListManager.js
+contract @mozilla.org/url-classifier/listmanager;1 {ca168834-cc00-48f9-b83c-fd018e58cae3}
+component {9111de73-9322-4bfc-8b65-2b727f3e6ec8} nsUrlClassifierHashCompleter.js
+contract @mozilla.org/url-classifier/hashcompleter;1 {9111de73-9322-4bfc-8b65-2b727f3e6ec8}
+component {A2E95F4F-DA72-4a41-9493-661AD353C00A} nsMsgTraitService.js
+contract @mozilla.org/msg-trait-service;1 {A2E95F4F-DA72-4a41-9493-661AD353C00A}
+component {05072afa-92fe-45bf-ae22-39b69c117058} AppsService.js
+contract @mozilla.org/AppsService;1 {05072afa-92fe-45bf-ae22-39b69c117058}
+component {9f171ac4-0939-4ef8-b360-3408aedc3060} BrowserElementParent.js
+contract @mozilla.org/dom/browser-element-api;1 {9f171ac4-0939-4ef8-b360-3408aedc3060}
+component {210853d9-2c97-4669-9761-b1ab9cbf57ef} nsDOMIdentity.js
+contract @mozilla.org/identity/manager;1 {210853d9-2c97-4669-9761-b1ab9cbf57ef}
+component {4e0a0e98-b1d3-4745-a1eb-f815199dd06b} nsIDService.js
+contract @mozilla.org/dom/identity/service;1 {4e0a0e98-b1d3-4745-a1eb-f815199dd06b}
+category app-startup IDService @mozilla.org/dom/identity/service;1
+component {c40b1c70-00fb-11e2-a21f-0800200c9a66} SettingsManager.js
+contract @mozilla.org/settingsManager;1 {c40b1c70-00fb-11e2-a21f-0800200c9a66}
+component {60c9357c-3ae0-4222-8f55-da01428470d5} SettingsManager.js
+contract @mozilla.org/settingsLock;1 {60c9357c-3ae0-4222-8f55-da01428470d5}
+component {506c680f-3d1c-4954-b351-2c80afbc37d3} SiteSpecificUserAgent.js
+contract @mozilla.org/dom/site-specific-user-agent;1 {506c680f-3d1c-4954-b351-2c80afbc37d3}
+component {fff440b3-fae2-45c1-bf03-3b5a2e432270} Webapps.js
+contract @mozilla.org/webapps;1 {fff440b3-fae2-45c1-bf03-3b5a2e432270}
+component {8c1bca96-266f-493a-8d57-ec7a95098c15} Webapps.js
+contract @mozilla.org/webapps/manager;1 {8c1bca96-266f-493a-8d57-ec7a95098c15}
+component {723ed303-7757-4fb0-b261-4f78b1f6bd22} Webapps.js
+contract @mozilla.org/webapps/application;1 {723ed303-7757-4fb0-b261-4f78b1f6bd22}
+resource services-crypto resource://gre/modules/services-crypto/
+component {1b4c85df-cbdd-4bb6-b04e-613caece083c} DownloadLegacy.js
+contract @mozilla.org/transfer;1 {1b4c85df-cbdd-4bb6-b04e-613caece083c}
+component {d9d75e86-8f17-4c57-993e-f738f0d86d42} nsCrashMonitor.js
+contract @mozilla.org/toolkit/crashmonitor;1 {d9d75e86-8f17-4c57-993e-f738f0d86d42}
+category profile-after-change CrashMonitor @mozilla.org/toolkit/crashmonitor;1
+component {6ebc941a-f2ff-4d56-b3b6-f7d0b9d73344} nsDefaultCLH.js
+contract @mozilla.org/toolkit/default-clh;1 {6ebc941a-f2ff-4d56-b3b6-f7d0b9d73344}
+category command-line-handler y-default @mozilla.org/toolkit/default-clh;1
+component {f964a319-397a-4d21-8be6-5cdd1ee3e3ae} UnifiedComplete.js
+contract @mozilla.org/autocomplete/search;1?name=unifiedcomplete {f964a319-397a-4d21-8be6-5cdd1ee3e3ae}
+component {35c496de-a115-475d-93b5-ffa3f3ae6fe3} nsAsyncShutdown.js
+contract @mozilla.org/async-shutdown-service;1 {35c496de-a115-475d-93b5-ffa3f3ae6fe3}
+component {1bd66bef-f643-4be3-b690-0c656353eafd} PresentationDeviceInfoManager.js
+contract @mozilla.org/presentation-device/deviceInfo;1 {1bd66bef-f643-4be3-b690-0c656353eafd}
+component {d0272978-beab-4adc-a3d4-04b76acfa4e7} nsPlacesAutoComplete.js
+contract @mozilla.org/autocomplete/search;1?name=history {d0272978-beab-4adc-a3d4-04b76acfa4e7}
+component {c88fae2d-25cf-4338-a1f4-64a320ea7440} nsPlacesAutoComplete.js
+contract @mozilla.org/autocomplete/search;1?name=urlinline {c88fae2d-25cf-4338-a1f4-64a320ea7440}
+component {1c978d25-b37f-43a8-a2d6-0c7a239ead87} nsPrompter.js
+contract @mozilla.org/prompter;1 {1c978d25-b37f-43a8-a2d6-0c7a239ead87}
+component {6e134924-6c3a-4d86-81ac-69432dd971dc} nsPrompter.js
+contract @mozilla.org/network/authprompt-adapter-factory;1 {6e134924-6c3a-4d86-81ac-69432dd971dc}
+component {7ad1b327-6dfa-46ec-9234-f2a620ea7e00} nsPrompter.js
+contract @mozilla.org/embedcomp/prompt-service;1 {7ad1b327-6dfa-46ec-9234-f2a620ea7e00}
+resource services-common resource://gre/modules/services-common/
+component {cda91b22-6472-11e1-aa11-834fec09cd0a} TCPSocket.js
+contract @mozilla.org/tcp-socket;1 {cda91b22-6472-11e1-aa11-834fec09cd0a}
+category JavaScript-navigator-property mozTCPSocket @mozilla.org/tcp-socket;1
+component {afa42841-a6cb-4a91-912f-93099f6a3d18} TCPSocketParentIntermediary.js
+contract @mozilla.org/tcp-socket-intermediary;1 {afa42841-a6cb-4a91-912f-93099f6a3d18}
+component {73065eae-27dc-11e2-895a-000c29987aa2} TCPServerSocket.js
+contract @mozilla.org/tcp-server-socket;1 {73065eae-27dc-11e2-895a-000c29987aa2}
+component {117b219f-92fe-4bd2-a21b-95a342a9d474} TelemetryStartup.js
+contract @mozilla.org/base/telemetry-startup;1 {117b219f-92fe-4bd2-a21b-95a342a9d474}
+category profile-after-change TelemetryStartup @mozilla.org/base/telemetry-startup;1 process=main
+category app-startup TelemetryStartup @mozilla.org/base/telemetry-startup;1 process=content
+component {bdc2e533-b308-4708-ac8e-a8bfade6d851} PeerConnection.js
+component {d1748d4c-7f6a-4dc5-add6-d55b7678537e} PeerConnection.js
+component {02b9970c-433d-4cc2-923d-f7028ac66073} PeerConnection.js
+component {1775081b-b62d-4954-8ffe-a067bbf508a7} PeerConnection.js
+component {7293e901-2be3-4c02-b4bd-cbef6fc24f78} PeerConnection.js
+component {7fe6e18b-0da3-4056-bf3b-440ef3809e06} PeerConnection.js
+component {1abc7499-3c54-43e0-bd60-686e2703f072} PeerConnection.js
+component {0fb47c47-a205-4583-a9fc-cbadf8c95880} PeerConnection.js
+component {4fff5d46-d827-4cd4-a970-8fd53977440e} PeerConnection.js
+component {d974b814-8fde-411c-8c45-b86791b81030} PeerConnection.js
+contract @mozilla.org/dom/peerconnection;1 {bdc2e533-b308-4708-ac8e-a8bfade6d851}
+contract @mozilla.org/dom/peerconnectionobserver;1 {d1748d4c-7f6a-4dc5-add6-d55b7678537e}
+contract @mozilla.org/dom/rtcicecandidate;1 {02b9970c-433d-4cc2-923d-f7028ac66073}
+contract @mozilla.org/dom/rtcsessiondescription;1 {1775081b-b62d-4954-8ffe-a067bbf508a7}
+contract @mozilla.org/dom/peerconnectionmanager;1 {7293e901-2be3-4c02-b4bd-cbef6fc24f78}
+contract @mozilla.org/dom/rtcstatsreport;1 {7fe6e18b-0da3-4056-bf3b-440ef3809e06}
+contract @mozilla.org/dom/rtcidentityassertion;1 {1abc7499-3c54-43e0-bd60-686e2703f072}
+contract @mozilla.org/dom/peerconnectionstatic;1 {0fb47c47-a205-4583-a9fc-cbadf8c95880}
+contract @mozilla.org/dom/rtpsender;1 {4fff5d46-d827-4cd4-a970-8fd53977440e}
+contract @mozilla.org/dom/rtpreceiver;1 {d974b814-8fde-411c-8c45-b86791b81030}
+component {dca61eb5-c7cd-4df1-b0fb-d0722baba251} nsLivemarkService.js
+contract @mozilla.org/browser/livemark-service;2 {dca61eb5-c7cd-4df1-b0fb-d0722baba251}
+component {bbc23860-2553-479d-8b78-94d9038334f7} nsTaggingService.js
+contract @mozilla.org/browser/tagging-service;1 {bbc23860-2553-479d-8b78-94d9038334f7}
+component {1dcc23b0-d4cb-11dc-9ad6-479d56d89593} nsTaggingService.js
+contract @mozilla.org/autocomplete/search;1?name=places-tag-autocomplete {1dcc23b0-d4cb-11dc-9ad6-479d56d89593}
+component {705a423f-2f69-42f3-b9fe-1517e0dee56f} nsPlacesExpiration.js
+contract @mozilla.org/places/expiration;1 {705a423f-2f69-42f3-b9fe-1517e0dee56f}
+category history-observers nsPlacesExpiration @mozilla.org/places/expiration;1
+component {803938d5-e26d-4453-bf46-ad4b26e41114} PlacesCategoriesStarter.js
+contract @mozilla.org/places/categoriesStarter;1 {803938d5-e26d-4453-bf46-ad4b26e41114}
+category idle-daily PlacesCategoriesStarter @mozilla.org/places/categoriesStarter;1
+category bookmark-observers PlacesCategoriesStarter @mozilla.org/places/categoriesStarter;1
+component {d056186c-28a0-494e-aacc-9e433772b143} ColorAnalyzer.js
+contract @mozilla.org/places/colorAnalyzer;1 {d056186c-28a0-494e-aacc-9e433772b143}
+component {7319788a-fe93-4db3-9f39-818cf08f4256} nsSearchService.js process=main
+contract @mozilla.org/browser/search-service;1 {7319788a-fe93-4db3-9f39-818cf08f4256} process=main
+category update-timer nsSearchService @mozilla.org/browser/search-service;1,getService,search-engine-update-timer,browser.search.update.interval,21600
+component {aa892eb4-ffbf-477d-9f9a-06c995ae9f27} nsSearchSuggestions.js
+contract @mozilla.org/autocomplete/search;1?name=search-autocomplete {aa892eb4-ffbf-477d-9f9a-06c995ae9f27}
+component {54ae32f8-1dd2-11b2-a209-df7c505370f8} nsFilePicker.js
+component {0636a680-45cb-11e4-916c-0800200c9a66} MainProcessSingleton.js process=main
+contract @mozilla.org/main-process-singleton;1 {0636a680-45cb-11e4-916c-0800200c9a66} process=main
+category app-startup MainProcessSingleton service,@mozilla.org/main-process-singleton;1 process=main
+component {ca2a8470-45c7-11e4-916c-0800200c9a66} ContentProcessSingleton.js process=content
+contract @mozilla.org/content-process-singleton;1 {ca2a8470-45c7-11e4-916c-0800200c9a66} process=content
+category app-startup ContentProcessSingleton service,@mozilla.org/content-process-singleton;1 process=content
+category profile-after-change nsTerminator @mozilla.org/toolkit/shutdown-terminator;1
+component {3f78ada1-cba2-442a-82dd-d5fb300ddea7} nsTerminatorTelemetry.js
+contract @mozilla.org/toolkit/shutdown-terminator-telemetry;1 {3f78ada1-cba2-442a-82dd-d5fb300ddea7}
+category profile-after-change nsTerminatorTelemetry @mozilla.org/toolkit/shutdown-terminator-telemetry;1
+component {51c65f5d-0de5-4edc-9058-60e50cef77f8} htmlMenuBuilder.js
+contract @mozilla.org/content/html-menu-builder;1 {51c65f5d-0de5-4edc-9058-60e50cef77f8}
+component {77DA64D3-7458-4920-9491-86CC9914F904} NetworkGeolocationProvider.js
+contract @mozilla.org/geolocation/provider;1 {77DA64D3-7458-4920-9491-86CC9914F904}
+contract @mozilla.org/geolocation/mls-provider;1 {77DA64D3-7458-4920-9491-86CC9914F904}
+component {B3C290A6-3943-4B89-8BBE-C01EB7B3B311} nsUpdateService.js
+contract @mozilla.org/updates/update-service;1 {B3C290A6-3943-4B89-8BBE-C01EB7B3B311}
+category update-timer nsUpdateService @mozilla.org/updates/update-service;1,getService,background-update-timer,app.update.interval,86400
+component {093C2356-4843-4C65-8709-D7DBCBBE7DFB} nsUpdateService.js
+contract @mozilla.org/updates/update-manager;1 {093C2356-4843-4C65-8709-D7DBCBBE7DFB}
+component {898CDC9B-E43F-422F-9CC4-2F6291B415A3} nsUpdateService.js
+contract @mozilla.org/updates/update-checker;1 {898CDC9B-E43F-422F-9CC4-2F6291B415A3}
+component {27ABA825-35B5-4018-9FDD-F99250A0E722} nsUpdateService.js
+contract @mozilla.org/updates/update-prompt;1 {27ABA825-35B5-4018-9FDD-F99250A0E722}
+component {e43b0010-04ba-4da6-b523-1f92580bc150} nsUpdateServiceStub.js
+contract @mozilla.org/updates/update-service-stub;1 {e43b0010-04ba-4da6-b523-1f92580bc150}
+category profile-after-change nsUpdateServiceStub @mozilla.org/updates/update-service-stub;1
+category healthreport-js-provider-default UpdateProvider resource://gre/modules/UpdaterHealthProvider.jsm
+component {B322A5C0-A419-484E-96BA-D7182163899F} nsUpdateTimerManager.js
+contract @mozilla.org/updates/timer-manager;1 {B322A5C0-A419-484E-96BA-D7182163899F}
+category profile-after-change nsUpdateTimerManager @mozilla.org/updates/timer-manager;1
+component {66354bc9-7ed1-4692-ae1d-8da97d6b205e} nsBlocklistService.js
+contract @mozilla.org/extensions/blocklist;1 {66354bc9-7ed1-4692-ae1d-8da97d6b205e}
+category profile-after-change nsBlocklistService @mozilla.org/extensions/blocklist;1
+category update-timer nsBlocklistService @mozilla.org/extensions/blocklist;1,getService,blocklist-background-update-timer,extensions.blocklist.interval,86400
+component {4399533d-08d1-458c-a87a-235f74451cfa} addonManager.js
+contract @mozilla.org/addons/integration;1 {4399533d-08d1-458c-a87a-235f74451cfa}
+category update-timer addonManager @mozilla.org/addons/integration;1,getService,addon-background-update-timer,extensions.update.interval,86400
+component {7beb3ba8-6ec3-41b4-b67c-da89b8518922} amContentHandler.js
+contract @mozilla.org/uriloader/content-handler;1?type=application/x-xpinstall {7beb3ba8-6ec3-41b4-b67c-da89b8518922}
+component {0f38e086-89a3-40a5-8ffc-9b694de1d04a} amWebInstallListener.js
+contract @mozilla.org/addons/web-install-listener;1 {0f38e086-89a3-40a5-8ffc-9b694de1d04a}
+component {9df8ef2b-94da-45c9-ab9f-132eb55fddf1} amInstallTrigger.js
+contract @mozilla.org/addons/installtrigger;1 {9df8ef2b-94da-45c9-ab9f-132eb55fddf1}
+category JavaScript-global-property InstallTrigger @mozilla.org/addons/installtrigger;1
+category addon-provider-module PluginProvider resource://gre/modules/addons/PluginProvider.jsm
+category addon-provider-module GMPProvider resource://gre/modules/addons/GMPProvider.jsm
+component {e6156350-2be8-11db-a98b-0800200c9a66} nsURLFormatter.js
+contract @mozilla.org/toolkit/URLFormatterService;1 {e6156350-2be8-11db-a98b-0800200c9a66}
+component {e3f772f3-023f-4b32-b074-36cf0fd5d414} nsContentPrefService.js
+contract @mozilla.org/content-pref/service;1 {e3f772f3-023f-4b32-b074-36cf0fd5d414}
+component {8df290ae-dcaa-4c11-98a5-2429a4dc97bb} nsContentPrefService.js
+contract @mozilla.org/content-pref/hostname-grouper;1 {8df290ae-dcaa-4c11-98a5-2429a4dc97bb}
+component {072a5c3d-30c6-4f07-b87f-9f63d51403f2} FeedProcessor.js
+contract @mozilla.org/feed-result;1 {072a5c3d-30c6-4f07-b87f-9f63d51403f2}
+component {5d0cfa97-69dd-4e5e-ac84-f253162e8f9a} FeedProcessor.js
+contract @mozilla.org/feed;1 {5d0cfa97-69dd-4e5e-ac84-f253162e8f9a}
+component {8e4444ff-8e99-4bdd-aa7f-fb3c1c77319f} FeedProcessor.js
+contract @mozilla.org/feed-entry;1 {8e4444ff-8e99-4bdd-aa7f-fb3c1c77319f}
+component {b992ddcd-3899-4320-9909-924b3e72c922} FeedProcessor.js
+contract @mozilla.org/feed-textconstruct;1 {b992ddcd-3899-4320-9909-924b3e72c922}
+component {414af362-9ad8-4296-898e-62247f25a20e} FeedProcessor.js
+contract @mozilla.org/feed-generator;1 {414af362-9ad8-4296-898e-62247f25a20e}
+component {95c963b7-20b2-11db-92f6-001422106990} FeedProcessor.js
+contract @mozilla.org/feed-person;1 {95c963b7-20b2-11db-92f6-001422106990}
+component {26acb1f0-28fc-43bc-867a-a46aabc85dd4} FeedProcessor.js
+contract @mozilla.org/feed-processor;1 {26acb1f0-28fc-43bc-867a-a46aabc85dd4}
+component {ed9c2c3c-3f86-4ae5-8e31-10f71b0f19e6} FormAutofillContentService.js
+contract @mozilla.org/formautofill/content-service;1 {ed9c2c3c-3f86-4ae5-8e31-10f71b0f19e6}
+component {51c95b3d-7431-467b-8d50-383f158ce9e5} FormAutofillStartup.js
+contract @mozilla.org/formautofill/startup;1 {51c95b3d-7431-467b-8d50-383f158ce9e5}
+component {96cf7855-dfa9-4c6d-8276-f9705b4890f2} ConsoleAPIStorage.js
+contract @mozilla.org/consoleAPI-storage;1 {96cf7855-dfa9-4c6d-8276-f9705b4890f2}
+component {72a5ee28-81d8-4af8-90b3-ae935396cc66} ContactManager.js
+contract @mozilla.org/contact;1 {72a5ee28-81d8-4af8-90b3-ae935396cc66}
+component {8beb3a66-d70a-4111-b216-b8e995ad3aff} ContactManager.js
+contract @mozilla.org/contactManager;1 {8beb3a66-d70a-4111-b216-b8e995ad3aff}
+component {1f34bc80-1bc7-11d6-a384-d705dd0746fc} contentAreaDropListener.js
+contract @mozilla.org/content/dropped-link-handler;1 {1f34bc80-1bc7-11d6-a384-d705dd0746fc}
+component {41f6ae36-a79f-4613-9ac3-915e70f83789} DataReportingService.js
+contract @mozilla.org/datareporting/service;1 {41f6ae36-a79f-4613-9ac3-915e70f83789}
+category app-startup DataReportingService service,@mozilla.org/datareporting/service;1 application={3c2e2abc-06d4-11e1-ac3b-374f68613e61} application={ec8030f7-c20a-464f-9b0e-13a3a9e97384} application={aa3c5121-dab2-40e2-81ca-7ea25febc110} application={a23983c0-fd0e-11dc-95ff-0800200c9a66}
+component {2cd0c310-e127-44d0-88fc-4435c9ab4d4b} jsconsole-clhandler.js
+contract @mozilla.org/toolkit/console-clh;1 {2cd0c310-e127-44d0-88fc-4435c9ab4d4b}
+category command-line-handler b-jsconsole @mozilla.org/toolkit/console-clh;1
+component {6ec5f479-8e13-4403-b6ca-fe4c2dca14fd} nsINIProcessor.js
+contract @mozilla.org/xpcom/ini-processor-factory;1 {6ec5f479-8e13-4403-b6ca-fe4c2dca14fd}
+category agent-style-sheets pluginGlue-pluginFinder chrome://mozapps/content/plugins/pluginFinderBinding.css
+category agent-style-sheets pluginGlue-pluginProblem chrome://mozapps/content/plugins/pluginProblemBinding.css
+component {18a03189-067b-4978-b4f1-bafe35292ed6} txEXSLTRegExFunctions.js
+contract @mozilla.org/exslt/regexp;1 {18a03189-067b-4978-b4f1-bafe35292ed6}
+category XSLT-extension-functions http://exslt.org/regular-expressions @mozilla.org/exslt/regexp;1
+component {0c1bb408-71a2-403f-854a-3a0659829ded} nsFormHistory.js
+contract @mozilla.org/satchel/form-history;1 {0c1bb408-71a2-403f-854a-3a0659829ded}
+component {c11c21b2-71c9-4f87-a0f8-5e13f50495fd} nsFormAutoComplete.js
+contract @mozilla.org/satchel/form-autocomplete;1 {c11c21b2-71c9-4f87-a0f8-5e13f50495fd}
+component {bf1e01d0-953e-11df-981c-0800200c9a66} nsInputListAutoComplete.js
+contract @mozilla.org/satchel/inputlist-autocomplete;1 {bf1e01d0-953e-11df-981c-0800200c9a66}
+component {3a0012eb-007f-4bb8-aa81-a07385f77a25} FormHistoryStartup.js
+contract @mozilla.org/satchel/form-history-startup;1 {3a0012eb-007f-4bb8-aa81-a07385f77a25}
+category profile-after-change formHistoryStartup @mozilla.org/satchel/form-history-startup;1
+category idle-daily formHistoryStartup @mozilla.org/satchel/form-history-startup;1
+component {92668367-1b17-4190-86b2-1061b2179744} CrashService.js
+contract @mozilla.org/crashservice;1 {92668367-1b17-4190-86b2-1061b2179744}
+category profile-after-change CrashService @mozilla.org/crashservice;1

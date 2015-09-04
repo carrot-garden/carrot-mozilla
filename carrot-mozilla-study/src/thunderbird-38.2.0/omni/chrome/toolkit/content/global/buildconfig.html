@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width; user-scalable=false;">
+  <title>about:buildconfig</title>
+  <link rel="stylesheet" href="chrome://global/skin/about.css" type="text/css">
+  <style type="text/css">
+    th { text-align: start; }
+    h2 { margin-top: 1.5em; }
+    th, td { vertical-align: top; }
+  </style>
+</head>
+<body class="aboutPageWideContainer">
+<h1>about:buildconfig</h1>
+<h2>Build Machine</h2>
+<p>bld-linux64-spot-571</p>
+<h2>Source</h2>
+<p>Built from <a href="http://hg.mozilla.org/releases/mozilla-esr38/rev/5f77862a6e66">http://hg.mozilla.org/releases/mozilla-esr38/rev/5f77862a6e66</a></p>
+<h2>Build platform</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>target</th>
+    </tr>
+    <tr>
+      <td>i686-pc-linux-gnu</td>
+    </tr>
+  </tbody>
+</table>
+<h2>Build tools</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>Compiler</th>
+      <th>Version</th>
+      <th>Compiler flags</th>
+    </tr>
+    <tr>
+      <td>/tools/gcc-4.7.3-0moz1/bin/gcc -m32 -march=pentiumpro</td>
+      <td>4.7.3</td>
+      <td>-Wall -Wdeclaration-after-statement -Wempty-body -Wpointer-to-int-cast -Wsign-compare -Wtype-limits -Wno-unused -Wcast-align -std=gnu99 -fgnu89-inline -fno-strict-aliasing -ffunction-sections -fdata-sections -fno-math-errno -pthread -pipe</td>
+    </tr>
+    <tr>
+      <td>/tools/gcc-4.7.3-0moz1/bin/g++ -m32 -march=pentiumpro</td>
+      <td>4.7.3</td>
+      <td> -Wall -Wempty-body -Woverloaded-virtual -Wsign-compare -Wwrite-strings -Wno-invalid-offsetof -Wcast-align -fno-exceptions -fno-strict-aliasing -fno-rtti -ffunction-sections -fdata-sections -fno-exceptions -fno-math-errno -std=gnu++0x -pthread -pipe  -DNDEBUG -DTRIMMED -g -freorder-blocks -Os -fomit-frame-pointer </td>
+    </tr>
+  </tbody>
+</table>
+<h2>Configure arguments</h2>
+<p> --enable-crashreporter --enable-release --enable-elf-hack --enable-stdcxx-compat --target=i686-pc-linux --host=i686-pc-linux --x-libraries=/usr/lib --enable-application=mail --enable-update-channel=release --enable-update-packaging --enable-official-branding --enable-calendar --with-external-source-dir=/builds/slave/tb-rel-c-esr38-lx_bld-00000000/build</p>
+</body>
+</html>
